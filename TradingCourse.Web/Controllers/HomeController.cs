@@ -1,10 +1,7 @@
 using System.Diagnostics;
 using System.Linq;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
-using TradingCourse.Application;
-using TradingCourse.Application.Models;
 using TradingCourse.Application.Services;
 using TradingCourse.Web.Models;
 
@@ -12,14 +9,12 @@ namespace TradingCourse.Web.Controllers;
 
 public class HomeController : Controller
 {
-    private readonly AppDbContext _context;
     private readonly ICourseService _courseService;
     private readonly IHomepageBannerService _bannerService;
     private readonly ILogger<HomeController> _logger;
 
-    public HomeController(AppDbContext context, ICourseService courseService, IHomepageBannerService bannerService, ILogger<HomeController> logger)
+    public HomeController(ICourseService courseService, IHomepageBannerService bannerService, ILogger<HomeController> logger)
     {
-        _context = context;
         _courseService = courseService;
         _bannerService = bannerService;
         _logger = logger;
