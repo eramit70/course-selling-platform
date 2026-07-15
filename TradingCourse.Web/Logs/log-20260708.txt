@@ -1,0 +1,943 @@
+2026-07-08 23:27:25.716 +05:30 [INF] Start installing Hangfire SQL objects...
+2026-07-08 23:27:32.945 +05:30 [WRN] An exception occurred while trying to perform the migration. Retrying...
+Microsoft.Data.SqlClient.SqlException (0x80131904): DefaultAzureCredential failed to retrieve a token from the included credentials. See the troubleshooting guide for more information. https://aka.ms/azsdk/net/identity/defaultazurecredential/troubleshoot
+- EnvironmentCredential authentication unavailable. Environment variables are not fully configured. See the troubleshooting guide for more information. https://aka.ms/azsdk/net/identity/environmentcredential/troubleshoot
+- WorkloadIdentityCredential authentication unavailable. The workload options are not fully configured. See the troubleshooting guide for more information. https://aka.ms/azsdk/net/identity/workloadidentitycredential/troubleshoot
+- ManagedIdentityCredential authentication unavailable. No response received from the managed identity endpoint.
+- Process "C:\Program Files\Microsoft Visual Studio\18\Community\Common7\IDE\CommonExtensions\Microsoft\Asal\TokenService\Microsoft.Asal.TokenService.exe" has failed with unexpected error: TS003: Error, TS005: No accounts found.  Please go to Tools->Options->Azure Services Authentication, and add an account to be authenticated to Azure services during development..
+- Azure CLI not installed
+- Az.Accounts module >= 2.2.0 is not installed.
+- Azure Developer CLI could not be found.
+ ---> Azure.Identity.CredentialUnavailableException: DefaultAzureCredential failed to retrieve a token from the included credentials. See the troubleshooting guide for more information. https://aka.ms/azsdk/net/identity/defaultazurecredential/troubleshoot
+- EnvironmentCredential authentication unavailable. Environment variables are not fully configured. See the troubleshooting guide for more information. https://aka.ms/azsdk/net/identity/environmentcredential/troubleshoot
+- WorkloadIdentityCredential authentication unavailable. The workload options are not fully configured. See the troubleshooting guide for more information. https://aka.ms/azsdk/net/identity/workloadidentitycredential/troubleshoot
+- ManagedIdentityCredential authentication unavailable. No response received from the managed identity endpoint.
+- Process "C:\Program Files\Microsoft Visual Studio\18\Community\Common7\IDE\CommonExtensions\Microsoft\Asal\TokenService\Microsoft.Asal.TokenService.exe" has failed with unexpected error: TS003: Error, TS005: No accounts found.  Please go to Tools->Options->Azure Services Authentication, and add an account to be authenticated to Azure services during development..
+- Azure CLI not installed
+- Az.Accounts module >= 2.2.0 is not installed.
+- Azure Developer CLI could not be found.
+ ---> System.AggregateException: Multiple exceptions were encountered while attempting to authenticate. (EnvironmentCredential authentication unavailable. Environment variables are not fully configured. See the troubleshooting guide for more information. https://aka.ms/azsdk/net/identity/environmentcredential/troubleshoot) (WorkloadIdentityCredential authentication unavailable. The workload options are not fully configured. See the troubleshooting guide for more information. https://aka.ms/azsdk/net/identity/workloadidentitycredential/troubleshoot) (ManagedIdentityCredential authentication unavailable. No response received from the managed identity endpoint.) (Process "C:\Program Files\Microsoft Visual Studio\18\Community\Common7\IDE\CommonExtensions\Microsoft\Asal\TokenService\Microsoft.Asal.TokenService.exe" has failed with unexpected error: TS003: Error, TS005: No accounts found.  Please go to Tools->Options->Azure Services Authentication, and add an account to be authenticated to Azure services during development..) (Azure CLI not installed) (Az.Accounts module >= 2.2.0 is not installed.) (Azure Developer CLI could not be found.)
+ ---> Azure.Identity.CredentialUnavailableException: EnvironmentCredential authentication unavailable. Environment variables are not fully configured. See the troubleshooting guide for more information. https://aka.ms/azsdk/net/identity/environmentcredential/troubleshoot
+   at Azure.Identity.CredentialDiagnosticScope.FailWrapAndThrow(Exception ex, String additionalMessage, Boolean isCredentialUnavailable)
+   at Azure.Identity.EnvironmentCredential.GetTokenImplAsync(Boolean async, TokenRequestContext requestContext, CancellationToken cancellationToken)
+   at Azure.Identity.EnvironmentCredential.GetTokenAsync(TokenRequestContext requestContext, CancellationToken cancellationToken)
+   at Azure.Identity.DefaultAzureCredential.GetTokenFromSourcesAsync(TokenCredential[] sources, TokenRequestContext requestContext, Boolean async, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+ ---> (Inner Exception #1) Azure.Identity.CredentialUnavailableException: WorkloadIdentityCredential authentication unavailable. The workload options are not fully configured. See the troubleshooting guide for more information. https://aka.ms/azsdk/net/identity/workloadidentitycredential/troubleshoot
+   at Azure.Identity.WorkloadIdentityCredential.GetTokenCoreAsync(Boolean async, TokenRequestContext requestContext, CancellationToken cancellationToken)
+   at Azure.Identity.CredentialDiagnosticScope.FailWrapAndThrow(Exception ex, String additionalMessage, Boolean isCredentialUnavailable)
+   at Azure.Identity.WorkloadIdentityCredential.GetTokenCoreAsync(Boolean async, TokenRequestContext requestContext, CancellationToken cancellationToken)
+   at Azure.Identity.WorkloadIdentityCredential.GetTokenAsync(TokenRequestContext requestContext, CancellationToken cancellationToken)
+   at Azure.Identity.DefaultAzureCredential.GetTokenFromSourcesAsync(TokenCredential[] sources, TokenRequestContext requestContext, Boolean async, CancellationToken cancellationToken)<---
+
+ ---> (Inner Exception #2) Azure.Identity.CredentialUnavailableException: ManagedIdentityCredential authentication unavailable. No response received from the managed identity endpoint.
+ ---> System.Threading.Tasks.TaskCanceledException: The operation was cancelled because it exceeded the configured timeout of 0:00:01. Network timeout can be adjusted in ClientOptions.Retry.NetworkTimeout.
+ ---> System.Threading.Tasks.TaskCanceledException: A task was canceled.
+ ---> System.Threading.Tasks.TaskCanceledException: A task was canceled.
+   at System.Threading.Tasks.TaskCompletionSourceWithCancellation`1.WaitWithCancellationAsync(CancellationToken cancellationToken)
+   at System.Net.Http.HttpConnectionPool.SendWithVersionDetectionAndRetryAsync(HttpRequestMessage request, Boolean async, Boolean doRequestAuth, CancellationToken cancellationToken)
+   at System.Net.Http.HttpClient.<SendAsync>g__Core|83_0(HttpRequestMessage request, HttpCompletionOption completionOption, CancellationTokenSource cts, Boolean disposeCts, CancellationTokenSource pendingRequestsCts, CancellationToken originalCancellationToken)
+   --- End of inner exception stack trace ---
+   at System.Net.Http.HttpClient.HandleFailure(Exception e, Boolean telemetryStarted, HttpResponseMessage response, CancellationTokenSource cts, CancellationToken cancellationToken, CancellationTokenSource pendingRequestsCts)
+   at System.Net.Http.HttpClient.<SendAsync>g__Core|83_0(HttpRequestMessage request, HttpCompletionOption completionOption, CancellationTokenSource cts, Boolean disposeCts, CancellationTokenSource pendingRequestsCts, CancellationToken originalCancellationToken)
+   at Azure.Core.Pipeline.HttpClientTransport.ProcessAsync(HttpMessage message, Boolean async)
+   at Azure.Core.Pipeline.HttpPipelineTransportPolicy.ProcessAsync(HttpMessage message, ReadOnlyMemory`1 pipeline)
+   at Azure.Core.Pipeline.ResponseBodyPolicy.ProcessAsync(HttpMessage message, ReadOnlyMemory`1 pipeline, Boolean async)
+   --- End of inner exception stack trace ---
+   at Azure.Core.Pipeline.ResponseBodyPolicy.ThrowIfCancellationRequestedOrTimeout(CancellationToken originalToken, CancellationToken timeoutToken, Exception inner, TimeSpan timeout)
+   at Azure.Core.Pipeline.ResponseBodyPolicy.ProcessAsync(HttpMessage message, ReadOnlyMemory`1 pipeline, Boolean async)
+   at Azure.Core.Pipeline.RedirectPolicy.ProcessAsync(HttpMessage message, ReadOnlyMemory`1 pipeline, Boolean async)
+   at Azure.Core.Pipeline.RetryPolicy.ProcessAsync(HttpMessage message, ReadOnlyMemory`1 pipeline, Boolean async)
+   at Azure.Core.Pipeline.RetryPolicy.ProcessAsync(HttpMessage message, ReadOnlyMemory`1 pipeline, Boolean async)
+   at Azure.Identity.ManagedIdentitySource.AuthenticateAsync(Boolean async, TokenRequestContext context, CancellationToken cancellationToken)
+   at Azure.Identity.ImdsManagedIdentitySource.AuthenticateAsync(Boolean async, TokenRequestContext context, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at Azure.Identity.ImdsManagedIdentitySource.AuthenticateAsync(Boolean async, TokenRequestContext context, CancellationToken cancellationToken)
+   at Azure.Identity.ManagedIdentityClient.AuthenticateCoreAsync(Boolean async, TokenRequestContext context, CancellationToken cancellationToken)
+   at Azure.Identity.ManagedIdentityClient.AppTokenProviderImpl(AppTokenProviderParameters parameters)
+   at Microsoft.Identity.Client.Internal.Requests.ClientCredentialRequest.SendTokenRequestToAppTokenProviderAsync(ILoggerAdapter logger, CancellationToken cancellationToken)
+   at Microsoft.Identity.Client.Internal.Requests.ClientCredentialRequest.GetAccessTokenAsync(CancellationToken cancellationToken, ILoggerAdapter logger)
+   at Microsoft.Identity.Client.Internal.Requests.ClientCredentialRequest.ExecuteAsync(CancellationToken cancellationToken)
+   at Microsoft.Identity.Client.Internal.Requests.RequestBase.<>c__DisplayClass11_1.<<RunAsync>b__1>d.MoveNext()
+--- End of stack trace from previous location ---
+   at Microsoft.Identity.Client.Utils.StopwatchService.MeasureCodeBlockAsync(Func`1 codeBlock)
+   at Microsoft.Identity.Client.Internal.Requests.RequestBase.RunAsync(CancellationToken cancellationToken)
+   at Microsoft.Identity.Client.ApiConfig.Executors.ConfidentialClientExecutor.ExecuteAsync(AcquireTokenCommonParameters commonParameters, AcquireTokenForClientParameters clientParameters, CancellationToken cancellationToken)
+   at Azure.Identity.AbstractAcquireTokenParameterBuilderExtensions.ExecuteAsync[T](AbstractAcquireTokenParameterBuilder`1 builder, Boolean async, CancellationToken cancellationToken)
+   at Azure.Identity.MsalConfidentialClient.AcquireTokenForClientCoreAsync(String[] scopes, String tenantId, String claims, Boolean enableCae, Boolean async, CancellationToken cancellationToken)
+   at Azure.Identity.MsalConfidentialClient.AcquireTokenForClientAsync(String[] scopes, String tenantId, String claims, Boolean enableCae, Boolean async, CancellationToken cancellationToken)
+   at Azure.Identity.ManagedIdentityClient.AuthenticateAsync(Boolean async, TokenRequestContext context, CancellationToken cancellationToken)
+   at Azure.Identity.ManagedIdentityCredential.GetTokenImplAsync(Boolean async, TokenRequestContext requestContext, CancellationToken cancellationToken)
+   at Azure.Identity.CredentialDiagnosticScope.FailWrapAndThrow(Exception ex, String additionalMessage, Boolean isCredentialUnavailable)
+   at Azure.Identity.ManagedIdentityCredential.GetTokenImplAsync(Boolean async, TokenRequestContext requestContext, CancellationToken cancellationToken)
+   at Azure.Identity.ManagedIdentityCredential.GetTokenAsync(TokenRequestContext requestContext, CancellationToken cancellationToken)
+   at Azure.Identity.DefaultAzureCredential.GetTokenFromSourcesAsync(TokenCredential[] sources, TokenRequestContext requestContext, Boolean async, CancellationToken cancellationToken)<---
+
+ ---> (Inner Exception #3) Azure.Identity.CredentialUnavailableException: Process "C:\Program Files\Microsoft Visual Studio\18\Community\Common7\IDE\CommonExtensions\Microsoft\Asal\TokenService\Microsoft.Asal.TokenService.exe" has failed with unexpected error: TS003: Error, TS005: No accounts found.  Please go to Tools->Options->Azure Services Authentication, and add an account to be authenticated to Azure services during development..
+ ---> System.InvalidOperationException: TS003: Error, TS005: No accounts found.  Please go to Tools->Options->Azure Services Authentication, and add an account to be authenticated to Azure services during development.
+   at Azure.Identity.VisualStudioCredential.RunProcessesAsync(List`1 processStartInfos, Boolean async, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at Azure.Identity.VisualStudioCredential.RunProcessesAsync(List`1 processStartInfos, Boolean async, CancellationToken cancellationToken)
+   at Azure.Identity.VisualStudioCredential.GetTokenImplAsync(TokenRequestContext requestContext, Boolean async, CancellationToken cancellationToken)
+   at Azure.Identity.CredentialDiagnosticScope.FailWrapAndThrow(Exception ex, String additionalMessage, Boolean isCredentialUnavailable)
+   at Azure.Identity.VisualStudioCredential.GetTokenImplAsync(TokenRequestContext requestContext, Boolean async, CancellationToken cancellationToken)
+   at Azure.Identity.VisualStudioCredential.GetTokenAsync(TokenRequestContext requestContext, CancellationToken cancellationToken)
+   at Azure.Identity.DefaultAzureCredential.GetTokenFromSourcesAsync(TokenCredential[] sources, TokenRequestContext requestContext, Boolean async, CancellationToken cancellationToken)<---
+
+ ---> (Inner Exception #4) Azure.Identity.CredentialUnavailableException: Azure CLI not installed
+   at Azure.Identity.AzureCliCredential.RequestCliAccessTokenAsync(Boolean async, TokenRequestContext context, CancellationToken cancellationToken)
+   at Azure.Identity.AzureCliCredential.GetTokenImplAsync(Boolean async, TokenRequestContext requestContext, CancellationToken cancellationToken)
+   at Azure.Identity.CredentialDiagnosticScope.FailWrapAndThrow(Exception ex, String additionalMessage, Boolean isCredentialUnavailable)
+   at Azure.Identity.AzureCliCredential.GetTokenImplAsync(Boolean async, TokenRequestContext requestContext, CancellationToken cancellationToken)
+   at Azure.Identity.AzureCliCredential.GetTokenAsync(TokenRequestContext requestContext, CancellationToken cancellationToken)
+   at Azure.Identity.DefaultAzureCredential.GetTokenFromSourcesAsync(TokenCredential[] sources, TokenRequestContext requestContext, Boolean async, CancellationToken cancellationToken)<---
+
+ ---> (Inner Exception #5) Azure.Identity.CredentialUnavailableException: Az.Accounts module >= 2.2.0 is not installed.
+   at Azure.Identity.AzurePowerShellCredential.CheckForErrors(String output, Int32 exitCode)
+   at Azure.Identity.AzurePowerShellCredential.RequestAzurePowerShellAccessTokenAsync(Boolean async, TokenRequestContext context, CancellationToken cancellationToken)
+   at Azure.Identity.AzurePowerShellCredential.GetTokenImplAsync(Boolean async, TokenRequestContext requestContext, CancellationToken cancellationToken)
+   at Azure.Identity.CredentialDiagnosticScope.FailWrapAndThrow(Exception ex, String additionalMessage, Boolean isCredentialUnavailable)
+   at Azure.Identity.AzurePowerShellCredential.GetTokenImplAsync(Boolean async, TokenRequestContext requestContext, CancellationToken cancellationToken)
+   at Azure.Identity.AzurePowerShellCredential.GetTokenAsync(TokenRequestContext requestContext, CancellationToken cancellationToken)
+   at Azure.Identity.DefaultAzureCredential.GetTokenFromSourcesAsync(TokenCredential[] sources, TokenRequestContext requestContext, Boolean async, CancellationToken cancellationToken)<---
+
+ ---> (Inner Exception #6) Azure.Identity.CredentialUnavailableException: Azure Developer CLI could not be found.
+   at Azure.Identity.AzureDeveloperCliCredential.RequestCliAccessTokenAsync(Boolean async, TokenRequestContext context, CancellationToken cancellationToken)
+   at Azure.Identity.AzureDeveloperCliCredential.GetTokenImplAsync(Boolean async, TokenRequestContext requestContext, CancellationToken cancellationToken)
+   at Azure.Identity.CredentialDiagnosticScope.FailWrapAndThrow(Exception ex, String additionalMessage, Boolean isCredentialUnavailable)
+   at Azure.Identity.AzureDeveloperCliCredential.GetTokenImplAsync(Boolean async, TokenRequestContext requestContext, CancellationToken cancellationToken)
+   at Azure.Identity.AzureDeveloperCliCredential.GetTokenAsync(TokenRequestContext requestContext, CancellationToken cancellationToken)
+   at Azure.Identity.DefaultAzureCredential.GetTokenFromSourcesAsync(TokenCredential[] sources, TokenRequestContext requestContext, Boolean async, CancellationToken cancellationToken)<---
+
+   --- End of inner exception stack trace ---
+   at Azure.Identity.DefaultAzureCredential.GetTokenFromSourcesAsync(TokenCredential[] sources, TokenRequestContext requestContext, Boolean async, CancellationToken cancellationToken)
+   at Azure.Identity.DefaultAzureCredential.GetTokenImplAsync(Boolean async, TokenRequestContext requestContext, CancellationToken cancellationToken)
+   at Azure.Identity.CredentialDiagnosticScope.FailWrapAndThrow(Exception ex, String additionalMessage, Boolean isCredentialUnavailable)
+   at Azure.Identity.DefaultAzureCredential.GetTokenImplAsync(Boolean async, TokenRequestContext requestContext, CancellationToken cancellationToken)
+   at Azure.Identity.DefaultAzureCredential.GetTokenAsync(TokenRequestContext requestContext, CancellationToken cancellationToken)
+   at Microsoft.Data.SqlClient.ActiveDirectoryAuthenticationProvider.GetTokenAsync(TokenCredentialKey tokenCredentialKey, String secret, TokenRequestContext tokenRequestContext, CancellationToken cancellationToken)
+   at Microsoft.Data.SqlClient.ActiveDirectoryAuthenticationProvider.AcquireTokenAsync(SqlAuthenticationParameters parameters)
+   at Microsoft.Data.SqlClient.SqlInternalConnectionTds.<>c__DisplayClass147_1.<<GetFedAuthToken>b__1>d.MoveNext()
+--- End of stack trace from previous location ---
+   at Microsoft.Data.SqlClient.SqlInternalConnectionTds.GetFedAuthToken(SqlFedAuthInfo fedAuthInfo)
+   at Microsoft.Data.SqlClient.SqlInternalConnectionTds.GetFedAuthToken(SqlFedAuthInfo fedAuthInfo)
+   at Microsoft.Data.SqlClient.SqlInternalConnectionTds.OnFedAuthInfo(SqlFedAuthInfo fedAuthInfo)
+   at Microsoft.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at Microsoft.Data.SqlClient.TdsParser.Run(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj)
+   at Microsoft.Data.SqlClient.SqlInternalConnectionTds.CompleteLogin(Boolean enlistOK)
+   at Microsoft.Data.SqlClient.SqlInternalConnectionTds.AttemptOneLogin(ServerInfo serverInfo, String newPassword, SecureString newSecurePassword, Boolean ignoreSniOpenTimeout, TimeoutTimer timeout, Boolean withFailover)
+   at Microsoft.Data.SqlClient.SqlInternalConnectionTds.LoginNoFailover(ServerInfo serverInfo, String newPassword, SecureString newSecurePassword, Boolean redirectedUserInstance, SqlConnectionString connectionOptions, SqlCredential credential, TimeoutTimer timeout)
+   at Microsoft.Data.SqlClient.SqlInternalConnectionTds.OpenLoginEnlist(TimeoutTimer timeout, SqlConnectionString connectionOptions, SqlCredential credential, String newPassword, SecureString newSecurePassword, Boolean redirectedUserInstance)
+   at Microsoft.Data.SqlClient.SqlInternalConnectionTds..ctor(DbConnectionPoolIdentity identity, SqlConnectionString connectionOptions, SqlCredential credential, Object providerInfo, String newPassword, SecureString newSecurePassword, Boolean redirectedUserInstance, SqlConnectionString userConnectionOptions, SessionData reconnectSessionData, Boolean applyTransientFaultHandling, String accessToken, DbConnectionPool pool)
+   at Microsoft.Data.SqlClient.SqlConnectionFactory.CreateConnection(DbConnectionOptions options, DbConnectionPoolKey poolKey, Object poolGroupProviderInfo, DbConnectionPool pool, DbConnection owningConnection, DbConnectionOptions userOptions)
+   at Microsoft.Data.ProviderBase.DbConnectionFactory.CreatePooledConnection(DbConnectionPool pool, DbConnection owningObject, DbConnectionOptions options, DbConnectionPoolKey poolKey, DbConnectionOptions userOptions)
+   at Microsoft.Data.ProviderBase.DbConnectionPool.CreateObject(DbConnection owningObject, DbConnectionOptions userOptions, DbConnectionInternal oldConnection)
+   at Microsoft.Data.ProviderBase.DbConnectionPool.UserCreateRequest(DbConnection owningObject, DbConnectionOptions userOptions, DbConnectionInternal oldConnection)
+   at Microsoft.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbConnection owningObject, UInt32 waitForMultipleObjectsTimeout, Boolean allowCreate, Boolean onlyOneCheckConnection, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   at Microsoft.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbConnection owningObject, TaskCompletionSource`1 retry, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   at Microsoft.Data.ProviderBase.DbConnectionFactory.TryGetConnection(DbConnection owningConnection, TaskCompletionSource`1 retry, DbConnectionOptions userOptions, DbConnectionInternal oldConnection, DbConnectionInternal& connection)
+   at Microsoft.Data.ProviderBase.DbConnectionInternal.TryOpenConnectionInternal(DbConnection outerConnection, DbConnectionFactory connectionFactory, TaskCompletionSource`1 retry, DbConnectionOptions userOptions)
+   at Microsoft.Data.ProviderBase.DbConnectionClosed.TryOpenConnection(DbConnection outerConnection, DbConnectionFactory connectionFactory, TaskCompletionSource`1 retry, DbConnectionOptions userOptions)
+   at Microsoft.Data.SqlClient.SqlConnection.TryOpen(TaskCompletionSource`1 retry, SqlConnectionOverrides overrides)
+   at Microsoft.Data.SqlClient.SqlConnection.Open(SqlConnectionOverrides overrides)
+   at Microsoft.Data.SqlClient.SqlConnection.Open()
+   at Hangfire.SqlServer.SqlServerStorage.CreateAndOpenConnection() in C:\projects\hangfire-525\src\Hangfire.SqlServer\SqlServerStorage.cs:line 406
+   at Hangfire.SqlServer.SqlServerStorage.UseConnection[TContext,TResult](DbConnection dedicatedConnection, Func`4 func, TContext context) in C:\projects\hangfire-525\src\Hangfire.SqlServer\SqlServerStorage.cs:line 291
+   at Hangfire.SqlServer.SqlServerStorage.UseConnection(DbConnection dedicatedConnection, Action`2 action) in C:\projects\hangfire-525\src\Hangfire.SqlServer\SqlServerStorage.cs:line 268
+   at Hangfire.SqlServer.SqlServerStorage.Initialize() in C:\projects\hangfire-525\src\Hangfire.SqlServer\SqlServerStorage.cs:line 465
+ClientConnectionId:5dec342d-6c8c-456e-ab2b-14ab1a42a101
+2026-07-08 23:27:36.768 +05:30 [WRN] An exception occurred while trying to perform the migration. Retrying...
+Microsoft.Data.SqlClient.SqlException (0x80131904): DefaultAzureCredential failed to retrieve a token from the included credentials. See the troubleshooting guide for more information. https://aka.ms/azsdk/net/identity/defaultazurecredential/troubleshoot
+- EnvironmentCredential authentication unavailable. Environment variables are not fully configured. See the troubleshooting guide for more information. https://aka.ms/azsdk/net/identity/environmentcredential/troubleshoot
+- WorkloadIdentityCredential authentication unavailable. The workload options are not fully configured. See the troubleshooting guide for more information. https://aka.ms/azsdk/net/identity/workloadidentitycredential/troubleshoot
+- ManagedIdentityCredential authentication unavailable. No response received from the managed identity endpoint.
+- Process "C:\Program Files\Microsoft Visual Studio\18\Community\Common7\IDE\CommonExtensions\Microsoft\Asal\TokenService\Microsoft.Asal.TokenService.exe" has failed with unexpected error: TS003: Error, TS005: No accounts found.  Please go to Tools->Options->Azure Services Authentication, and add an account to be authenticated to Azure services during development..
+- Azure CLI not installed
+- Az.Accounts module >= 2.2.0 is not installed.
+- Azure Developer CLI could not be found.
+ ---> Azure.Identity.CredentialUnavailableException: DefaultAzureCredential failed to retrieve a token from the included credentials. See the troubleshooting guide for more information. https://aka.ms/azsdk/net/identity/defaultazurecredential/troubleshoot
+- EnvironmentCredential authentication unavailable. Environment variables are not fully configured. See the troubleshooting guide for more information. https://aka.ms/azsdk/net/identity/environmentcredential/troubleshoot
+- WorkloadIdentityCredential authentication unavailable. The workload options are not fully configured. See the troubleshooting guide for more information. https://aka.ms/azsdk/net/identity/workloadidentitycredential/troubleshoot
+- ManagedIdentityCredential authentication unavailable. No response received from the managed identity endpoint.
+- Process "C:\Program Files\Microsoft Visual Studio\18\Community\Common7\IDE\CommonExtensions\Microsoft\Asal\TokenService\Microsoft.Asal.TokenService.exe" has failed with unexpected error: TS003: Error, TS005: No accounts found.  Please go to Tools->Options->Azure Services Authentication, and add an account to be authenticated to Azure services during development..
+- Azure CLI not installed
+- Az.Accounts module >= 2.2.0 is not installed.
+- Azure Developer CLI could not be found.
+ ---> System.AggregateException: Multiple exceptions were encountered while attempting to authenticate. (EnvironmentCredential authentication unavailable. Environment variables are not fully configured. See the troubleshooting guide for more information. https://aka.ms/azsdk/net/identity/environmentcredential/troubleshoot) (WorkloadIdentityCredential authentication unavailable. The workload options are not fully configured. See the troubleshooting guide for more information. https://aka.ms/azsdk/net/identity/workloadidentitycredential/troubleshoot) (ManagedIdentityCredential authentication unavailable. No response received from the managed identity endpoint.) (Process "C:\Program Files\Microsoft Visual Studio\18\Community\Common7\IDE\CommonExtensions\Microsoft\Asal\TokenService\Microsoft.Asal.TokenService.exe" has failed with unexpected error: TS003: Error, TS005: No accounts found.  Please go to Tools->Options->Azure Services Authentication, and add an account to be authenticated to Azure services during development..) (Azure CLI not installed) (Az.Accounts module >= 2.2.0 is not installed.) (Azure Developer CLI could not be found.)
+ ---> Azure.Identity.CredentialUnavailableException: EnvironmentCredential authentication unavailable. Environment variables are not fully configured. See the troubleshooting guide for more information. https://aka.ms/azsdk/net/identity/environmentcredential/troubleshoot
+   at Azure.Identity.CredentialDiagnosticScope.FailWrapAndThrow(Exception ex, String additionalMessage, Boolean isCredentialUnavailable)
+   at Azure.Identity.EnvironmentCredential.GetTokenImplAsync(Boolean async, TokenRequestContext requestContext, CancellationToken cancellationToken)
+   at Azure.Identity.EnvironmentCredential.GetTokenAsync(TokenRequestContext requestContext, CancellationToken cancellationToken)
+   at Azure.Identity.DefaultAzureCredential.GetTokenFromSourcesAsync(TokenCredential[] sources, TokenRequestContext requestContext, Boolean async, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+ ---> (Inner Exception #1) Azure.Identity.CredentialUnavailableException: WorkloadIdentityCredential authentication unavailable. The workload options are not fully configured. See the troubleshooting guide for more information. https://aka.ms/azsdk/net/identity/workloadidentitycredential/troubleshoot
+   at Azure.Identity.WorkloadIdentityCredential.GetTokenCoreAsync(Boolean async, TokenRequestContext requestContext, CancellationToken cancellationToken)
+   at Azure.Identity.CredentialDiagnosticScope.FailWrapAndThrow(Exception ex, String additionalMessage, Boolean isCredentialUnavailable)
+   at Azure.Identity.WorkloadIdentityCredential.GetTokenCoreAsync(Boolean async, TokenRequestContext requestContext, CancellationToken cancellationToken)
+   at Azure.Identity.WorkloadIdentityCredential.GetTokenAsync(TokenRequestContext requestContext, CancellationToken cancellationToken)
+   at Azure.Identity.DefaultAzureCredential.GetTokenFromSourcesAsync(TokenCredential[] sources, TokenRequestContext requestContext, Boolean async, CancellationToken cancellationToken)<---
+
+ ---> (Inner Exception #2) Azure.Identity.CredentialUnavailableException: ManagedIdentityCredential authentication unavailable. No response received from the managed identity endpoint.
+ ---> System.Threading.Tasks.TaskCanceledException: The operation was cancelled because it exceeded the configured timeout of 0:00:01. Network timeout can be adjusted in ClientOptions.Retry.NetworkTimeout.
+ ---> System.Threading.Tasks.TaskCanceledException: A task was canceled.
+ ---> System.Threading.Tasks.TaskCanceledException: A task was canceled.
+   at System.Threading.Tasks.TaskCompletionSourceWithCancellation`1.WaitWithCancellationAsync(CancellationToken cancellationToken)
+   at System.Net.Http.HttpConnectionPool.SendWithVersionDetectionAndRetryAsync(HttpRequestMessage request, Boolean async, Boolean doRequestAuth, CancellationToken cancellationToken)
+   at System.Net.Http.HttpClient.<SendAsync>g__Core|83_0(HttpRequestMessage request, HttpCompletionOption completionOption, CancellationTokenSource cts, Boolean disposeCts, CancellationTokenSource pendingRequestsCts, CancellationToken originalCancellationToken)
+   --- End of inner exception stack trace ---
+   at System.Net.Http.HttpClient.HandleFailure(Exception e, Boolean telemetryStarted, HttpResponseMessage response, CancellationTokenSource cts, CancellationToken cancellationToken, CancellationTokenSource pendingRequestsCts)
+   at System.Net.Http.HttpClient.<SendAsync>g__Core|83_0(HttpRequestMessage request, HttpCompletionOption completionOption, CancellationTokenSource cts, Boolean disposeCts, CancellationTokenSource pendingRequestsCts, CancellationToken originalCancellationToken)
+   at Azure.Core.Pipeline.HttpClientTransport.ProcessAsync(HttpMessage message, Boolean async)
+   at Azure.Core.Pipeline.HttpPipelineTransportPolicy.ProcessAsync(HttpMessage message, ReadOnlyMemory`1 pipeline)
+   at Azure.Core.Pipeline.ResponseBodyPolicy.ProcessAsync(HttpMessage message, ReadOnlyMemory`1 pipeline, Boolean async)
+   --- End of inner exception stack trace ---
+   at Azure.Core.Pipeline.ResponseBodyPolicy.ThrowIfCancellationRequestedOrTimeout(CancellationToken originalToken, CancellationToken timeoutToken, Exception inner, TimeSpan timeout)
+   at Azure.Core.Pipeline.ResponseBodyPolicy.ProcessAsync(HttpMessage message, ReadOnlyMemory`1 pipeline, Boolean async)
+   at Azure.Core.Pipeline.RedirectPolicy.ProcessAsync(HttpMessage message, ReadOnlyMemory`1 pipeline, Boolean async)
+   at Azure.Core.Pipeline.RetryPolicy.ProcessAsync(HttpMessage message, ReadOnlyMemory`1 pipeline, Boolean async)
+   at Azure.Core.Pipeline.RetryPolicy.ProcessAsync(HttpMessage message, ReadOnlyMemory`1 pipeline, Boolean async)
+   at Azure.Identity.ManagedIdentitySource.AuthenticateAsync(Boolean async, TokenRequestContext context, CancellationToken cancellationToken)
+   at Azure.Identity.ImdsManagedIdentitySource.AuthenticateAsync(Boolean async, TokenRequestContext context, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at Azure.Identity.ImdsManagedIdentitySource.AuthenticateAsync(Boolean async, TokenRequestContext context, CancellationToken cancellationToken)
+   at Azure.Identity.ManagedIdentityClient.AuthenticateCoreAsync(Boolean async, TokenRequestContext context, CancellationToken cancellationToken)
+   at Azure.Identity.ManagedIdentityClient.AppTokenProviderImpl(AppTokenProviderParameters parameters)
+   at Microsoft.Identity.Client.Internal.Requests.ClientCredentialRequest.SendTokenRequestToAppTokenProviderAsync(ILoggerAdapter logger, CancellationToken cancellationToken)
+   at Microsoft.Identity.Client.Internal.Requests.ClientCredentialRequest.GetAccessTokenAsync(CancellationToken cancellationToken, ILoggerAdapter logger)
+   at Microsoft.Identity.Client.Internal.Requests.ClientCredentialRequest.ExecuteAsync(CancellationToken cancellationToken)
+   at Microsoft.Identity.Client.Internal.Requests.RequestBase.<>c__DisplayClass11_1.<<RunAsync>b__1>d.MoveNext()
+--- End of stack trace from previous location ---
+   at Microsoft.Identity.Client.Utils.StopwatchService.MeasureCodeBlockAsync(Func`1 codeBlock)
+   at Microsoft.Identity.Client.Internal.Requests.RequestBase.RunAsync(CancellationToken cancellationToken)
+   at Microsoft.Identity.Client.ApiConfig.Executors.ConfidentialClientExecutor.ExecuteAsync(AcquireTokenCommonParameters commonParameters, AcquireTokenForClientParameters clientParameters, CancellationToken cancellationToken)
+   at Azure.Identity.AbstractAcquireTokenParameterBuilderExtensions.ExecuteAsync[T](AbstractAcquireTokenParameterBuilder`1 builder, Boolean async, CancellationToken cancellationToken)
+   at Azure.Identity.MsalConfidentialClient.AcquireTokenForClientCoreAsync(String[] scopes, String tenantId, String claims, Boolean enableCae, Boolean async, CancellationToken cancellationToken)
+   at Azure.Identity.MsalConfidentialClient.AcquireTokenForClientAsync(String[] scopes, String tenantId, String claims, Boolean enableCae, Boolean async, CancellationToken cancellationToken)
+   at Azure.Identity.ManagedIdentityClient.AuthenticateAsync(Boolean async, TokenRequestContext context, CancellationToken cancellationToken)
+   at Azure.Identity.ManagedIdentityCredential.GetTokenImplAsync(Boolean async, TokenRequestContext requestContext, CancellationToken cancellationToken)
+   at Azure.Identity.CredentialDiagnosticScope.FailWrapAndThrow(Exception ex, String additionalMessage, Boolean isCredentialUnavailable)
+   at Azure.Identity.ManagedIdentityCredential.GetTokenImplAsync(Boolean async, TokenRequestContext requestContext, CancellationToken cancellationToken)
+   at Azure.Identity.ManagedIdentityCredential.GetTokenAsync(TokenRequestContext requestContext, CancellationToken cancellationToken)
+   at Azure.Identity.DefaultAzureCredential.GetTokenFromSourcesAsync(TokenCredential[] sources, TokenRequestContext requestContext, Boolean async, CancellationToken cancellationToken)<---
+
+ ---> (Inner Exception #3) Azure.Identity.CredentialUnavailableException: Process "C:\Program Files\Microsoft Visual Studio\18\Community\Common7\IDE\CommonExtensions\Microsoft\Asal\TokenService\Microsoft.Asal.TokenService.exe" has failed with unexpected error: TS003: Error, TS005: No accounts found.  Please go to Tools->Options->Azure Services Authentication, and add an account to be authenticated to Azure services during development..
+ ---> System.InvalidOperationException: TS003: Error, TS005: No accounts found.  Please go to Tools->Options->Azure Services Authentication, and add an account to be authenticated to Azure services during development.
+   at Azure.Identity.VisualStudioCredential.RunProcessesAsync(List`1 processStartInfos, Boolean async, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at Azure.Identity.VisualStudioCredential.RunProcessesAsync(List`1 processStartInfos, Boolean async, CancellationToken cancellationToken)
+   at Azure.Identity.VisualStudioCredential.GetTokenImplAsync(TokenRequestContext requestContext, Boolean async, CancellationToken cancellationToken)
+   at Azure.Identity.CredentialDiagnosticScope.FailWrapAndThrow(Exception ex, String additionalMessage, Boolean isCredentialUnavailable)
+   at Azure.Identity.VisualStudioCredential.GetTokenImplAsync(TokenRequestContext requestContext, Boolean async, CancellationToken cancellationToken)
+   at Azure.Identity.VisualStudioCredential.GetTokenAsync(TokenRequestContext requestContext, CancellationToken cancellationToken)
+   at Azure.Identity.DefaultAzureCredential.GetTokenFromSourcesAsync(TokenCredential[] sources, TokenRequestContext requestContext, Boolean async, CancellationToken cancellationToken)<---
+
+ ---> (Inner Exception #4) Azure.Identity.CredentialUnavailableException: Azure CLI not installed
+   at Azure.Identity.AzureCliCredential.RequestCliAccessTokenAsync(Boolean async, TokenRequestContext context, CancellationToken cancellationToken)
+   at Azure.Identity.AzureCliCredential.GetTokenImplAsync(Boolean async, TokenRequestContext requestContext, CancellationToken cancellationToken)
+   at Azure.Identity.CredentialDiagnosticScope.FailWrapAndThrow(Exception ex, String additionalMessage, Boolean isCredentialUnavailable)
+   at Azure.Identity.AzureCliCredential.GetTokenImplAsync(Boolean async, TokenRequestContext requestContext, CancellationToken cancellationToken)
+   at Azure.Identity.AzureCliCredential.GetTokenAsync(TokenRequestContext requestContext, CancellationToken cancellationToken)
+   at Azure.Identity.DefaultAzureCredential.GetTokenFromSourcesAsync(TokenCredential[] sources, TokenRequestContext requestContext, Boolean async, CancellationToken cancellationToken)<---
+
+ ---> (Inner Exception #5) Azure.Identity.CredentialUnavailableException: Az.Accounts module >= 2.2.0 is not installed.
+   at Azure.Identity.AzurePowerShellCredential.CheckForErrors(String output, Int32 exitCode)
+   at Azure.Identity.AzurePowerShellCredential.RequestAzurePowerShellAccessTokenAsync(Boolean async, TokenRequestContext context, CancellationToken cancellationToken)
+   at Azure.Identity.AzurePowerShellCredential.GetTokenImplAsync(Boolean async, TokenRequestContext requestContext, CancellationToken cancellationToken)
+   at Azure.Identity.CredentialDiagnosticScope.FailWrapAndThrow(Exception ex, String additionalMessage, Boolean isCredentialUnavailable)
+   at Azure.Identity.AzurePowerShellCredential.GetTokenImplAsync(Boolean async, TokenRequestContext requestContext, CancellationToken cancellationToken)
+   at Azure.Identity.AzurePowerShellCredential.GetTokenAsync(TokenRequestContext requestContext, CancellationToken cancellationToken)
+   at Azure.Identity.DefaultAzureCredential.GetTokenFromSourcesAsync(TokenCredential[] sources, TokenRequestContext requestContext, Boolean async, CancellationToken cancellationToken)<---
+
+ ---> (Inner Exception #6) Azure.Identity.CredentialUnavailableException: Azure Developer CLI could not be found.
+   at Azure.Identity.AzureDeveloperCliCredential.RequestCliAccessTokenAsync(Boolean async, TokenRequestContext context, CancellationToken cancellationToken)
+   at Azure.Identity.AzureDeveloperCliCredential.GetTokenImplAsync(Boolean async, TokenRequestContext requestContext, CancellationToken cancellationToken)
+   at Azure.Identity.CredentialDiagnosticScope.FailWrapAndThrow(Exception ex, String additionalMessage, Boolean isCredentialUnavailable)
+   at Azure.Identity.AzureDeveloperCliCredential.GetTokenImplAsync(Boolean async, TokenRequestContext requestContext, CancellationToken cancellationToken)
+   at Azure.Identity.AzureDeveloperCliCredential.GetTokenAsync(TokenRequestContext requestContext, CancellationToken cancellationToken)
+   at Azure.Identity.DefaultAzureCredential.GetTokenFromSourcesAsync(TokenCredential[] sources, TokenRequestContext requestContext, Boolean async, CancellationToken cancellationToken)<---
+
+   --- End of inner exception stack trace ---
+   at Azure.Identity.DefaultAzureCredential.GetTokenFromSourcesAsync(TokenCredential[] sources, TokenRequestContext requestContext, Boolean async, CancellationToken cancellationToken)
+   at Azure.Identity.DefaultAzureCredential.GetTokenImplAsync(Boolean async, TokenRequestContext requestContext, CancellationToken cancellationToken)
+   at Azure.Identity.CredentialDiagnosticScope.FailWrapAndThrow(Exception ex, String additionalMessage, Boolean isCredentialUnavailable)
+   at Azure.Identity.DefaultAzureCredential.GetTokenImplAsync(Boolean async, TokenRequestContext requestContext, CancellationToken cancellationToken)
+   at Azure.Identity.DefaultAzureCredential.GetTokenAsync(TokenRequestContext requestContext, CancellationToken cancellationToken)
+   at Microsoft.Data.SqlClient.ActiveDirectoryAuthenticationProvider.GetTokenAsync(TokenCredentialKey tokenCredentialKey, String secret, TokenRequestContext tokenRequestContext, CancellationToken cancellationToken)
+   at Microsoft.Data.SqlClient.ActiveDirectoryAuthenticationProvider.AcquireTokenAsync(SqlAuthenticationParameters parameters)
+   at Microsoft.Data.SqlClient.SqlInternalConnectionTds.<>c__DisplayClass147_1.<<GetFedAuthToken>b__1>d.MoveNext()
+--- End of stack trace from previous location ---
+   at Microsoft.Data.SqlClient.SqlInternalConnectionTds.GetFedAuthToken(SqlFedAuthInfo fedAuthInfo)
+   at Microsoft.Data.SqlClient.SqlInternalConnectionTds.GetFedAuthToken(SqlFedAuthInfo fedAuthInfo)
+   at Microsoft.Data.SqlClient.SqlInternalConnectionTds.OnFedAuthInfo(SqlFedAuthInfo fedAuthInfo)
+   at Microsoft.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at Microsoft.Data.SqlClient.TdsParser.Run(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj)
+   at Microsoft.Data.SqlClient.SqlInternalConnectionTds.CompleteLogin(Boolean enlistOK)
+   at Microsoft.Data.SqlClient.SqlInternalConnectionTds.AttemptOneLogin(ServerInfo serverInfo, String newPassword, SecureString newSecurePassword, Boolean ignoreSniOpenTimeout, TimeoutTimer timeout, Boolean withFailover)
+   at Microsoft.Data.SqlClient.SqlInternalConnectionTds.LoginNoFailover(ServerInfo serverInfo, String newPassword, SecureString newSecurePassword, Boolean redirectedUserInstance, SqlConnectionString connectionOptions, SqlCredential credential, TimeoutTimer timeout)
+   at Microsoft.Data.SqlClient.SqlInternalConnectionTds.OpenLoginEnlist(TimeoutTimer timeout, SqlConnectionString connectionOptions, SqlCredential credential, String newPassword, SecureString newSecurePassword, Boolean redirectedUserInstance)
+   at Microsoft.Data.SqlClient.SqlInternalConnectionTds..ctor(DbConnectionPoolIdentity identity, SqlConnectionString connectionOptions, SqlCredential credential, Object providerInfo, String newPassword, SecureString newSecurePassword, Boolean redirectedUserInstance, SqlConnectionString userConnectionOptions, SessionData reconnectSessionData, Boolean applyTransientFaultHandling, String accessToken, DbConnectionPool pool)
+   at Microsoft.Data.SqlClient.SqlConnectionFactory.CreateConnection(DbConnectionOptions options, DbConnectionPoolKey poolKey, Object poolGroupProviderInfo, DbConnectionPool pool, DbConnection owningConnection, DbConnectionOptions userOptions)
+   at Microsoft.Data.ProviderBase.DbConnectionFactory.CreatePooledConnection(DbConnectionPool pool, DbConnection owningObject, DbConnectionOptions options, DbConnectionPoolKey poolKey, DbConnectionOptions userOptions)
+   at Microsoft.Data.ProviderBase.DbConnectionPool.CreateObject(DbConnection owningObject, DbConnectionOptions userOptions, DbConnectionInternal oldConnection)
+   at Microsoft.Data.ProviderBase.DbConnectionPool.UserCreateRequest(DbConnection owningObject, DbConnectionOptions userOptions, DbConnectionInternal oldConnection)
+   at Microsoft.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbConnection owningObject, UInt32 waitForMultipleObjectsTimeout, Boolean allowCreate, Boolean onlyOneCheckConnection, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   at Microsoft.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbConnection owningObject, TaskCompletionSource`1 retry, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   at Microsoft.Data.ProviderBase.DbConnectionFactory.TryGetConnection(DbConnection owningConnection, TaskCompletionSource`1 retry, DbConnectionOptions userOptions, DbConnectionInternal oldConnection, DbConnectionInternal& connection)
+   at Microsoft.Data.ProviderBase.DbConnectionInternal.TryOpenConnectionInternal(DbConnection outerConnection, DbConnectionFactory connectionFactory, TaskCompletionSource`1 retry, DbConnectionOptions userOptions)
+   at Microsoft.Data.ProviderBase.DbConnectionClosed.TryOpenConnection(DbConnection outerConnection, DbConnectionFactory connectionFactory, TaskCompletionSource`1 retry, DbConnectionOptions userOptions)
+   at Microsoft.Data.SqlClient.SqlConnection.TryOpen(TaskCompletionSource`1 retry, SqlConnectionOverrides overrides)
+   at Microsoft.Data.SqlClient.SqlConnection.Open(SqlConnectionOverrides overrides)
+   at Microsoft.Data.SqlClient.SqlConnection.Open()
+   at Hangfire.SqlServer.SqlServerStorage.CreateAndOpenConnection() in C:\projects\hangfire-525\src\Hangfire.SqlServer\SqlServerStorage.cs:line 406
+   at Hangfire.SqlServer.SqlServerStorage.UseConnection[TContext,TResult](DbConnection dedicatedConnection, Func`4 func, TContext context) in C:\projects\hangfire-525\src\Hangfire.SqlServer\SqlServerStorage.cs:line 291
+   at Hangfire.SqlServer.SqlServerStorage.UseConnection(DbConnection dedicatedConnection, Action`2 action) in C:\projects\hangfire-525\src\Hangfire.SqlServer\SqlServerStorage.cs:line 268
+   at Hangfire.SqlServer.SqlServerStorage.Initialize() in C:\projects\hangfire-525\src\Hangfire.SqlServer\SqlServerStorage.cs:line 465
+ClientConnectionId:feb0a2e5-95a6-4ca8-912d-a9d0e1dff55f
+2026-07-08 23:27:40.990 +05:30 [WRN] An exception occurred while trying to perform the migration.
+Microsoft.Data.SqlClient.SqlException (0x80131904): DefaultAzureCredential failed to retrieve a token from the included credentials. See the troubleshooting guide for more information. https://aka.ms/azsdk/net/identity/defaultazurecredential/troubleshoot
+- EnvironmentCredential authentication unavailable. Environment variables are not fully configured. See the troubleshooting guide for more information. https://aka.ms/azsdk/net/identity/environmentcredential/troubleshoot
+- WorkloadIdentityCredential authentication unavailable. The workload options are not fully configured. See the troubleshooting guide for more information. https://aka.ms/azsdk/net/identity/workloadidentitycredential/troubleshoot
+- ManagedIdentityCredential authentication unavailable. No response received from the managed identity endpoint.
+- Process "C:\Program Files\Microsoft Visual Studio\18\Community\Common7\IDE\CommonExtensions\Microsoft\Asal\TokenService\Microsoft.Asal.TokenService.exe" has failed with unexpected error: TS003: Error, TS005: No accounts found.  Please go to Tools->Options->Azure Services Authentication, and add an account to be authenticated to Azure services during development..
+- Azure CLI not installed
+- Az.Accounts module >= 2.2.0 is not installed.
+- Azure Developer CLI could not be found.
+ ---> Azure.Identity.CredentialUnavailableException: DefaultAzureCredential failed to retrieve a token from the included credentials. See the troubleshooting guide for more information. https://aka.ms/azsdk/net/identity/defaultazurecredential/troubleshoot
+- EnvironmentCredential authentication unavailable. Environment variables are not fully configured. See the troubleshooting guide for more information. https://aka.ms/azsdk/net/identity/environmentcredential/troubleshoot
+- WorkloadIdentityCredential authentication unavailable. The workload options are not fully configured. See the troubleshooting guide for more information. https://aka.ms/azsdk/net/identity/workloadidentitycredential/troubleshoot
+- ManagedIdentityCredential authentication unavailable. No response received from the managed identity endpoint.
+- Process "C:\Program Files\Microsoft Visual Studio\18\Community\Common7\IDE\CommonExtensions\Microsoft\Asal\TokenService\Microsoft.Asal.TokenService.exe" has failed with unexpected error: TS003: Error, TS005: No accounts found.  Please go to Tools->Options->Azure Services Authentication, and add an account to be authenticated to Azure services during development..
+- Azure CLI not installed
+- Az.Accounts module >= 2.2.0 is not installed.
+- Azure Developer CLI could not be found.
+ ---> System.AggregateException: Multiple exceptions were encountered while attempting to authenticate. (EnvironmentCredential authentication unavailable. Environment variables are not fully configured. See the troubleshooting guide for more information. https://aka.ms/azsdk/net/identity/environmentcredential/troubleshoot) (WorkloadIdentityCredential authentication unavailable. The workload options are not fully configured. See the troubleshooting guide for more information. https://aka.ms/azsdk/net/identity/workloadidentitycredential/troubleshoot) (ManagedIdentityCredential authentication unavailable. No response received from the managed identity endpoint.) (Process "C:\Program Files\Microsoft Visual Studio\18\Community\Common7\IDE\CommonExtensions\Microsoft\Asal\TokenService\Microsoft.Asal.TokenService.exe" has failed with unexpected error: TS003: Error, TS005: No accounts found.  Please go to Tools->Options->Azure Services Authentication, and add an account to be authenticated to Azure services during development..) (Azure CLI not installed) (Az.Accounts module >= 2.2.0 is not installed.) (Azure Developer CLI could not be found.)
+ ---> Azure.Identity.CredentialUnavailableException: EnvironmentCredential authentication unavailable. Environment variables are not fully configured. See the troubleshooting guide for more information. https://aka.ms/azsdk/net/identity/environmentcredential/troubleshoot
+   at Azure.Identity.CredentialDiagnosticScope.FailWrapAndThrow(Exception ex, String additionalMessage, Boolean isCredentialUnavailable)
+   at Azure.Identity.EnvironmentCredential.GetTokenImplAsync(Boolean async, TokenRequestContext requestContext, CancellationToken cancellationToken)
+   at Azure.Identity.EnvironmentCredential.GetTokenAsync(TokenRequestContext requestContext, CancellationToken cancellationToken)
+   at Azure.Identity.DefaultAzureCredential.GetTokenFromSourcesAsync(TokenCredential[] sources, TokenRequestContext requestContext, Boolean async, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+ ---> (Inner Exception #1) Azure.Identity.CredentialUnavailableException: WorkloadIdentityCredential authentication unavailable. The workload options are not fully configured. See the troubleshooting guide for more information. https://aka.ms/azsdk/net/identity/workloadidentitycredential/troubleshoot
+   at Azure.Identity.WorkloadIdentityCredential.GetTokenCoreAsync(Boolean async, TokenRequestContext requestContext, CancellationToken cancellationToken)
+   at Azure.Identity.CredentialDiagnosticScope.FailWrapAndThrow(Exception ex, String additionalMessage, Boolean isCredentialUnavailable)
+   at Azure.Identity.WorkloadIdentityCredential.GetTokenCoreAsync(Boolean async, TokenRequestContext requestContext, CancellationToken cancellationToken)
+   at Azure.Identity.WorkloadIdentityCredential.GetTokenAsync(TokenRequestContext requestContext, CancellationToken cancellationToken)
+   at Azure.Identity.DefaultAzureCredential.GetTokenFromSourcesAsync(TokenCredential[] sources, TokenRequestContext requestContext, Boolean async, CancellationToken cancellationToken)<---
+
+ ---> (Inner Exception #2) Azure.Identity.CredentialUnavailableException: ManagedIdentityCredential authentication unavailable. No response received from the managed identity endpoint.
+ ---> System.Threading.Tasks.TaskCanceledException: The operation was cancelled because it exceeded the configured timeout of 0:00:01. Network timeout can be adjusted in ClientOptions.Retry.NetworkTimeout.
+ ---> System.Threading.Tasks.TaskCanceledException: A task was canceled.
+ ---> System.Threading.Tasks.TaskCanceledException: A task was canceled.
+   at System.Threading.Tasks.TaskCompletionSourceWithCancellation`1.WaitWithCancellationAsync(CancellationToken cancellationToken)
+   at System.Net.Http.HttpConnectionPool.SendWithVersionDetectionAndRetryAsync(HttpRequestMessage request, Boolean async, Boolean doRequestAuth, CancellationToken cancellationToken)
+   at System.Net.Http.HttpClient.<SendAsync>g__Core|83_0(HttpRequestMessage request, HttpCompletionOption completionOption, CancellationTokenSource cts, Boolean disposeCts, CancellationTokenSource pendingRequestsCts, CancellationToken originalCancellationToken)
+   --- End of inner exception stack trace ---
+   at System.Net.Http.HttpClient.HandleFailure(Exception e, Boolean telemetryStarted, HttpResponseMessage response, CancellationTokenSource cts, CancellationToken cancellationToken, CancellationTokenSource pendingRequestsCts)
+   at System.Net.Http.HttpClient.<SendAsync>g__Core|83_0(HttpRequestMessage request, HttpCompletionOption completionOption, CancellationTokenSource cts, Boolean disposeCts, CancellationTokenSource pendingRequestsCts, CancellationToken originalCancellationToken)
+   at Azure.Core.Pipeline.HttpClientTransport.ProcessAsync(HttpMessage message, Boolean async)
+   at Azure.Core.Pipeline.HttpPipelineTransportPolicy.ProcessAsync(HttpMessage message, ReadOnlyMemory`1 pipeline)
+   at Azure.Core.Pipeline.ResponseBodyPolicy.ProcessAsync(HttpMessage message, ReadOnlyMemory`1 pipeline, Boolean async)
+   --- End of inner exception stack trace ---
+   at Azure.Core.Pipeline.ResponseBodyPolicy.ThrowIfCancellationRequestedOrTimeout(CancellationToken originalToken, CancellationToken timeoutToken, Exception inner, TimeSpan timeout)
+   at Azure.Core.Pipeline.ResponseBodyPolicy.ProcessAsync(HttpMessage message, ReadOnlyMemory`1 pipeline, Boolean async)
+   at Azure.Core.Pipeline.RedirectPolicy.ProcessAsync(HttpMessage message, ReadOnlyMemory`1 pipeline, Boolean async)
+   at Azure.Core.Pipeline.RetryPolicy.ProcessAsync(HttpMessage message, ReadOnlyMemory`1 pipeline, Boolean async)
+   at Azure.Core.Pipeline.RetryPolicy.ProcessAsync(HttpMessage message, ReadOnlyMemory`1 pipeline, Boolean async)
+   at Azure.Identity.ManagedIdentitySource.AuthenticateAsync(Boolean async, TokenRequestContext context, CancellationToken cancellationToken)
+   at Azure.Identity.ImdsManagedIdentitySource.AuthenticateAsync(Boolean async, TokenRequestContext context, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at Azure.Identity.ImdsManagedIdentitySource.AuthenticateAsync(Boolean async, TokenRequestContext context, CancellationToken cancellationToken)
+   at Azure.Identity.ManagedIdentityClient.AuthenticateCoreAsync(Boolean async, TokenRequestContext context, CancellationToken cancellationToken)
+   at Azure.Identity.ManagedIdentityClient.AppTokenProviderImpl(AppTokenProviderParameters parameters)
+   at Microsoft.Identity.Client.Internal.Requests.ClientCredentialRequest.SendTokenRequestToAppTokenProviderAsync(ILoggerAdapter logger, CancellationToken cancellationToken)
+   at Microsoft.Identity.Client.Internal.Requests.ClientCredentialRequest.GetAccessTokenAsync(CancellationToken cancellationToken, ILoggerAdapter logger)
+   at Microsoft.Identity.Client.Internal.Requests.ClientCredentialRequest.ExecuteAsync(CancellationToken cancellationToken)
+   at Microsoft.Identity.Client.Internal.Requests.RequestBase.<>c__DisplayClass11_1.<<RunAsync>b__1>d.MoveNext()
+--- End of stack trace from previous location ---
+   at Microsoft.Identity.Client.Utils.StopwatchService.MeasureCodeBlockAsync(Func`1 codeBlock)
+   at Microsoft.Identity.Client.Internal.Requests.RequestBase.RunAsync(CancellationToken cancellationToken)
+   at Microsoft.Identity.Client.ApiConfig.Executors.ConfidentialClientExecutor.ExecuteAsync(AcquireTokenCommonParameters commonParameters, AcquireTokenForClientParameters clientParameters, CancellationToken cancellationToken)
+   at Azure.Identity.AbstractAcquireTokenParameterBuilderExtensions.ExecuteAsync[T](AbstractAcquireTokenParameterBuilder`1 builder, Boolean async, CancellationToken cancellationToken)
+   at Azure.Identity.MsalConfidentialClient.AcquireTokenForClientCoreAsync(String[] scopes, String tenantId, String claims, Boolean enableCae, Boolean async, CancellationToken cancellationToken)
+   at Azure.Identity.MsalConfidentialClient.AcquireTokenForClientAsync(String[] scopes, String tenantId, String claims, Boolean enableCae, Boolean async, CancellationToken cancellationToken)
+   at Azure.Identity.ManagedIdentityClient.AuthenticateAsync(Boolean async, TokenRequestContext context, CancellationToken cancellationToken)
+   at Azure.Identity.ManagedIdentityCredential.GetTokenImplAsync(Boolean async, TokenRequestContext requestContext, CancellationToken cancellationToken)
+   at Azure.Identity.CredentialDiagnosticScope.FailWrapAndThrow(Exception ex, String additionalMessage, Boolean isCredentialUnavailable)
+   at Azure.Identity.ManagedIdentityCredential.GetTokenImplAsync(Boolean async, TokenRequestContext requestContext, CancellationToken cancellationToken)
+   at Azure.Identity.ManagedIdentityCredential.GetTokenAsync(TokenRequestContext requestContext, CancellationToken cancellationToken)
+   at Azure.Identity.DefaultAzureCredential.GetTokenFromSourcesAsync(TokenCredential[] sources, TokenRequestContext requestContext, Boolean async, CancellationToken cancellationToken)<---
+
+ ---> (Inner Exception #3) Azure.Identity.CredentialUnavailableException: Process "C:\Program Files\Microsoft Visual Studio\18\Community\Common7\IDE\CommonExtensions\Microsoft\Asal\TokenService\Microsoft.Asal.TokenService.exe" has failed with unexpected error: TS003: Error, TS005: No accounts found.  Please go to Tools->Options->Azure Services Authentication, and add an account to be authenticated to Azure services during development..
+ ---> System.InvalidOperationException: TS003: Error, TS005: No accounts found.  Please go to Tools->Options->Azure Services Authentication, and add an account to be authenticated to Azure services during development.
+   at Azure.Identity.VisualStudioCredential.RunProcessesAsync(List`1 processStartInfos, Boolean async, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at Azure.Identity.VisualStudioCredential.RunProcessesAsync(List`1 processStartInfos, Boolean async, CancellationToken cancellationToken)
+   at Azure.Identity.VisualStudioCredential.GetTokenImplAsync(TokenRequestContext requestContext, Boolean async, CancellationToken cancellationToken)
+   at Azure.Identity.CredentialDiagnosticScope.FailWrapAndThrow(Exception ex, String additionalMessage, Boolean isCredentialUnavailable)
+   at Azure.Identity.VisualStudioCredential.GetTokenImplAsync(TokenRequestContext requestContext, Boolean async, CancellationToken cancellationToken)
+   at Azure.Identity.VisualStudioCredential.GetTokenAsync(TokenRequestContext requestContext, CancellationToken cancellationToken)
+   at Azure.Identity.DefaultAzureCredential.GetTokenFromSourcesAsync(TokenCredential[] sources, TokenRequestContext requestContext, Boolean async, CancellationToken cancellationToken)<---
+
+ ---> (Inner Exception #4) Azure.Identity.CredentialUnavailableException: Azure CLI not installed
+   at Azure.Identity.AzureCliCredential.RequestCliAccessTokenAsync(Boolean async, TokenRequestContext context, CancellationToken cancellationToken)
+   at Azure.Identity.AzureCliCredential.GetTokenImplAsync(Boolean async, TokenRequestContext requestContext, CancellationToken cancellationToken)
+   at Azure.Identity.CredentialDiagnosticScope.FailWrapAndThrow(Exception ex, String additionalMessage, Boolean isCredentialUnavailable)
+   at Azure.Identity.AzureCliCredential.GetTokenImplAsync(Boolean async, TokenRequestContext requestContext, CancellationToken cancellationToken)
+   at Azure.Identity.AzureCliCredential.GetTokenAsync(TokenRequestContext requestContext, CancellationToken cancellationToken)
+   at Azure.Identity.DefaultAzureCredential.GetTokenFromSourcesAsync(TokenCredential[] sources, TokenRequestContext requestContext, Boolean async, CancellationToken cancellationToken)<---
+
+ ---> (Inner Exception #5) Azure.Identity.CredentialUnavailableException: Az.Accounts module >= 2.2.0 is not installed.
+   at Azure.Identity.AzurePowerShellCredential.CheckForErrors(String output, Int32 exitCode)
+   at Azure.Identity.AzurePowerShellCredential.RequestAzurePowerShellAccessTokenAsync(Boolean async, TokenRequestContext context, CancellationToken cancellationToken)
+   at Azure.Identity.AzurePowerShellCredential.GetTokenImplAsync(Boolean async, TokenRequestContext requestContext, CancellationToken cancellationToken)
+   at Azure.Identity.CredentialDiagnosticScope.FailWrapAndThrow(Exception ex, String additionalMessage, Boolean isCredentialUnavailable)
+   at Azure.Identity.AzurePowerShellCredential.GetTokenImplAsync(Boolean async, TokenRequestContext requestContext, CancellationToken cancellationToken)
+   at Azure.Identity.AzurePowerShellCredential.GetTokenAsync(TokenRequestContext requestContext, CancellationToken cancellationToken)
+   at Azure.Identity.DefaultAzureCredential.GetTokenFromSourcesAsync(TokenCredential[] sources, TokenRequestContext requestContext, Boolean async, CancellationToken cancellationToken)<---
+
+ ---> (Inner Exception #6) Azure.Identity.CredentialUnavailableException: Azure Developer CLI could not be found.
+   at Azure.Identity.AzureDeveloperCliCredential.RequestCliAccessTokenAsync(Boolean async, TokenRequestContext context, CancellationToken cancellationToken)
+   at Azure.Identity.AzureDeveloperCliCredential.GetTokenImplAsync(Boolean async, TokenRequestContext requestContext, CancellationToken cancellationToken)
+   at Azure.Identity.CredentialDiagnosticScope.FailWrapAndThrow(Exception ex, String additionalMessage, Boolean isCredentialUnavailable)
+   at Azure.Identity.AzureDeveloperCliCredential.GetTokenImplAsync(Boolean async, TokenRequestContext requestContext, CancellationToken cancellationToken)
+   at Azure.Identity.AzureDeveloperCliCredential.GetTokenAsync(TokenRequestContext requestContext, CancellationToken cancellationToken)
+   at Azure.Identity.DefaultAzureCredential.GetTokenFromSourcesAsync(TokenCredential[] sources, TokenRequestContext requestContext, Boolean async, CancellationToken cancellationToken)<---
+
+   --- End of inner exception stack trace ---
+   at Azure.Identity.DefaultAzureCredential.GetTokenFromSourcesAsync(TokenCredential[] sources, TokenRequestContext requestContext, Boolean async, CancellationToken cancellationToken)
+   at Azure.Identity.DefaultAzureCredential.GetTokenImplAsync(Boolean async, TokenRequestContext requestContext, CancellationToken cancellationToken)
+   at Azure.Identity.CredentialDiagnosticScope.FailWrapAndThrow(Exception ex, String additionalMessage, Boolean isCredentialUnavailable)
+   at Azure.Identity.DefaultAzureCredential.GetTokenImplAsync(Boolean async, TokenRequestContext requestContext, CancellationToken cancellationToken)
+   at Azure.Identity.DefaultAzureCredential.GetTokenAsync(TokenRequestContext requestContext, CancellationToken cancellationToken)
+   at Microsoft.Data.SqlClient.ActiveDirectoryAuthenticationProvider.GetTokenAsync(TokenCredentialKey tokenCredentialKey, String secret, TokenRequestContext tokenRequestContext, CancellationToken cancellationToken)
+   at Microsoft.Data.SqlClient.ActiveDirectoryAuthenticationProvider.AcquireTokenAsync(SqlAuthenticationParameters parameters)
+   at Microsoft.Data.SqlClient.SqlInternalConnectionTds.<>c__DisplayClass147_1.<<GetFedAuthToken>b__1>d.MoveNext()
+--- End of stack trace from previous location ---
+   at Microsoft.Data.SqlClient.SqlInternalConnectionTds.GetFedAuthToken(SqlFedAuthInfo fedAuthInfo)
+   at Microsoft.Data.SqlClient.SqlInternalConnectionTds.GetFedAuthToken(SqlFedAuthInfo fedAuthInfo)
+   at Microsoft.Data.SqlClient.SqlInternalConnectionTds.OnFedAuthInfo(SqlFedAuthInfo fedAuthInfo)
+   at Microsoft.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at Microsoft.Data.SqlClient.TdsParser.Run(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj)
+   at Microsoft.Data.SqlClient.SqlInternalConnectionTds.CompleteLogin(Boolean enlistOK)
+   at Microsoft.Data.SqlClient.SqlInternalConnectionTds.AttemptOneLogin(ServerInfo serverInfo, String newPassword, SecureString newSecurePassword, Boolean ignoreSniOpenTimeout, TimeoutTimer timeout, Boolean withFailover)
+   at Microsoft.Data.SqlClient.SqlInternalConnectionTds.LoginNoFailover(ServerInfo serverInfo, String newPassword, SecureString newSecurePassword, Boolean redirectedUserInstance, SqlConnectionString connectionOptions, SqlCredential credential, TimeoutTimer timeout)
+   at Microsoft.Data.SqlClient.SqlInternalConnectionTds.OpenLoginEnlist(TimeoutTimer timeout, SqlConnectionString connectionOptions, SqlCredential credential, String newPassword, SecureString newSecurePassword, Boolean redirectedUserInstance)
+   at Microsoft.Data.SqlClient.SqlInternalConnectionTds..ctor(DbConnectionPoolIdentity identity, SqlConnectionString connectionOptions, SqlCredential credential, Object providerInfo, String newPassword, SecureString newSecurePassword, Boolean redirectedUserInstance, SqlConnectionString userConnectionOptions, SessionData reconnectSessionData, Boolean applyTransientFaultHandling, String accessToken, DbConnectionPool pool)
+   at Microsoft.Data.SqlClient.SqlConnectionFactory.CreateConnection(DbConnectionOptions options, DbConnectionPoolKey poolKey, Object poolGroupProviderInfo, DbConnectionPool pool, DbConnection owningConnection, DbConnectionOptions userOptions)
+   at Microsoft.Data.ProviderBase.DbConnectionFactory.CreatePooledConnection(DbConnectionPool pool, DbConnection owningObject, DbConnectionOptions options, DbConnectionPoolKey poolKey, DbConnectionOptions userOptions)
+   at Microsoft.Data.ProviderBase.DbConnectionPool.CreateObject(DbConnection owningObject, DbConnectionOptions userOptions, DbConnectionInternal oldConnection)
+   at Microsoft.Data.ProviderBase.DbConnectionPool.UserCreateRequest(DbConnection owningObject, DbConnectionOptions userOptions, DbConnectionInternal oldConnection)
+   at Microsoft.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbConnection owningObject, UInt32 waitForMultipleObjectsTimeout, Boolean allowCreate, Boolean onlyOneCheckConnection, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   at Microsoft.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbConnection owningObject, TaskCompletionSource`1 retry, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   at Microsoft.Data.ProviderBase.DbConnectionFactory.TryGetConnection(DbConnection owningConnection, TaskCompletionSource`1 retry, DbConnectionOptions userOptions, DbConnectionInternal oldConnection, DbConnectionInternal& connection)
+   at Microsoft.Data.ProviderBase.DbConnectionInternal.TryOpenConnectionInternal(DbConnection outerConnection, DbConnectionFactory connectionFactory, TaskCompletionSource`1 retry, DbConnectionOptions userOptions)
+   at Microsoft.Data.ProviderBase.DbConnectionClosed.TryOpenConnection(DbConnection outerConnection, DbConnectionFactory connectionFactory, TaskCompletionSource`1 retry, DbConnectionOptions userOptions)
+   at Microsoft.Data.SqlClient.SqlConnection.TryOpen(TaskCompletionSource`1 retry, SqlConnectionOverrides overrides)
+   at Microsoft.Data.SqlClient.SqlConnection.Open(SqlConnectionOverrides overrides)
+   at Microsoft.Data.SqlClient.SqlConnection.Open()
+   at Hangfire.SqlServer.SqlServerStorage.CreateAndOpenConnection() in C:\projects\hangfire-525\src\Hangfire.SqlServer\SqlServerStorage.cs:line 406
+   at Hangfire.SqlServer.SqlServerStorage.UseConnection[TContext,TResult](DbConnection dedicatedConnection, Func`4 func, TContext context) in C:\projects\hangfire-525\src\Hangfire.SqlServer\SqlServerStorage.cs:line 291
+   at Hangfire.SqlServer.SqlServerStorage.UseConnection(DbConnection dedicatedConnection, Action`2 action) in C:\projects\hangfire-525\src\Hangfire.SqlServer\SqlServerStorage.cs:line 268
+   at Hangfire.SqlServer.SqlServerStorage.Initialize() in C:\projects\hangfire-525\src\Hangfire.SqlServer\SqlServerStorage.cs:line 465
+ClientConnectionId:75969758-88a0-4cdb-bfe8-6d7283a3c8bf
+2026-07-08 23:27:40.998 +05:30 [WRN] Was unable to perform the Hangfire schema migration due to an exception. Ignore this message unless you've just installed or upgraded Hangfire.
+Microsoft.Data.SqlClient.SqlException (0x80131904): DefaultAzureCredential failed to retrieve a token from the included credentials. See the troubleshooting guide for more information. https://aka.ms/azsdk/net/identity/defaultazurecredential/troubleshoot
+- EnvironmentCredential authentication unavailable. Environment variables are not fully configured. See the troubleshooting guide for more information. https://aka.ms/azsdk/net/identity/environmentcredential/troubleshoot
+- WorkloadIdentityCredential authentication unavailable. The workload options are not fully configured. See the troubleshooting guide for more information. https://aka.ms/azsdk/net/identity/workloadidentitycredential/troubleshoot
+- ManagedIdentityCredential authentication unavailable. No response received from the managed identity endpoint.
+- Process "C:\Program Files\Microsoft Visual Studio\18\Community\Common7\IDE\CommonExtensions\Microsoft\Asal\TokenService\Microsoft.Asal.TokenService.exe" has failed with unexpected error: TS003: Error, TS005: No accounts found.  Please go to Tools->Options->Azure Services Authentication, and add an account to be authenticated to Azure services during development..
+- Azure CLI not installed
+- Az.Accounts module >= 2.2.0 is not installed.
+- Azure Developer CLI could not be found.
+ ---> Azure.Identity.CredentialUnavailableException: DefaultAzureCredential failed to retrieve a token from the included credentials. See the troubleshooting guide for more information. https://aka.ms/azsdk/net/identity/defaultazurecredential/troubleshoot
+- EnvironmentCredential authentication unavailable. Environment variables are not fully configured. See the troubleshooting guide for more information. https://aka.ms/azsdk/net/identity/environmentcredential/troubleshoot
+- WorkloadIdentityCredential authentication unavailable. The workload options are not fully configured. See the troubleshooting guide for more information. https://aka.ms/azsdk/net/identity/workloadidentitycredential/troubleshoot
+- ManagedIdentityCredential authentication unavailable. No response received from the managed identity endpoint.
+- Process "C:\Program Files\Microsoft Visual Studio\18\Community\Common7\IDE\CommonExtensions\Microsoft\Asal\TokenService\Microsoft.Asal.TokenService.exe" has failed with unexpected error: TS003: Error, TS005: No accounts found.  Please go to Tools->Options->Azure Services Authentication, and add an account to be authenticated to Azure services during development..
+- Azure CLI not installed
+- Az.Accounts module >= 2.2.0 is not installed.
+- Azure Developer CLI could not be found.
+ ---> System.AggregateException: Multiple exceptions were encountered while attempting to authenticate. (EnvironmentCredential authentication unavailable. Environment variables are not fully configured. See the troubleshooting guide for more information. https://aka.ms/azsdk/net/identity/environmentcredential/troubleshoot) (WorkloadIdentityCredential authentication unavailable. The workload options are not fully configured. See the troubleshooting guide for more information. https://aka.ms/azsdk/net/identity/workloadidentitycredential/troubleshoot) (ManagedIdentityCredential authentication unavailable. No response received from the managed identity endpoint.) (Process "C:\Program Files\Microsoft Visual Studio\18\Community\Common7\IDE\CommonExtensions\Microsoft\Asal\TokenService\Microsoft.Asal.TokenService.exe" has failed with unexpected error: TS003: Error, TS005: No accounts found.  Please go to Tools->Options->Azure Services Authentication, and add an account to be authenticated to Azure services during development..) (Azure CLI not installed) (Az.Accounts module >= 2.2.0 is not installed.) (Azure Developer CLI could not be found.)
+ ---> Azure.Identity.CredentialUnavailableException: EnvironmentCredential authentication unavailable. Environment variables are not fully configured. See the troubleshooting guide for more information. https://aka.ms/azsdk/net/identity/environmentcredential/troubleshoot
+   at Azure.Identity.CredentialDiagnosticScope.FailWrapAndThrow(Exception ex, String additionalMessage, Boolean isCredentialUnavailable)
+   at Azure.Identity.EnvironmentCredential.GetTokenImplAsync(Boolean async, TokenRequestContext requestContext, CancellationToken cancellationToken)
+   at Azure.Identity.EnvironmentCredential.GetTokenAsync(TokenRequestContext requestContext, CancellationToken cancellationToken)
+   at Azure.Identity.DefaultAzureCredential.GetTokenFromSourcesAsync(TokenCredential[] sources, TokenRequestContext requestContext, Boolean async, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+ ---> (Inner Exception #1) Azure.Identity.CredentialUnavailableException: WorkloadIdentityCredential authentication unavailable. The workload options are not fully configured. See the troubleshooting guide for more information. https://aka.ms/azsdk/net/identity/workloadidentitycredential/troubleshoot
+   at Azure.Identity.WorkloadIdentityCredential.GetTokenCoreAsync(Boolean async, TokenRequestContext requestContext, CancellationToken cancellationToken)
+   at Azure.Identity.CredentialDiagnosticScope.FailWrapAndThrow(Exception ex, String additionalMessage, Boolean isCredentialUnavailable)
+   at Azure.Identity.WorkloadIdentityCredential.GetTokenCoreAsync(Boolean async, TokenRequestContext requestContext, CancellationToken cancellationToken)
+   at Azure.Identity.WorkloadIdentityCredential.GetTokenAsync(TokenRequestContext requestContext, CancellationToken cancellationToken)
+   at Azure.Identity.DefaultAzureCredential.GetTokenFromSourcesAsync(TokenCredential[] sources, TokenRequestContext requestContext, Boolean async, CancellationToken cancellationToken)<---
+
+ ---> (Inner Exception #2) Azure.Identity.CredentialUnavailableException: ManagedIdentityCredential authentication unavailable. No response received from the managed identity endpoint.
+ ---> System.Threading.Tasks.TaskCanceledException: The operation was cancelled because it exceeded the configured timeout of 0:00:01. Network timeout can be adjusted in ClientOptions.Retry.NetworkTimeout.
+ ---> System.Threading.Tasks.TaskCanceledException: A task was canceled.
+ ---> System.Threading.Tasks.TaskCanceledException: A task was canceled.
+   at System.Threading.Tasks.TaskCompletionSourceWithCancellation`1.WaitWithCancellationAsync(CancellationToken cancellationToken)
+   at System.Net.Http.HttpConnectionPool.SendWithVersionDetectionAndRetryAsync(HttpRequestMessage request, Boolean async, Boolean doRequestAuth, CancellationToken cancellationToken)
+   at System.Net.Http.HttpClient.<SendAsync>g__Core|83_0(HttpRequestMessage request, HttpCompletionOption completionOption, CancellationTokenSource cts, Boolean disposeCts, CancellationTokenSource pendingRequestsCts, CancellationToken originalCancellationToken)
+   --- End of inner exception stack trace ---
+   at System.Net.Http.HttpClient.HandleFailure(Exception e, Boolean telemetryStarted, HttpResponseMessage response, CancellationTokenSource cts, CancellationToken cancellationToken, CancellationTokenSource pendingRequestsCts)
+   at System.Net.Http.HttpClient.<SendAsync>g__Core|83_0(HttpRequestMessage request, HttpCompletionOption completionOption, CancellationTokenSource cts, Boolean disposeCts, CancellationTokenSource pendingRequestsCts, CancellationToken originalCancellationToken)
+   at Azure.Core.Pipeline.HttpClientTransport.ProcessAsync(HttpMessage message, Boolean async)
+   at Azure.Core.Pipeline.HttpPipelineTransportPolicy.ProcessAsync(HttpMessage message, ReadOnlyMemory`1 pipeline)
+   at Azure.Core.Pipeline.ResponseBodyPolicy.ProcessAsync(HttpMessage message, ReadOnlyMemory`1 pipeline, Boolean async)
+   --- End of inner exception stack trace ---
+   at Azure.Core.Pipeline.ResponseBodyPolicy.ThrowIfCancellationRequestedOrTimeout(CancellationToken originalToken, CancellationToken timeoutToken, Exception inner, TimeSpan timeout)
+   at Azure.Core.Pipeline.ResponseBodyPolicy.ProcessAsync(HttpMessage message, ReadOnlyMemory`1 pipeline, Boolean async)
+   at Azure.Core.Pipeline.RedirectPolicy.ProcessAsync(HttpMessage message, ReadOnlyMemory`1 pipeline, Boolean async)
+   at Azure.Core.Pipeline.RetryPolicy.ProcessAsync(HttpMessage message, ReadOnlyMemory`1 pipeline, Boolean async)
+   at Azure.Core.Pipeline.RetryPolicy.ProcessAsync(HttpMessage message, ReadOnlyMemory`1 pipeline, Boolean async)
+   at Azure.Identity.ManagedIdentitySource.AuthenticateAsync(Boolean async, TokenRequestContext context, CancellationToken cancellationToken)
+   at Azure.Identity.ImdsManagedIdentitySource.AuthenticateAsync(Boolean async, TokenRequestContext context, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at Azure.Identity.ImdsManagedIdentitySource.AuthenticateAsync(Boolean async, TokenRequestContext context, CancellationToken cancellationToken)
+   at Azure.Identity.ManagedIdentityClient.AuthenticateCoreAsync(Boolean async, TokenRequestContext context, CancellationToken cancellationToken)
+   at Azure.Identity.ManagedIdentityClient.AppTokenProviderImpl(AppTokenProviderParameters parameters)
+   at Microsoft.Identity.Client.Internal.Requests.ClientCredentialRequest.SendTokenRequestToAppTokenProviderAsync(ILoggerAdapter logger, CancellationToken cancellationToken)
+   at Microsoft.Identity.Client.Internal.Requests.ClientCredentialRequest.GetAccessTokenAsync(CancellationToken cancellationToken, ILoggerAdapter logger)
+   at Microsoft.Identity.Client.Internal.Requests.ClientCredentialRequest.ExecuteAsync(CancellationToken cancellationToken)
+   at Microsoft.Identity.Client.Internal.Requests.RequestBase.<>c__DisplayClass11_1.<<RunAsync>b__1>d.MoveNext()
+--- End of stack trace from previous location ---
+   at Microsoft.Identity.Client.Utils.StopwatchService.MeasureCodeBlockAsync(Func`1 codeBlock)
+   at Microsoft.Identity.Client.Internal.Requests.RequestBase.RunAsync(CancellationToken cancellationToken)
+   at Microsoft.Identity.Client.ApiConfig.Executors.ConfidentialClientExecutor.ExecuteAsync(AcquireTokenCommonParameters commonParameters, AcquireTokenForClientParameters clientParameters, CancellationToken cancellationToken)
+   at Azure.Identity.AbstractAcquireTokenParameterBuilderExtensions.ExecuteAsync[T](AbstractAcquireTokenParameterBuilder`1 builder, Boolean async, CancellationToken cancellationToken)
+   at Azure.Identity.MsalConfidentialClient.AcquireTokenForClientCoreAsync(String[] scopes, String tenantId, String claims, Boolean enableCae, Boolean async, CancellationToken cancellationToken)
+   at Azure.Identity.MsalConfidentialClient.AcquireTokenForClientAsync(String[] scopes, String tenantId, String claims, Boolean enableCae, Boolean async, CancellationToken cancellationToken)
+   at Azure.Identity.ManagedIdentityClient.AuthenticateAsync(Boolean async, TokenRequestContext context, CancellationToken cancellationToken)
+   at Azure.Identity.ManagedIdentityCredential.GetTokenImplAsync(Boolean async, TokenRequestContext requestContext, CancellationToken cancellationToken)
+   at Azure.Identity.CredentialDiagnosticScope.FailWrapAndThrow(Exception ex, String additionalMessage, Boolean isCredentialUnavailable)
+   at Azure.Identity.ManagedIdentityCredential.GetTokenImplAsync(Boolean async, TokenRequestContext requestContext, CancellationToken cancellationToken)
+   at Azure.Identity.ManagedIdentityCredential.GetTokenAsync(TokenRequestContext requestContext, CancellationToken cancellationToken)
+   at Azure.Identity.DefaultAzureCredential.GetTokenFromSourcesAsync(TokenCredential[] sources, TokenRequestContext requestContext, Boolean async, CancellationToken cancellationToken)<---
+
+ ---> (Inner Exception #3) Azure.Identity.CredentialUnavailableException: Process "C:\Program Files\Microsoft Visual Studio\18\Community\Common7\IDE\CommonExtensions\Microsoft\Asal\TokenService\Microsoft.Asal.TokenService.exe" has failed with unexpected error: TS003: Error, TS005: No accounts found.  Please go to Tools->Options->Azure Services Authentication, and add an account to be authenticated to Azure services during development..
+ ---> System.InvalidOperationException: TS003: Error, TS005: No accounts found.  Please go to Tools->Options->Azure Services Authentication, and add an account to be authenticated to Azure services during development.
+   at Azure.Identity.VisualStudioCredential.RunProcessesAsync(List`1 processStartInfos, Boolean async, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at Azure.Identity.VisualStudioCredential.RunProcessesAsync(List`1 processStartInfos, Boolean async, CancellationToken cancellationToken)
+   at Azure.Identity.VisualStudioCredential.GetTokenImplAsync(TokenRequestContext requestContext, Boolean async, CancellationToken cancellationToken)
+   at Azure.Identity.CredentialDiagnosticScope.FailWrapAndThrow(Exception ex, String additionalMessage, Boolean isCredentialUnavailable)
+   at Azure.Identity.VisualStudioCredential.GetTokenImplAsync(TokenRequestContext requestContext, Boolean async, CancellationToken cancellationToken)
+   at Azure.Identity.VisualStudioCredential.GetTokenAsync(TokenRequestContext requestContext, CancellationToken cancellationToken)
+   at Azure.Identity.DefaultAzureCredential.GetTokenFromSourcesAsync(TokenCredential[] sources, TokenRequestContext requestContext, Boolean async, CancellationToken cancellationToken)<---
+
+ ---> (Inner Exception #4) Azure.Identity.CredentialUnavailableException: Azure CLI not installed
+   at Azure.Identity.AzureCliCredential.RequestCliAccessTokenAsync(Boolean async, TokenRequestContext context, CancellationToken cancellationToken)
+   at Azure.Identity.AzureCliCredential.GetTokenImplAsync(Boolean async, TokenRequestContext requestContext, CancellationToken cancellationToken)
+   at Azure.Identity.CredentialDiagnosticScope.FailWrapAndThrow(Exception ex, String additionalMessage, Boolean isCredentialUnavailable)
+   at Azure.Identity.AzureCliCredential.GetTokenImplAsync(Boolean async, TokenRequestContext requestContext, CancellationToken cancellationToken)
+   at Azure.Identity.AzureCliCredential.GetTokenAsync(TokenRequestContext requestContext, CancellationToken cancellationToken)
+   at Azure.Identity.DefaultAzureCredential.GetTokenFromSourcesAsync(TokenCredential[] sources, TokenRequestContext requestContext, Boolean async, CancellationToken cancellationToken)<---
+
+ ---> (Inner Exception #5) Azure.Identity.CredentialUnavailableException: Az.Accounts module >= 2.2.0 is not installed.
+   at Azure.Identity.AzurePowerShellCredential.CheckForErrors(String output, Int32 exitCode)
+   at Azure.Identity.AzurePowerShellCredential.RequestAzurePowerShellAccessTokenAsync(Boolean async, TokenRequestContext context, CancellationToken cancellationToken)
+   at Azure.Identity.AzurePowerShellCredential.GetTokenImplAsync(Boolean async, TokenRequestContext requestContext, CancellationToken cancellationToken)
+   at Azure.Identity.CredentialDiagnosticScope.FailWrapAndThrow(Exception ex, String additionalMessage, Boolean isCredentialUnavailable)
+   at Azure.Identity.AzurePowerShellCredential.GetTokenImplAsync(Boolean async, TokenRequestContext requestContext, CancellationToken cancellationToken)
+   at Azure.Identity.AzurePowerShellCredential.GetTokenAsync(TokenRequestContext requestContext, CancellationToken cancellationToken)
+   at Azure.Identity.DefaultAzureCredential.GetTokenFromSourcesAsync(TokenCredential[] sources, TokenRequestContext requestContext, Boolean async, CancellationToken cancellationToken)<---
+
+ ---> (Inner Exception #6) Azure.Identity.CredentialUnavailableException: Azure Developer CLI could not be found.
+   at Azure.Identity.AzureDeveloperCliCredential.RequestCliAccessTokenAsync(Boolean async, TokenRequestContext context, CancellationToken cancellationToken)
+   at Azure.Identity.AzureDeveloperCliCredential.GetTokenImplAsync(Boolean async, TokenRequestContext requestContext, CancellationToken cancellationToken)
+   at Azure.Identity.CredentialDiagnosticScope.FailWrapAndThrow(Exception ex, String additionalMessage, Boolean isCredentialUnavailable)
+   at Azure.Identity.AzureDeveloperCliCredential.GetTokenImplAsync(Boolean async, TokenRequestContext requestContext, CancellationToken cancellationToken)
+   at Azure.Identity.AzureDeveloperCliCredential.GetTokenAsync(TokenRequestContext requestContext, CancellationToken cancellationToken)
+   at Azure.Identity.DefaultAzureCredential.GetTokenFromSourcesAsync(TokenCredential[] sources, TokenRequestContext requestContext, Boolean async, CancellationToken cancellationToken)<---
+
+   --- End of inner exception stack trace ---
+   at Azure.Identity.DefaultAzureCredential.GetTokenFromSourcesAsync(TokenCredential[] sources, TokenRequestContext requestContext, Boolean async, CancellationToken cancellationToken)
+   at Azure.Identity.DefaultAzureCredential.GetTokenImplAsync(Boolean async, TokenRequestContext requestContext, CancellationToken cancellationToken)
+   at Azure.Identity.CredentialDiagnosticScope.FailWrapAndThrow(Exception ex, String additionalMessage, Boolean isCredentialUnavailable)
+   at Azure.Identity.DefaultAzureCredential.GetTokenImplAsync(Boolean async, TokenRequestContext requestContext, CancellationToken cancellationToken)
+   at Azure.Identity.DefaultAzureCredential.GetTokenAsync(TokenRequestContext requestContext, CancellationToken cancellationToken)
+   at Microsoft.Data.SqlClient.ActiveDirectoryAuthenticationProvider.GetTokenAsync(TokenCredentialKey tokenCredentialKey, String secret, TokenRequestContext tokenRequestContext, CancellationToken cancellationToken)
+   at Microsoft.Data.SqlClient.ActiveDirectoryAuthenticationProvider.AcquireTokenAsync(SqlAuthenticationParameters parameters)
+   at Microsoft.Data.SqlClient.SqlInternalConnectionTds.<>c__DisplayClass147_1.<<GetFedAuthToken>b__1>d.MoveNext()
+--- End of stack trace from previous location ---
+   at Microsoft.Data.SqlClient.SqlInternalConnectionTds.GetFedAuthToken(SqlFedAuthInfo fedAuthInfo)
+   at Microsoft.Data.SqlClient.SqlInternalConnectionTds.GetFedAuthToken(SqlFedAuthInfo fedAuthInfo)
+   at Microsoft.Data.SqlClient.SqlInternalConnectionTds.OnFedAuthInfo(SqlFedAuthInfo fedAuthInfo)
+   at Microsoft.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at Microsoft.Data.SqlClient.TdsParser.Run(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj)
+   at Microsoft.Data.SqlClient.SqlInternalConnectionTds.CompleteLogin(Boolean enlistOK)
+   at Microsoft.Data.SqlClient.SqlInternalConnectionTds.AttemptOneLogin(ServerInfo serverInfo, String newPassword, SecureString newSecurePassword, Boolean ignoreSniOpenTimeout, TimeoutTimer timeout, Boolean withFailover)
+   at Microsoft.Data.SqlClient.SqlInternalConnectionTds.LoginNoFailover(ServerInfo serverInfo, String newPassword, SecureString newSecurePassword, Boolean redirectedUserInstance, SqlConnectionString connectionOptions, SqlCredential credential, TimeoutTimer timeout)
+   at Microsoft.Data.SqlClient.SqlInternalConnectionTds.OpenLoginEnlist(TimeoutTimer timeout, SqlConnectionString connectionOptions, SqlCredential credential, String newPassword, SecureString newSecurePassword, Boolean redirectedUserInstance)
+   at Microsoft.Data.SqlClient.SqlInternalConnectionTds..ctor(DbConnectionPoolIdentity identity, SqlConnectionString connectionOptions, SqlCredential credential, Object providerInfo, String newPassword, SecureString newSecurePassword, Boolean redirectedUserInstance, SqlConnectionString userConnectionOptions, SessionData reconnectSessionData, Boolean applyTransientFaultHandling, String accessToken, DbConnectionPool pool)
+   at Microsoft.Data.SqlClient.SqlConnectionFactory.CreateConnection(DbConnectionOptions options, DbConnectionPoolKey poolKey, Object poolGroupProviderInfo, DbConnectionPool pool, DbConnection owningConnection, DbConnectionOptions userOptions)
+   at Microsoft.Data.ProviderBase.DbConnectionFactory.CreatePooledConnection(DbConnectionPool pool, DbConnection owningObject, DbConnectionOptions options, DbConnectionPoolKey poolKey, DbConnectionOptions userOptions)
+   at Microsoft.Data.ProviderBase.DbConnectionPool.CreateObject(DbConnection owningObject, DbConnectionOptions userOptions, DbConnectionInternal oldConnection)
+   at Microsoft.Data.ProviderBase.DbConnectionPool.UserCreateRequest(DbConnection owningObject, DbConnectionOptions userOptions, DbConnectionInternal oldConnection)
+   at Microsoft.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbConnection owningObject, UInt32 waitForMultipleObjectsTimeout, Boolean allowCreate, Boolean onlyOneCheckConnection, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   at Microsoft.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbConnection owningObject, TaskCompletionSource`1 retry, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   at Microsoft.Data.ProviderBase.DbConnectionFactory.TryGetConnection(DbConnection owningConnection, TaskCompletionSource`1 retry, DbConnectionOptions userOptions, DbConnectionInternal oldConnection, DbConnectionInternal& connection)
+   at Microsoft.Data.ProviderBase.DbConnectionInternal.TryOpenConnectionInternal(DbConnection outerConnection, DbConnectionFactory connectionFactory, TaskCompletionSource`1 retry, DbConnectionOptions userOptions)
+   at Microsoft.Data.ProviderBase.DbConnectionClosed.TryOpenConnection(DbConnection outerConnection, DbConnectionFactory connectionFactory, TaskCompletionSource`1 retry, DbConnectionOptions userOptions)
+   at Microsoft.Data.SqlClient.SqlConnection.TryOpen(TaskCompletionSource`1 retry, SqlConnectionOverrides overrides)
+   at Microsoft.Data.SqlClient.SqlConnection.Open(SqlConnectionOverrides overrides)
+   at Microsoft.Data.SqlClient.SqlConnection.Open()
+   at Hangfire.SqlServer.SqlServerStorage.CreateAndOpenConnection() in C:\projects\hangfire-525\src\Hangfire.SqlServer\SqlServerStorage.cs:line 406
+   at Hangfire.SqlServer.SqlServerStorage.UseConnection[TContext,TResult](DbConnection dedicatedConnection, Func`4 func, TContext context) in C:\projects\hangfire-525\src\Hangfire.SqlServer\SqlServerStorage.cs:line 291
+   at Hangfire.SqlServer.SqlServerStorage.UseConnection(DbConnection dedicatedConnection, Action`2 action) in C:\projects\hangfire-525\src\Hangfire.SqlServer\SqlServerStorage.cs:line 268
+   at Hangfire.SqlServer.SqlServerStorage.Initialize() in C:\projects\hangfire-525\src\Hangfire.SqlServer\SqlServerStorage.cs:line 465
+ClientConnectionId:75969758-88a0-4cdb-bfe8-6d7283a3c8bf
+2026-07-08 23:27:44.835 +05:30 [ERR] Was unable to use the TryAutoDetectSchemaDependentOptions option due to an exception.
+Microsoft.Data.SqlClient.SqlException (0x80131904): DefaultAzureCredential failed to retrieve a token from the included credentials. See the troubleshooting guide for more information. https://aka.ms/azsdk/net/identity/defaultazurecredential/troubleshoot
+- EnvironmentCredential authentication unavailable. Environment variables are not fully configured. See the troubleshooting guide for more information. https://aka.ms/azsdk/net/identity/environmentcredential/troubleshoot
+- WorkloadIdentityCredential authentication unavailable. The workload options are not fully configured. See the troubleshooting guide for more information. https://aka.ms/azsdk/net/identity/workloadidentitycredential/troubleshoot
+- ManagedIdentityCredential authentication unavailable. No response received from the managed identity endpoint.
+- Process "C:\Program Files\Microsoft Visual Studio\18\Community\Common7\IDE\CommonExtensions\Microsoft\Asal\TokenService\Microsoft.Asal.TokenService.exe" has failed with unexpected error: TS003: Error, TS005: No accounts found.  Please go to Tools->Options->Azure Services Authentication, and add an account to be authenticated to Azure services during development..
+- Azure CLI not installed
+- Az.Accounts module >= 2.2.0 is not installed.
+- Azure Developer CLI could not be found.
+ ---> Azure.Identity.CredentialUnavailableException: DefaultAzureCredential failed to retrieve a token from the included credentials. See the troubleshooting guide for more information. https://aka.ms/azsdk/net/identity/defaultazurecredential/troubleshoot
+- EnvironmentCredential authentication unavailable. Environment variables are not fully configured. See the troubleshooting guide for more information. https://aka.ms/azsdk/net/identity/environmentcredential/troubleshoot
+- WorkloadIdentityCredential authentication unavailable. The workload options are not fully configured. See the troubleshooting guide for more information. https://aka.ms/azsdk/net/identity/workloadidentitycredential/troubleshoot
+- ManagedIdentityCredential authentication unavailable. No response received from the managed identity endpoint.
+- Process "C:\Program Files\Microsoft Visual Studio\18\Community\Common7\IDE\CommonExtensions\Microsoft\Asal\TokenService\Microsoft.Asal.TokenService.exe" has failed with unexpected error: TS003: Error, TS005: No accounts found.  Please go to Tools->Options->Azure Services Authentication, and add an account to be authenticated to Azure services during development..
+- Azure CLI not installed
+- Az.Accounts module >= 2.2.0 is not installed.
+- Azure Developer CLI could not be found.
+ ---> System.AggregateException: Multiple exceptions were encountered while attempting to authenticate. (EnvironmentCredential authentication unavailable. Environment variables are not fully configured. See the troubleshooting guide for more information. https://aka.ms/azsdk/net/identity/environmentcredential/troubleshoot) (WorkloadIdentityCredential authentication unavailable. The workload options are not fully configured. See the troubleshooting guide for more information. https://aka.ms/azsdk/net/identity/workloadidentitycredential/troubleshoot) (ManagedIdentityCredential authentication unavailable. No response received from the managed identity endpoint.) (Process "C:\Program Files\Microsoft Visual Studio\18\Community\Common7\IDE\CommonExtensions\Microsoft\Asal\TokenService\Microsoft.Asal.TokenService.exe" has failed with unexpected error: TS003: Error, TS005: No accounts found.  Please go to Tools->Options->Azure Services Authentication, and add an account to be authenticated to Azure services during development..) (Azure CLI not installed) (Az.Accounts module >= 2.2.0 is not installed.) (Azure Developer CLI could not be found.)
+ ---> Azure.Identity.CredentialUnavailableException: EnvironmentCredential authentication unavailable. Environment variables are not fully configured. See the troubleshooting guide for more information. https://aka.ms/azsdk/net/identity/environmentcredential/troubleshoot
+   at Azure.Identity.CredentialDiagnosticScope.FailWrapAndThrow(Exception ex, String additionalMessage, Boolean isCredentialUnavailable)
+   at Azure.Identity.EnvironmentCredential.GetTokenImplAsync(Boolean async, TokenRequestContext requestContext, CancellationToken cancellationToken)
+   at Azure.Identity.EnvironmentCredential.GetTokenAsync(TokenRequestContext requestContext, CancellationToken cancellationToken)
+   at Azure.Identity.DefaultAzureCredential.GetTokenFromSourcesAsync(TokenCredential[] sources, TokenRequestContext requestContext, Boolean async, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+ ---> (Inner Exception #1) Azure.Identity.CredentialUnavailableException: WorkloadIdentityCredential authentication unavailable. The workload options are not fully configured. See the troubleshooting guide for more information. https://aka.ms/azsdk/net/identity/workloadidentitycredential/troubleshoot
+   at Azure.Identity.WorkloadIdentityCredential.GetTokenCoreAsync(Boolean async, TokenRequestContext requestContext, CancellationToken cancellationToken)
+   at Azure.Identity.CredentialDiagnosticScope.FailWrapAndThrow(Exception ex, String additionalMessage, Boolean isCredentialUnavailable)
+   at Azure.Identity.WorkloadIdentityCredential.GetTokenCoreAsync(Boolean async, TokenRequestContext requestContext, CancellationToken cancellationToken)
+   at Azure.Identity.WorkloadIdentityCredential.GetTokenAsync(TokenRequestContext requestContext, CancellationToken cancellationToken)
+   at Azure.Identity.DefaultAzureCredential.GetTokenFromSourcesAsync(TokenCredential[] sources, TokenRequestContext requestContext, Boolean async, CancellationToken cancellationToken)<---
+
+ ---> (Inner Exception #2) Azure.Identity.CredentialUnavailableException: ManagedIdentityCredential authentication unavailable. No response received from the managed identity endpoint.
+ ---> System.Threading.Tasks.TaskCanceledException: The operation was cancelled because it exceeded the configured timeout of 0:00:01. Network timeout can be adjusted in ClientOptions.Retry.NetworkTimeout.
+ ---> System.Threading.Tasks.TaskCanceledException: A task was canceled.
+ ---> System.Threading.Tasks.TaskCanceledException: A task was canceled.
+   at System.Threading.Tasks.TaskCompletionSourceWithCancellation`1.WaitWithCancellationAsync(CancellationToken cancellationToken)
+   at System.Net.Http.HttpConnectionPool.SendWithVersionDetectionAndRetryAsync(HttpRequestMessage request, Boolean async, Boolean doRequestAuth, CancellationToken cancellationToken)
+   at System.Net.Http.HttpClient.<SendAsync>g__Core|83_0(HttpRequestMessage request, HttpCompletionOption completionOption, CancellationTokenSource cts, Boolean disposeCts, CancellationTokenSource pendingRequestsCts, CancellationToken originalCancellationToken)
+   --- End of inner exception stack trace ---
+   at System.Net.Http.HttpClient.HandleFailure(Exception e, Boolean telemetryStarted, HttpResponseMessage response, CancellationTokenSource cts, CancellationToken cancellationToken, CancellationTokenSource pendingRequestsCts)
+   at System.Net.Http.HttpClient.<SendAsync>g__Core|83_0(HttpRequestMessage request, HttpCompletionOption completionOption, CancellationTokenSource cts, Boolean disposeCts, CancellationTokenSource pendingRequestsCts, CancellationToken originalCancellationToken)
+   at Azure.Core.Pipeline.HttpClientTransport.ProcessAsync(HttpMessage message, Boolean async)
+   at Azure.Core.Pipeline.HttpPipelineTransportPolicy.ProcessAsync(HttpMessage message, ReadOnlyMemory`1 pipeline)
+   at Azure.Core.Pipeline.ResponseBodyPolicy.ProcessAsync(HttpMessage message, ReadOnlyMemory`1 pipeline, Boolean async)
+   --- End of inner exception stack trace ---
+   at Azure.Core.Pipeline.ResponseBodyPolicy.ThrowIfCancellationRequestedOrTimeout(CancellationToken originalToken, CancellationToken timeoutToken, Exception inner, TimeSpan timeout)
+   at Azure.Core.Pipeline.ResponseBodyPolicy.ProcessAsync(HttpMessage message, ReadOnlyMemory`1 pipeline, Boolean async)
+   at Azure.Core.Pipeline.RedirectPolicy.ProcessAsync(HttpMessage message, ReadOnlyMemory`1 pipeline, Boolean async)
+   at Azure.Core.Pipeline.RetryPolicy.ProcessAsync(HttpMessage message, ReadOnlyMemory`1 pipeline, Boolean async)
+   at Azure.Core.Pipeline.RetryPolicy.ProcessAsync(HttpMessage message, ReadOnlyMemory`1 pipeline, Boolean async)
+   at Azure.Identity.ManagedIdentitySource.AuthenticateAsync(Boolean async, TokenRequestContext context, CancellationToken cancellationToken)
+   at Azure.Identity.ImdsManagedIdentitySource.AuthenticateAsync(Boolean async, TokenRequestContext context, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at Azure.Identity.ImdsManagedIdentitySource.AuthenticateAsync(Boolean async, TokenRequestContext context, CancellationToken cancellationToken)
+   at Azure.Identity.ManagedIdentityClient.AuthenticateCoreAsync(Boolean async, TokenRequestContext context, CancellationToken cancellationToken)
+   at Azure.Identity.ManagedIdentityClient.AppTokenProviderImpl(AppTokenProviderParameters parameters)
+   at Microsoft.Identity.Client.Internal.Requests.ClientCredentialRequest.SendTokenRequestToAppTokenProviderAsync(ILoggerAdapter logger, CancellationToken cancellationToken)
+   at Microsoft.Identity.Client.Internal.Requests.ClientCredentialRequest.GetAccessTokenAsync(CancellationToken cancellationToken, ILoggerAdapter logger)
+   at Microsoft.Identity.Client.Internal.Requests.ClientCredentialRequest.ExecuteAsync(CancellationToken cancellationToken)
+   at Microsoft.Identity.Client.Internal.Requests.RequestBase.<>c__DisplayClass11_1.<<RunAsync>b__1>d.MoveNext()
+--- End of stack trace from previous location ---
+   at Microsoft.Identity.Client.Utils.StopwatchService.MeasureCodeBlockAsync(Func`1 codeBlock)
+   at Microsoft.Identity.Client.Internal.Requests.RequestBase.RunAsync(CancellationToken cancellationToken)
+   at Microsoft.Identity.Client.ApiConfig.Executors.ConfidentialClientExecutor.ExecuteAsync(AcquireTokenCommonParameters commonParameters, AcquireTokenForClientParameters clientParameters, CancellationToken cancellationToken)
+   at Azure.Identity.AbstractAcquireTokenParameterBuilderExtensions.ExecuteAsync[T](AbstractAcquireTokenParameterBuilder`1 builder, Boolean async, CancellationToken cancellationToken)
+   at Azure.Identity.MsalConfidentialClient.AcquireTokenForClientCoreAsync(String[] scopes, String tenantId, String claims, Boolean enableCae, Boolean async, CancellationToken cancellationToken)
+   at Azure.Identity.MsalConfidentialClient.AcquireTokenForClientAsync(String[] scopes, String tenantId, String claims, Boolean enableCae, Boolean async, CancellationToken cancellationToken)
+   at Azure.Identity.ManagedIdentityClient.AuthenticateAsync(Boolean async, TokenRequestContext context, CancellationToken cancellationToken)
+   at Azure.Identity.ManagedIdentityCredential.GetTokenImplAsync(Boolean async, TokenRequestContext requestContext, CancellationToken cancellationToken)
+   at Azure.Identity.CredentialDiagnosticScope.FailWrapAndThrow(Exception ex, String additionalMessage, Boolean isCredentialUnavailable)
+   at Azure.Identity.ManagedIdentityCredential.GetTokenImplAsync(Boolean async, TokenRequestContext requestContext, CancellationToken cancellationToken)
+   at Azure.Identity.ManagedIdentityCredential.GetTokenAsync(TokenRequestContext requestContext, CancellationToken cancellationToken)
+   at Azure.Identity.DefaultAzureCredential.GetTokenFromSourcesAsync(TokenCredential[] sources, TokenRequestContext requestContext, Boolean async, CancellationToken cancellationToken)<---
+
+ ---> (Inner Exception #3) Azure.Identity.CredentialUnavailableException: Process "C:\Program Files\Microsoft Visual Studio\18\Community\Common7\IDE\CommonExtensions\Microsoft\Asal\TokenService\Microsoft.Asal.TokenService.exe" has failed with unexpected error: TS003: Error, TS005: No accounts found.  Please go to Tools->Options->Azure Services Authentication, and add an account to be authenticated to Azure services during development..
+ ---> System.InvalidOperationException: TS003: Error, TS005: No accounts found.  Please go to Tools->Options->Azure Services Authentication, and add an account to be authenticated to Azure services during development.
+   at Azure.Identity.VisualStudioCredential.RunProcessesAsync(List`1 processStartInfos, Boolean async, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at Azure.Identity.VisualStudioCredential.RunProcessesAsync(List`1 processStartInfos, Boolean async, CancellationToken cancellationToken)
+   at Azure.Identity.VisualStudioCredential.GetTokenImplAsync(TokenRequestContext requestContext, Boolean async, CancellationToken cancellationToken)
+   at Azure.Identity.CredentialDiagnosticScope.FailWrapAndThrow(Exception ex, String additionalMessage, Boolean isCredentialUnavailable)
+   at Azure.Identity.VisualStudioCredential.GetTokenImplAsync(TokenRequestContext requestContext, Boolean async, CancellationToken cancellationToken)
+   at Azure.Identity.VisualStudioCredential.GetTokenAsync(TokenRequestContext requestContext, CancellationToken cancellationToken)
+   at Azure.Identity.DefaultAzureCredential.GetTokenFromSourcesAsync(TokenCredential[] sources, TokenRequestContext requestContext, Boolean async, CancellationToken cancellationToken)<---
+
+ ---> (Inner Exception #4) Azure.Identity.CredentialUnavailableException: Azure CLI not installed
+   at Azure.Identity.AzureCliCredential.RequestCliAccessTokenAsync(Boolean async, TokenRequestContext context, CancellationToken cancellationToken)
+   at Azure.Identity.AzureCliCredential.GetTokenImplAsync(Boolean async, TokenRequestContext requestContext, CancellationToken cancellationToken)
+   at Azure.Identity.CredentialDiagnosticScope.FailWrapAndThrow(Exception ex, String additionalMessage, Boolean isCredentialUnavailable)
+   at Azure.Identity.AzureCliCredential.GetTokenImplAsync(Boolean async, TokenRequestContext requestContext, CancellationToken cancellationToken)
+   at Azure.Identity.AzureCliCredential.GetTokenAsync(TokenRequestContext requestContext, CancellationToken cancellationToken)
+   at Azure.Identity.DefaultAzureCredential.GetTokenFromSourcesAsync(TokenCredential[] sources, TokenRequestContext requestContext, Boolean async, CancellationToken cancellationToken)<---
+
+ ---> (Inner Exception #5) Azure.Identity.CredentialUnavailableException: Az.Accounts module >= 2.2.0 is not installed.
+   at Azure.Identity.AzurePowerShellCredential.CheckForErrors(String output, Int32 exitCode)
+   at Azure.Identity.AzurePowerShellCredential.RequestAzurePowerShellAccessTokenAsync(Boolean async, TokenRequestContext context, CancellationToken cancellationToken)
+   at Azure.Identity.AzurePowerShellCredential.GetTokenImplAsync(Boolean async, TokenRequestContext requestContext, CancellationToken cancellationToken)
+   at Azure.Identity.CredentialDiagnosticScope.FailWrapAndThrow(Exception ex, String additionalMessage, Boolean isCredentialUnavailable)
+   at Azure.Identity.AzurePowerShellCredential.GetTokenImplAsync(Boolean async, TokenRequestContext requestContext, CancellationToken cancellationToken)
+   at Azure.Identity.AzurePowerShellCredential.GetTokenAsync(TokenRequestContext requestContext, CancellationToken cancellationToken)
+   at Azure.Identity.DefaultAzureCredential.GetTokenFromSourcesAsync(TokenCredential[] sources, TokenRequestContext requestContext, Boolean async, CancellationToken cancellationToken)<---
+
+ ---> (Inner Exception #6) Azure.Identity.CredentialUnavailableException: Azure Developer CLI could not be found.
+   at Azure.Identity.AzureDeveloperCliCredential.RequestCliAccessTokenAsync(Boolean async, TokenRequestContext context, CancellationToken cancellationToken)
+   at Azure.Identity.AzureDeveloperCliCredential.GetTokenImplAsync(Boolean async, TokenRequestContext requestContext, CancellationToken cancellationToken)
+   at Azure.Identity.CredentialDiagnosticScope.FailWrapAndThrow(Exception ex, String additionalMessage, Boolean isCredentialUnavailable)
+   at Azure.Identity.AzureDeveloperCliCredential.GetTokenImplAsync(Boolean async, TokenRequestContext requestContext, CancellationToken cancellationToken)
+   at Azure.Identity.AzureDeveloperCliCredential.GetTokenAsync(TokenRequestContext requestContext, CancellationToken cancellationToken)
+   at Azure.Identity.DefaultAzureCredential.GetTokenFromSourcesAsync(TokenCredential[] sources, TokenRequestContext requestContext, Boolean async, CancellationToken cancellationToken)<---
+
+   --- End of inner exception stack trace ---
+   at Azure.Identity.DefaultAzureCredential.GetTokenFromSourcesAsync(TokenCredential[] sources, TokenRequestContext requestContext, Boolean async, CancellationToken cancellationToken)
+   at Azure.Identity.DefaultAzureCredential.GetTokenImplAsync(Boolean async, TokenRequestContext requestContext, CancellationToken cancellationToken)
+   at Azure.Identity.CredentialDiagnosticScope.FailWrapAndThrow(Exception ex, String additionalMessage, Boolean isCredentialUnavailable)
+   at Azure.Identity.DefaultAzureCredential.GetTokenImplAsync(Boolean async, TokenRequestContext requestContext, CancellationToken cancellationToken)
+   at Azure.Identity.DefaultAzureCredential.GetTokenAsync(TokenRequestContext requestContext, CancellationToken cancellationToken)
+   at Microsoft.Data.SqlClient.ActiveDirectoryAuthenticationProvider.GetTokenAsync(TokenCredentialKey tokenCredentialKey, String secret, TokenRequestContext tokenRequestContext, CancellationToken cancellationToken)
+   at Microsoft.Data.SqlClient.ActiveDirectoryAuthenticationProvider.AcquireTokenAsync(SqlAuthenticationParameters parameters)
+   at Microsoft.Data.SqlClient.SqlInternalConnectionTds.<>c__DisplayClass147_1.<<GetFedAuthToken>b__1>d.MoveNext()
+--- End of stack trace from previous location ---
+   at Microsoft.Data.SqlClient.SqlInternalConnectionTds.GetFedAuthToken(SqlFedAuthInfo fedAuthInfo)
+   at Microsoft.Data.SqlClient.SqlInternalConnectionTds.GetFedAuthToken(SqlFedAuthInfo fedAuthInfo)
+   at Microsoft.Data.SqlClient.SqlInternalConnectionTds.OnFedAuthInfo(SqlFedAuthInfo fedAuthInfo)
+   at Microsoft.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at Microsoft.Data.SqlClient.TdsParser.Run(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj)
+   at Microsoft.Data.SqlClient.SqlInternalConnectionTds.CompleteLogin(Boolean enlistOK)
+   at Microsoft.Data.SqlClient.SqlInternalConnectionTds.AttemptOneLogin(ServerInfo serverInfo, String newPassword, SecureString newSecurePassword, Boolean ignoreSniOpenTimeout, TimeoutTimer timeout, Boolean withFailover)
+   at Microsoft.Data.SqlClient.SqlInternalConnectionTds.LoginNoFailover(ServerInfo serverInfo, String newPassword, SecureString newSecurePassword, Boolean redirectedUserInstance, SqlConnectionString connectionOptions, SqlCredential credential, TimeoutTimer timeout)
+   at Microsoft.Data.SqlClient.SqlInternalConnectionTds.OpenLoginEnlist(TimeoutTimer timeout, SqlConnectionString connectionOptions, SqlCredential credential, String newPassword, SecureString newSecurePassword, Boolean redirectedUserInstance)
+   at Microsoft.Data.SqlClient.SqlInternalConnectionTds..ctor(DbConnectionPoolIdentity identity, SqlConnectionString connectionOptions, SqlCredential credential, Object providerInfo, String newPassword, SecureString newSecurePassword, Boolean redirectedUserInstance, SqlConnectionString userConnectionOptions, SessionData reconnectSessionData, Boolean applyTransientFaultHandling, String accessToken, DbConnectionPool pool)
+   at Microsoft.Data.SqlClient.SqlConnectionFactory.CreateConnection(DbConnectionOptions options, DbConnectionPoolKey poolKey, Object poolGroupProviderInfo, DbConnectionPool pool, DbConnection owningConnection, DbConnectionOptions userOptions)
+   at Microsoft.Data.ProviderBase.DbConnectionFactory.CreatePooledConnection(DbConnectionPool pool, DbConnection owningObject, DbConnectionOptions options, DbConnectionPoolKey poolKey, DbConnectionOptions userOptions)
+   at Microsoft.Data.ProviderBase.DbConnectionPool.CreateObject(DbConnection owningObject, DbConnectionOptions userOptions, DbConnectionInternal oldConnection)
+   at Microsoft.Data.ProviderBase.DbConnectionPool.UserCreateRequest(DbConnection owningObject, DbConnectionOptions userOptions, DbConnectionInternal oldConnection)
+   at Microsoft.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbConnection owningObject, UInt32 waitForMultipleObjectsTimeout, Boolean allowCreate, Boolean onlyOneCheckConnection, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   at Microsoft.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbConnection owningObject, TaskCompletionSource`1 retry, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   at Microsoft.Data.ProviderBase.DbConnectionFactory.TryGetConnection(DbConnection owningConnection, TaskCompletionSource`1 retry, DbConnectionOptions userOptions, DbConnectionInternal oldConnection, DbConnectionInternal& connection)
+   at Microsoft.Data.ProviderBase.DbConnectionInternal.TryOpenConnectionInternal(DbConnection outerConnection, DbConnectionFactory connectionFactory, TaskCompletionSource`1 retry, DbConnectionOptions userOptions)
+   at Microsoft.Data.ProviderBase.DbConnectionClosed.TryOpenConnection(DbConnection outerConnection, DbConnectionFactory connectionFactory, TaskCompletionSource`1 retry, DbConnectionOptions userOptions)
+   at Microsoft.Data.SqlClient.SqlConnection.TryOpen(TaskCompletionSource`1 retry, SqlConnectionOverrides overrides)
+   at Microsoft.Data.SqlClient.SqlConnection.Open(SqlConnectionOverrides overrides)
+   at Microsoft.Data.SqlClient.SqlConnection.Open()
+   at Hangfire.SqlServer.SqlServerStorage.CreateAndOpenConnection() in C:\projects\hangfire-525\src\Hangfire.SqlServer\SqlServerStorage.cs:line 406
+   at Hangfire.SqlServer.SqlServerStorage.UseConnection[TContext,TResult](DbConnection dedicatedConnection, Func`4 func, TContext context) in C:\projects\hangfire-525\src\Hangfire.SqlServer\SqlServerStorage.cs:line 291
+   at Hangfire.SqlServer.SqlServerStorage.UseConnection[TResult](DbConnection dedicatedConnection, Func`3 action) in C:\projects\hangfire-525\src\Hangfire.SqlServer\SqlServerStorage.cs:line 279
+   at Hangfire.SqlServer.SqlServerStorage.Initialize() in C:\projects\hangfire-525\src\Hangfire.SqlServer\SqlServerStorage.cs:line 495
+ClientConnectionId:04617d8f-744e-471b-923c-c8c32b6fba32
+2026-07-08 23:27:45.070 +05:30 [INF] Seeding database and running migrations...
+2026-07-08 23:28:04.236 +05:30 [INF] Start installing Hangfire SQL objects...
+2026-07-08 23:28:16.948 +05:30 [WRN] An exception occurred while trying to perform the migration. Retrying...
+Microsoft.Data.SqlClient.SqlException (0x80131904): Cannot open database "TradingCourseDb" requested by the login. The login failed.
+Login failed for user 'DESKTOP-PM1E9OH\erami'.
+   at Microsoft.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at Microsoft.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at Microsoft.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at Microsoft.Data.SqlClient.TdsParser.Run(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj)
+   at Microsoft.Data.SqlClient.SqlInternalConnectionTds.CompleteLogin(Boolean enlistOK)
+   at Microsoft.Data.SqlClient.SqlInternalConnectionTds.AttemptOneLogin(ServerInfo serverInfo, String newPassword, SecureString newSecurePassword, Boolean ignoreSniOpenTimeout, TimeoutTimer timeout, Boolean withFailover)
+   at Microsoft.Data.SqlClient.SqlInternalConnectionTds.LoginNoFailover(ServerInfo serverInfo, String newPassword, SecureString newSecurePassword, Boolean redirectedUserInstance, SqlConnectionString connectionOptions, SqlCredential credential, TimeoutTimer timeout)
+   at Microsoft.Data.SqlClient.SqlInternalConnectionTds.OpenLoginEnlist(TimeoutTimer timeout, SqlConnectionString connectionOptions, SqlCredential credential, String newPassword, SecureString newSecurePassword, Boolean redirectedUserInstance)
+   at Microsoft.Data.SqlClient.SqlInternalConnectionTds..ctor(DbConnectionPoolIdentity identity, SqlConnectionString connectionOptions, SqlCredential credential, Object providerInfo, String newPassword, SecureString newSecurePassword, Boolean redirectedUserInstance, SqlConnectionString userConnectionOptions, SessionData reconnectSessionData, Boolean applyTransientFaultHandling, String accessToken, DbConnectionPool pool)
+   at Microsoft.Data.SqlClient.SqlConnectionFactory.CreateConnection(DbConnectionOptions options, DbConnectionPoolKey poolKey, Object poolGroupProviderInfo, DbConnectionPool pool, DbConnection owningConnection, DbConnectionOptions userOptions)
+   at Microsoft.Data.ProviderBase.DbConnectionFactory.CreatePooledConnection(DbConnectionPool pool, DbConnection owningObject, DbConnectionOptions options, DbConnectionPoolKey poolKey, DbConnectionOptions userOptions)
+   at Microsoft.Data.ProviderBase.DbConnectionPool.CreateObject(DbConnection owningObject, DbConnectionOptions userOptions, DbConnectionInternal oldConnection)
+   at Microsoft.Data.ProviderBase.DbConnectionPool.UserCreateRequest(DbConnection owningObject, DbConnectionOptions userOptions, DbConnectionInternal oldConnection)
+   at Microsoft.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbConnection owningObject, UInt32 waitForMultipleObjectsTimeout, Boolean allowCreate, Boolean onlyOneCheckConnection, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   at Microsoft.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbConnection owningObject, TaskCompletionSource`1 retry, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   at Microsoft.Data.ProviderBase.DbConnectionFactory.TryGetConnection(DbConnection owningConnection, TaskCompletionSource`1 retry, DbConnectionOptions userOptions, DbConnectionInternal oldConnection, DbConnectionInternal& connection)
+   at Microsoft.Data.ProviderBase.DbConnectionInternal.TryOpenConnectionInternal(DbConnection outerConnection, DbConnectionFactory connectionFactory, TaskCompletionSource`1 retry, DbConnectionOptions userOptions)
+   at Microsoft.Data.ProviderBase.DbConnectionClosed.TryOpenConnection(DbConnection outerConnection, DbConnectionFactory connectionFactory, TaskCompletionSource`1 retry, DbConnectionOptions userOptions)
+   at Microsoft.Data.SqlClient.SqlConnection.TryOpen(TaskCompletionSource`1 retry, SqlConnectionOverrides overrides)
+   at Microsoft.Data.SqlClient.SqlConnection.Open(SqlConnectionOverrides overrides)
+   at Microsoft.Data.SqlClient.SqlConnection.Open()
+   at Hangfire.SqlServer.SqlServerStorage.CreateAndOpenConnection() in C:\projects\hangfire-525\src\Hangfire.SqlServer\SqlServerStorage.cs:line 406
+   at Hangfire.SqlServer.SqlServerStorage.UseConnection[TContext,TResult](DbConnection dedicatedConnection, Func`4 func, TContext context) in C:\projects\hangfire-525\src\Hangfire.SqlServer\SqlServerStorage.cs:line 291
+   at Hangfire.SqlServer.SqlServerStorage.UseConnection(DbConnection dedicatedConnection, Action`2 action) in C:\projects\hangfire-525\src\Hangfire.SqlServer\SqlServerStorage.cs:line 268
+   at Hangfire.SqlServer.SqlServerStorage.Initialize() in C:\projects\hangfire-525\src\Hangfire.SqlServer\SqlServerStorage.cs:line 465
+ClientConnectionId:229355c6-fae2-4923-ab3d-33c36376991b
+Error Number:4060,State:1,Class:11
+2026-07-08 23:28:16.993 +05:30 [WRN] An exception occurred while trying to perform the migration. Retrying...
+Microsoft.Data.SqlClient.SqlException (0x80131904): Cannot open database "TradingCourseDb" requested by the login. The login failed.
+Login failed for user 'DESKTOP-PM1E9OH\erami'.
+   at Microsoft.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbConnection owningObject, UInt32 waitForMultipleObjectsTimeout, Boolean allowCreate, Boolean onlyOneCheckConnection, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   at Microsoft.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbConnection owningObject, TaskCompletionSource`1 retry, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   at Microsoft.Data.ProviderBase.DbConnectionFactory.TryGetConnection(DbConnection owningConnection, TaskCompletionSource`1 retry, DbConnectionOptions userOptions, DbConnectionInternal oldConnection, DbConnectionInternal& connection)
+   at Microsoft.Data.ProviderBase.DbConnectionInternal.TryOpenConnectionInternal(DbConnection outerConnection, DbConnectionFactory connectionFactory, TaskCompletionSource`1 retry, DbConnectionOptions userOptions)
+   at Microsoft.Data.ProviderBase.DbConnectionClosed.TryOpenConnection(DbConnection outerConnection, DbConnectionFactory connectionFactory, TaskCompletionSource`1 retry, DbConnectionOptions userOptions)
+   at Microsoft.Data.SqlClient.SqlConnection.TryOpen(TaskCompletionSource`1 retry, SqlConnectionOverrides overrides)
+   at Microsoft.Data.SqlClient.SqlConnection.Open(SqlConnectionOverrides overrides)
+   at Microsoft.Data.SqlClient.SqlConnection.Open()
+   at Hangfire.SqlServer.SqlServerStorage.CreateAndOpenConnection() in C:\projects\hangfire-525\src\Hangfire.SqlServer\SqlServerStorage.cs:line 406
+   at Hangfire.SqlServer.SqlServerStorage.UseConnection[TContext,TResult](DbConnection dedicatedConnection, Func`4 func, TContext context) in C:\projects\hangfire-525\src\Hangfire.SqlServer\SqlServerStorage.cs:line 291
+   at Hangfire.SqlServer.SqlServerStorage.UseConnection(DbConnection dedicatedConnection, Action`2 action) in C:\projects\hangfire-525\src\Hangfire.SqlServer\SqlServerStorage.cs:line 268
+   at Hangfire.SqlServer.SqlServerStorage.Initialize() in C:\projects\hangfire-525\src\Hangfire.SqlServer\SqlServerStorage.cs:line 465
+ClientConnectionId:229355c6-fae2-4923-ab3d-33c36376991b
+Error Number:4060,State:1,Class:11
+2026-07-08 23:28:16.995 +05:30 [WRN] An exception occurred while trying to perform the migration.
+Microsoft.Data.SqlClient.SqlException (0x80131904): Cannot open database "TradingCourseDb" requested by the login. The login failed.
+Login failed for user 'DESKTOP-PM1E9OH\erami'.
+   at Microsoft.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbConnection owningObject, UInt32 waitForMultipleObjectsTimeout, Boolean allowCreate, Boolean onlyOneCheckConnection, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   at Microsoft.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbConnection owningObject, TaskCompletionSource`1 retry, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   at Microsoft.Data.ProviderBase.DbConnectionFactory.TryGetConnection(DbConnection owningConnection, TaskCompletionSource`1 retry, DbConnectionOptions userOptions, DbConnectionInternal oldConnection, DbConnectionInternal& connection)
+   at Microsoft.Data.ProviderBase.DbConnectionInternal.TryOpenConnectionInternal(DbConnection outerConnection, DbConnectionFactory connectionFactory, TaskCompletionSource`1 retry, DbConnectionOptions userOptions)
+   at Microsoft.Data.ProviderBase.DbConnectionClosed.TryOpenConnection(DbConnection outerConnection, DbConnectionFactory connectionFactory, TaskCompletionSource`1 retry, DbConnectionOptions userOptions)
+   at Microsoft.Data.SqlClient.SqlConnection.TryOpen(TaskCompletionSource`1 retry, SqlConnectionOverrides overrides)
+   at Microsoft.Data.SqlClient.SqlConnection.Open(SqlConnectionOverrides overrides)
+   at Microsoft.Data.SqlClient.SqlConnection.Open()
+   at Hangfire.SqlServer.SqlServerStorage.CreateAndOpenConnection() in C:\projects\hangfire-525\src\Hangfire.SqlServer\SqlServerStorage.cs:line 406
+   at Hangfire.SqlServer.SqlServerStorage.UseConnection[TContext,TResult](DbConnection dedicatedConnection, Func`4 func, TContext context) in C:\projects\hangfire-525\src\Hangfire.SqlServer\SqlServerStorage.cs:line 291
+   at Hangfire.SqlServer.SqlServerStorage.UseConnection(DbConnection dedicatedConnection, Action`2 action) in C:\projects\hangfire-525\src\Hangfire.SqlServer\SqlServerStorage.cs:line 268
+   at Hangfire.SqlServer.SqlServerStorage.Initialize() in C:\projects\hangfire-525\src\Hangfire.SqlServer\SqlServerStorage.cs:line 465
+ClientConnectionId:229355c6-fae2-4923-ab3d-33c36376991b
+Error Number:4060,State:1,Class:11
+2026-07-08 23:28:16.999 +05:30 [WRN] Was unable to perform the Hangfire schema migration due to an exception. Ignore this message unless you've just installed or upgraded Hangfire.
+Microsoft.Data.SqlClient.SqlException (0x80131904): Cannot open database "TradingCourseDb" requested by the login. The login failed.
+Login failed for user 'DESKTOP-PM1E9OH\erami'.
+   at Microsoft.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbConnection owningObject, UInt32 waitForMultipleObjectsTimeout, Boolean allowCreate, Boolean onlyOneCheckConnection, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   at Microsoft.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbConnection owningObject, TaskCompletionSource`1 retry, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   at Microsoft.Data.ProviderBase.DbConnectionFactory.TryGetConnection(DbConnection owningConnection, TaskCompletionSource`1 retry, DbConnectionOptions userOptions, DbConnectionInternal oldConnection, DbConnectionInternal& connection)
+   at Microsoft.Data.ProviderBase.DbConnectionInternal.TryOpenConnectionInternal(DbConnection outerConnection, DbConnectionFactory connectionFactory, TaskCompletionSource`1 retry, DbConnectionOptions userOptions)
+   at Microsoft.Data.ProviderBase.DbConnectionClosed.TryOpenConnection(DbConnection outerConnection, DbConnectionFactory connectionFactory, TaskCompletionSource`1 retry, DbConnectionOptions userOptions)
+   at Microsoft.Data.SqlClient.SqlConnection.TryOpen(TaskCompletionSource`1 retry, SqlConnectionOverrides overrides)
+   at Microsoft.Data.SqlClient.SqlConnection.Open(SqlConnectionOverrides overrides)
+   at Microsoft.Data.SqlClient.SqlConnection.Open()
+   at Hangfire.SqlServer.SqlServerStorage.CreateAndOpenConnection() in C:\projects\hangfire-525\src\Hangfire.SqlServer\SqlServerStorage.cs:line 406
+   at Hangfire.SqlServer.SqlServerStorage.UseConnection[TContext,TResult](DbConnection dedicatedConnection, Func`4 func, TContext context) in C:\projects\hangfire-525\src\Hangfire.SqlServer\SqlServerStorage.cs:line 291
+   at Hangfire.SqlServer.SqlServerStorage.UseConnection(DbConnection dedicatedConnection, Action`2 action) in C:\projects\hangfire-525\src\Hangfire.SqlServer\SqlServerStorage.cs:line 268
+   at Hangfire.SqlServer.SqlServerStorage.Initialize() in C:\projects\hangfire-525\src\Hangfire.SqlServer\SqlServerStorage.cs:line 465
+ClientConnectionId:229355c6-fae2-4923-ab3d-33c36376991b
+Error Number:4060,State:1,Class:11
+2026-07-08 23:28:17.002 +05:30 [ERR] Was unable to use the TryAutoDetectSchemaDependentOptions option due to an exception.
+Microsoft.Data.SqlClient.SqlException (0x80131904): Cannot open database "TradingCourseDb" requested by the login. The login failed.
+Login failed for user 'DESKTOP-PM1E9OH\erami'.
+   at Microsoft.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbConnection owningObject, UInt32 waitForMultipleObjectsTimeout, Boolean allowCreate, Boolean onlyOneCheckConnection, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   at Microsoft.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbConnection owningObject, TaskCompletionSource`1 retry, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   at Microsoft.Data.ProviderBase.DbConnectionFactory.TryGetConnection(DbConnection owningConnection, TaskCompletionSource`1 retry, DbConnectionOptions userOptions, DbConnectionInternal oldConnection, DbConnectionInternal& connection)
+   at Microsoft.Data.ProviderBase.DbConnectionInternal.TryOpenConnectionInternal(DbConnection outerConnection, DbConnectionFactory connectionFactory, TaskCompletionSource`1 retry, DbConnectionOptions userOptions)
+   at Microsoft.Data.ProviderBase.DbConnectionClosed.TryOpenConnection(DbConnection outerConnection, DbConnectionFactory connectionFactory, TaskCompletionSource`1 retry, DbConnectionOptions userOptions)
+   at Microsoft.Data.SqlClient.SqlConnection.TryOpen(TaskCompletionSource`1 retry, SqlConnectionOverrides overrides)
+   at Microsoft.Data.SqlClient.SqlConnection.Open(SqlConnectionOverrides overrides)
+   at Microsoft.Data.SqlClient.SqlConnection.Open()
+   at Hangfire.SqlServer.SqlServerStorage.CreateAndOpenConnection() in C:\projects\hangfire-525\src\Hangfire.SqlServer\SqlServerStorage.cs:line 406
+   at Hangfire.SqlServer.SqlServerStorage.UseConnection[TContext,TResult](DbConnection dedicatedConnection, Func`4 func, TContext context) in C:\projects\hangfire-525\src\Hangfire.SqlServer\SqlServerStorage.cs:line 291
+   at Hangfire.SqlServer.SqlServerStorage.UseConnection[TResult](DbConnection dedicatedConnection, Func`3 action) in C:\projects\hangfire-525\src\Hangfire.SqlServer\SqlServerStorage.cs:line 279
+   at Hangfire.SqlServer.SqlServerStorage.Initialize() in C:\projects\hangfire-525\src\Hangfire.SqlServer\SqlServerStorage.cs:line 495
+ClientConnectionId:229355c6-fae2-4923-ab3d-33c36376991b
+Error Number:4060,State:1,Class:11
+2026-07-08 23:28:17.344 +05:30 [INF] Seeding database and running migrations...
+2026-07-08 23:28:19.316 +05:30 [ERR] An error occurred using the connection to database 'master' on server '(localdb)\mssqllocaldb'.
+2026-07-08 23:28:19.950 +05:30 [ERR] An error occurred using the connection to database 'TradingCourseDb' on server '(localdb)\mssqllocaldb'.
+2026-07-08 23:28:19.966 +05:30 [ERR] An exception occurred while iterating over the results of a query for context type 'TradingCourse.Application.AppDbContext'.
+System.InvalidOperationException: An exception has been raised that is likely due to a transient failure. Consider enabling transient error resiliency by adding 'EnableRetryOnFailure' to the 'UseSqlServer' call.
+ ---> Microsoft.Data.SqlClient.SqlException (0x80131904): Cannot open database "TradingCourseDb" requested by the login. The login failed.
+Login failed for user 'DESKTOP-PM1E9OH\erami'.
+   at Microsoft.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbConnection owningObject, UInt32 waitForMultipleObjectsTimeout, Boolean allowCreate, Boolean onlyOneCheckConnection, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   at Microsoft.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbConnection owningObject, TaskCompletionSource`1 retry, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   at Microsoft.Data.ProviderBase.DbConnectionFactory.TryGetConnection(DbConnection owningConnection, TaskCompletionSource`1 retry, DbConnectionOptions userOptions, DbConnectionInternal oldConnection, DbConnectionInternal& connection)
+   at Microsoft.Data.ProviderBase.DbConnectionInternal.TryOpenConnectionInternal(DbConnection outerConnection, DbConnectionFactory connectionFactory, TaskCompletionSource`1 retry, DbConnectionOptions userOptions)
+   at Microsoft.Data.ProviderBase.DbConnectionClosed.TryOpenConnection(DbConnection outerConnection, DbConnectionFactory connectionFactory, TaskCompletionSource`1 retry, DbConnectionOptions userOptions)
+   at Microsoft.Data.SqlClient.SqlConnection.TryOpen(TaskCompletionSource`1 retry, SqlConnectionOverrides overrides)
+   at Microsoft.Data.SqlClient.SqlConnection.InternalOpenAsync(CancellationToken cancellationToken)
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenInternalAsync(Boolean errorsExpected, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenInternalAsync(Boolean errorsExpected, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenAsync(CancellationToken cancellationToken, Boolean errorsExpected)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(AsyncEnumerator enumerator, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+ClientConnectionId:229355c6-fae2-4923-ab3d-33c36376991b
+Error Number:4060,State:1,Class:11
+   --- End of inner exception stack trace ---
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+System.InvalidOperationException: An exception has been raised that is likely due to a transient failure. Consider enabling transient error resiliency by adding 'EnableRetryOnFailure' to the 'UseSqlServer' call.
+ ---> Microsoft.Data.SqlClient.SqlException (0x80131904): Cannot open database "TradingCourseDb" requested by the login. The login failed.
+Login failed for user 'DESKTOP-PM1E9OH\erami'.
+   at Microsoft.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbConnection owningObject, UInt32 waitForMultipleObjectsTimeout, Boolean allowCreate, Boolean onlyOneCheckConnection, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   at Microsoft.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbConnection owningObject, TaskCompletionSource`1 retry, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   at Microsoft.Data.ProviderBase.DbConnectionFactory.TryGetConnection(DbConnection owningConnection, TaskCompletionSource`1 retry, DbConnectionOptions userOptions, DbConnectionInternal oldConnection, DbConnectionInternal& connection)
+   at Microsoft.Data.ProviderBase.DbConnectionInternal.TryOpenConnectionInternal(DbConnection outerConnection, DbConnectionFactory connectionFactory, TaskCompletionSource`1 retry, DbConnectionOptions userOptions)
+   at Microsoft.Data.ProviderBase.DbConnectionClosed.TryOpenConnection(DbConnection outerConnection, DbConnectionFactory connectionFactory, TaskCompletionSource`1 retry, DbConnectionOptions userOptions)
+   at Microsoft.Data.SqlClient.SqlConnection.TryOpen(TaskCompletionSource`1 retry, SqlConnectionOverrides overrides)
+   at Microsoft.Data.SqlClient.SqlConnection.InternalOpenAsync(CancellationToken cancellationToken)
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenInternalAsync(Boolean errorsExpected, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenInternalAsync(Boolean errorsExpected, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenAsync(CancellationToken cancellationToken, Boolean errorsExpected)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(AsyncEnumerator enumerator, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+ClientConnectionId:229355c6-fae2-4923-ab3d-33c36376991b
+Error Number:4060,State:1,Class:11
+   --- End of inner exception stack trace ---
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+2026-07-08 23:28:19.977 +05:30 [FTL] Application terminated unexpectedly
+System.InvalidOperationException: An exception has been raised that is likely due to a transient failure. Consider enabling transient error resiliency by adding 'EnableRetryOnFailure' to the 'UseSqlServer' call.
+ ---> Microsoft.Data.SqlClient.SqlException (0x80131904): Cannot open database "TradingCourseDb" requested by the login. The login failed.
+Login failed for user 'DESKTOP-PM1E9OH\erami'.
+   at Microsoft.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbConnection owningObject, UInt32 waitForMultipleObjectsTimeout, Boolean allowCreate, Boolean onlyOneCheckConnection, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   at Microsoft.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbConnection owningObject, TaskCompletionSource`1 retry, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   at Microsoft.Data.ProviderBase.DbConnectionFactory.TryGetConnection(DbConnection owningConnection, TaskCompletionSource`1 retry, DbConnectionOptions userOptions, DbConnectionInternal oldConnection, DbConnectionInternal& connection)
+   at Microsoft.Data.ProviderBase.DbConnectionInternal.TryOpenConnectionInternal(DbConnection outerConnection, DbConnectionFactory connectionFactory, TaskCompletionSource`1 retry, DbConnectionOptions userOptions)
+   at Microsoft.Data.ProviderBase.DbConnectionClosed.TryOpenConnection(DbConnection outerConnection, DbConnectionFactory connectionFactory, TaskCompletionSource`1 retry, DbConnectionOptions userOptions)
+   at Microsoft.Data.SqlClient.SqlConnection.TryOpen(TaskCompletionSource`1 retry, SqlConnectionOverrides overrides)
+   at Microsoft.Data.SqlClient.SqlConnection.InternalOpenAsync(CancellationToken cancellationToken)
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenInternalAsync(Boolean errorsExpected, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenInternalAsync(Boolean errorsExpected, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenAsync(CancellationToken cancellationToken, Boolean errorsExpected)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(AsyncEnumerator enumerator, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+ClientConnectionId:229355c6-fae2-4923-ab3d-33c36376991b
+Error Number:4060,State:1,Class:11
+   --- End of inner exception stack trace ---
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+   at Microsoft.EntityFrameworkCore.Query.ShapedQueryCompilingExpressionVisitor.SingleOrDefaultAsync[TSource](IAsyncEnumerable`1 asyncEnumerable, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.ShapedQueryCompilingExpressionVisitor.SingleOrDefaultAsync[TSource](IAsyncEnumerable`1 asyncEnumerable, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Identity.RoleManager`1.RoleExistsAsync(String roleName)
+   at TradingCourse.Application.DbInitializer.SeedAsync(IServiceProvider serviceProvider) in E:\Projects\APSRA_TradingCourse\TradingCourse.Application\DbInitializer.cs:line 39
+   at Program.<Main>$(String[] args) in E:\Projects\APSRA_TradingCourse\TradingCourse.Web\Program.cs:line 100
+2026-07-08 23:30:00.198 +05:30 [INF] Start installing Hangfire SQL objects...
+2026-07-08 23:30:02.697 +05:30 [INF] Hangfire SQL objects installed.
+2026-07-08 23:30:03.061 +05:30 [INF] Seeding database and running migrations...
+2026-07-08 23:30:06.561 +05:30 [INF] Starting web application...
+2026-07-08 23:30:07.253 +05:30 [INF] Starting Hangfire Server using job storage: 'SQL Server: (localdb)\TradingDBInstance@TradingCourseDb'
+2026-07-08 23:30:07.253 +05:30 [INF] Using the following options for SQL Server job storage: Queue poll interval: 00:00:00.
+2026-07-08 23:30:07.253 +05:30 [INF] Using the following options for Hangfire Server:
+    Worker count: 20
+    Listening queues: 'default'
+    Shutdown timeout: 00:00:15
+    Schedule polling interval: 00:00:15
+2026-07-08 23:30:07.511 +05:30 [INF] Server desktop-pm1e9oh:7316:1e908afe successfully announced in 220.7066 ms
+2026-07-08 23:30:07.520 +05:30 [INF] Server desktop-pm1e9oh:7316:1e908afe is starting the registered dispatchers: ServerWatchdog, ServerJobCancellationWatcher, SqlServerHeartbeatProcess, ExpirationManager, CountersAggregator, Worker, DelayedJobScheduler, RecurringJobScheduler...
+2026-07-08 23:30:07.616 +05:30 [INF] Server desktop-pm1e9oh:7316:1e908afe all the dispatchers started
+2026-07-08 23:30:50.427 +05:30 [WRN] Failed to determine the https port for redirect.
+2026-07-08 23:41:42.298 +05:30 [INF] Start installing Hangfire SQL objects...
+2026-07-08 23:41:43.633 +05:30 [INF] Hangfire SQL objects installed.
+2026-07-08 23:41:43.951 +05:30 [INF] Seeding database and running migrations...
+2026-07-08 23:41:47.049 +05:30 [INF] Starting web application...
+2026-07-08 23:41:47.382 +05:30 [INF] Starting Hangfire Server using job storage: 'SQL Server: (localdb)\TradingDBInstance@TradingCourseDb'
+2026-07-08 23:41:47.382 +05:30 [INF] Using the following options for SQL Server job storage: Queue poll interval: 00:00:00.
+2026-07-08 23:41:47.383 +05:30 [INF] Using the following options for Hangfire Server:
+    Worker count: 20
+    Listening queues: 'default'
+    Shutdown timeout: 00:00:15
+    Schedule polling interval: 00:00:15
+2026-07-08 23:41:47.636 +05:30 [INF] Server desktop-pm1e9oh:7536:2e8f6835 successfully announced in 219.3124 ms
+2026-07-08 23:41:47.646 +05:30 [INF] Server desktop-pm1e9oh:7536:2e8f6835 is starting the registered dispatchers: ServerWatchdog, ServerJobCancellationWatcher, SqlServerHeartbeatProcess, ExpirationManager, CountersAggregator, Worker, DelayedJobScheduler, RecurringJobScheduler...
+2026-07-08 23:41:47.735 +05:30 [INF] Server desktop-pm1e9oh:7536:2e8f6835 all the dispatchers started
+2026-07-08 23:42:28.891 +05:30 [WRN] Failed to determine the https port for redirect.
+2026-07-08 23:46:47.686 +05:30 [INF] 1 servers were removed due to timeout

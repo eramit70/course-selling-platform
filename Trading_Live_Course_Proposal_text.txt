@@ -1,0 +1,107 @@
+Project Proposal
+Trading Live Course — Website & Admin Panel
+Instagram Ads → Single Landing/Course Website → Payment & Enrollment
+1. Project Overview
+The client runs Instagram ad campaigns to promote live Trading courses. This project builds the complete funnel from ad click to paid enrollment, consisting of two connected pieces:
+Landing/Course Website — a single customer-facing website that the Instagram ad links to. It shows the advertised trading course teaser, a grid/list of all live trading courses, individual course detail pages, and the full checkout/payment flow — all within this one application (no separate course app).
+Admin Panel — a secured backend module where the client (or course owner/trainer) manages courses, pricing, coupons, and all content shown on the customer-facing site.
+2. User Journey
+User sees the Instagram ad and clicks it → lands directly on the course website (e.g. on the advertised course's detail section, or a teaser view of it).
+The same site shows a "Get More Details" / "View All Courses" option that reveals the full grid/list of all live courses without leaving the site.
+User clicks a course card → full Course Details section (curriculum, schedule, instructor, price, discounts).
+User proceeds to purchase → enters details → applies coupon if any → pays via Razorpay.
+On payment success: confirmation shown to user, confirmation email sent to the user, and a notification email sent to the admin/course owner.
+3. Feature Breakdown
+3.1 Landing/Course Website (Single Customer-Facing App)
+Dynamic hero/banner content per ad campaign — image/video, course title, short description, key highlights, price/offer, matching the specific Instagram ad the user clicked.
+"Get More Details" / "View All Courses" section on the same page that expands into a grid/list of all live courses, with search and category/filter options — no redirect to a separate app.
+Course Details section/page: description, curriculum/modules, instructor info, schedule/timings, live class link (post-purchase only), price, and offer/discount if any.
+Checkout flow: user details form → coupon code field → order summary → Razorpay payment, within the same website.
+Order/purchase history for the logged-in user (optional, if login is included).
+Mobile-first responsive design (majority of Instagram traffic is mobile), with consistent branding from ad click through to payment.
+Basic SEO tags and Instagram/Facebook Pixel or Meta Conversion API hook for ad tracking (optional, if client wants ad analytics).
+3.3 Payment Integration — Razorpay
+Razorpay Checkout integration for card, UPI, netbanking, and wallet payments.
+Server-side order creation and payment signature verification (to prevent tampering).
+Webhook handling for payment success/failure status updates.
+Automatic application of coupon discount to the final payable amount before payment is initiated.
+Failure/retry handling with clear error messaging to the user.
+Note: an alternative manual/offline payment mode (bank transfer or UPI QR code, verified by admin) can be used instead of Razorpay — see Pricing section for the cost difference between the two options.
+3.4 Post-Payment Email Automation
+Two emails are triggered automatically on payment success:
+Email to the User (Customer) — sent to the email address entered by the user during purchase. Content is driven by the course configuration set in the Admin Panel, and can include:
+Course name, purchase confirmation and invoice/order ID
+Live class link / joining instructions (if configured for that course)
+Class schedule, instructor name, and any onboarding/basic instructions
+Support contact details
+Email to the Admin (Course Owner) — notifies the person who uploaded/owns that course about the new enrollment, including buyer name, contact details, course purchased, and amount paid.
+Email templates are configurable per course from the Admin Panel (subject line and body content/placeholders), so different courses can send different instructions without code changes.
+3.5 Coupon & Discount Module
+Admin can create coupon codes with a fixed amount or percentage discount.
+Optional constraints: expiry date, minimum purchase amount, usage limit (total uses / per-user), applicable to specific course(s) or all courses.
+Real-time coupon validation and price recalculation at checkout.
+Direct discount pricing on a course (without coupon) can also be configured, e.g. "Sale price" alongside the original price.
+3.6 Validations
+Email format validation and duplicate-purchase check (prevents the same email from buying the same course twice, or flags it per client's preferred rule).
+Mobile number format and length validation (with country code handling).
+Mandatory field checks on the purchase form (name, email, mobile, etc.).
+Coupon code validity checks (expired, exhausted, not applicable to the selected course).
+Server-side validation in addition to frontend validation, so data integrity does not depend solely on the browser.
+3.7 Admin Module
+A secured, role-restricted panel for managing everything shown to customers:
+Course management — add/edit/delete course, upload images/videos, description, curriculum, schedule, pricing, live class link, and email template content per course.
+Coupon management — create/edit/deactivate coupons and view usage.
+Order/lead management — view all purchases, payment status, buyer details, export data.
+Access control — only authorized admin user(s) can log in; login is credential-protected (not publicly accessible), with the option to support multiple admin roles (e.g. Super Admin vs individual Course Owner who only sees their own course's leads) if required.
+Basic activity/audit visibility — who added/edited a course and when (optional enhancement).
+4. Pricing
+Two implementation options are possible depending on whether an automated online payment gateway (Razorpay) is used, or payments are collected manually and verified by the admin. Figures below are indicative — meant as a starting point for your quote to the client — and should be adjusted to your own rates, timeline, and negotiation.
+Option A — With Razorpay (Automated Online Payment)
+Website (Landing + course grid + course details + checkout UI): ₹35,000 – ₹45,000
+Admin Panel (course management, coupons, leads, access control): ₹15,000 – ₹20,000
+Razorpay integration (order creation, signature verification, webhook) + email automation: ₹10,000 – ₹15,000
+Estimated Total: ₹60,000 – ₹80,000
+Advantage: instant, automated payment confirmation; no manual work for the client on every order; standard and trusted for course-selling sites.
+Option B — Without Razorpay (Manual/Offline Payment)
+Website (Landing + course grid + course details + checkout UI): ₹35,000 – ₹45,000
+Admin Panel (course management, coupons, leads, access control): ₹15,000 – ₹20,000
+Manual payment workflow — display bank details/UPI QR code, user uploads payment screenshot or UTR number, admin manually verifies and confirms the order + email automation: ₹5,000 – ₹8,000
+Estimated Total: ₹55,000 – ₹73,000
+Trade-off: lower development cost, but every order needs manual verification by the admin before access/emails are confirmed, which adds ongoing operational effort and delays confirmation for the buyer.
+Optional Add-on
+Monthly maintenance & support (bug fixes, minor content updates, uptime monitoring): ₹3,000 – ₹5,000/month.
+5. Development Timeline
+Phase
+Scope
+Estimated Duration
+Phase 1
+UI/UX design for the Landing/Course website and Admin Panel (Figma / mockups for client approval)
+4-5 days
+Phase 2
+Landing/Course website development — hero/ad section, course grid, course details, checkout (frontend + backend, API integration)
+6-8 days
+Phase 3
+Admin Panel development (course CRUD, coupons, leads, settings, role-based login)
+6-8 days
+Phase 4
+Razorpay payment integration, email automation (user + admin), validations
+5-6 days
+Phase 5
+Testing (functional, payment, email, validation), bug fixing, UAT with client
+3-4 days
+Phase 6
+Deployment, domain/SSL setup, handover & documentation
+2 days
+Total estimated duration: ~4-5 weeks from kickoff, subject to timely content/asset sharing and feedback cycles from the client.
+6. Deliverables
+Instagram-linked Landing/Course website with course grid, course details, and checkout flow — all in one application.
+Razorpay payment integration with success/failure handling.
+Automated email notifications to user and admin on successful payment.
+Coupon and discount management functionality.
+Secured Admin Panel with role-based access.
+Basic documentation for using the Admin Panel.
+7. Assumptions / Out of Scope
+Client will provide course content, images/videos, pricing, and instructor details for each course.
+Razorpay merchant account setup and KYC is the client's responsibility; we integrate using the provided API keys.
+Domain, hosting, and SSL certificate costs (if any) are separate from development cost, unless otherwise agreed.
+Advanced analytics dashboards, mobile apps (iOS/Android native), and multi-language support are not included unless scoped separately.

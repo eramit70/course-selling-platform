@@ -1,0 +1,540 @@
+2026-07-09 00:05:48.417 +05:30 [INF] Processing purchase confirmation email job for Order ID: 1
+2026-07-09 00:05:48.417 +05:30 [INF] Processing admin notification email job for Order ID: 1
+2026-07-09 00:05:48.835 +05:30 [INF] Connecting to SMTP server smtp.gmail.com:587...
+2026-07-09 00:05:48.835 +05:30 [INF] Connecting to SMTP server smtp.gmail.com:587...
+2026-07-09 00:05:51.111 +05:30 [INF] Authenticating SMTP user your_email@gmail.com...
+2026-07-09 00:05:51.289 +05:30 [INF] Authenticating SMTP user your_email@gmail.com...
+2026-07-09 00:05:52.287 +05:30 [ERR] Failed to send email to ahir@gmail.k with subject: Welcome to Trading Live Course: Price Action & Market Dynamics! - Enrollment Confirmed
+MailKit.Security.AuthenticationException: 535: 5.7.8 Username and Password not accepted. For more information, go to
+5.7.8  https://support.google.com/mail/?p=BadCredentials 5a478bee46e88-31174ac178dsm23550739eec.28 - gsmtp
+ ---> MailKit.Net.Smtp.SmtpCommandException: 5.7.8 Username and Password not accepted. For more information, go to
+5.7.8  https://support.google.com/mail/?p=BadCredentials 5a478bee46e88-31174ac178dsm23550739eec.28 - gsmtp
+   --- End of inner exception stack trace ---
+   at MailKit.Net.Smtp.SmtpClient.AuthenticateAsync(Encoding encoding, ICredentials credentials, CancellationToken cancellationToken)
+   at TradingCourse.Application.Services.EmailService.SendEmailAsync(String to, String subject, String body) in E:\Projects\APSRA_TradingCourse\TradingCourse.Application\Services\EmailService.cs:line 70
+2026-07-09 00:05:52.335 +05:30 [WRN] Failed to process the job '1': an exception occurred. Retry attempt 1 of 10 will be performed in 00:00:17.
+MailKit.Security.AuthenticationException: 535: 5.7.8 Username and Password not accepted. For more information, go to
+5.7.8  https://support.google.com/mail/?p=BadCredentials 5a478bee46e88-31174ac178dsm23550739eec.28 - gsmtp
+ ---> MailKit.Net.Smtp.SmtpCommandException: 5.7.8 Username and Password not accepted. For more information, go to
+5.7.8  https://support.google.com/mail/?p=BadCredentials 5a478bee46e88-31174ac178dsm23550739eec.28 - gsmtp
+   --- End of inner exception stack trace ---
+   at MailKit.Net.Smtp.SmtpClient.AuthenticateAsync(Encoding encoding, ICredentials credentials, CancellationToken cancellationToken)
+   at TradingCourse.Application.Services.EmailService.SendEmailAsync(String to, String subject, String body) in E:\Projects\APSRA_TradingCourse\TradingCourse.Application\Services\EmailService.cs:line 70
+   at TradingCourse.Application.Services.EmailService.SendPurchaseConfirmationEmailAsync(Int32 orderId) in E:\Projects\APSRA_TradingCourse\TradingCourse.Application\Services\EmailService.cs:line 137
+   at System.RuntimeMethodHandle.InvokeMethod(Object target, Void** arguments, Signature sig, Boolean isConstructor)
+   at System.Reflection.MethodBaseInvoker.InvokeWithNoArgs(Object obj, BindingFlags invokeAttr)
+2026-07-09 00:05:52.553 +05:30 [ERR] Failed to send email to admin@tradingcourse.com with subject: [New Enrollment] Trading Live Course: Price Action & Market Dynamics - Amit
+MailKit.Security.AuthenticationException: 535: 5.7.8 Username and Password not accepted. For more information, go to
+5.7.8  https://support.google.com/mail/?p=BadCredentials 5a478bee46e88-31189cd8234sm11943104eec.9 - gsmtp
+ ---> MailKit.Net.Smtp.SmtpCommandException: 5.7.8 Username and Password not accepted. For more information, go to
+5.7.8  https://support.google.com/mail/?p=BadCredentials 5a478bee46e88-31189cd8234sm11943104eec.9 - gsmtp
+   --- End of inner exception stack trace ---
+   at MailKit.Net.Smtp.SmtpClient.AuthenticateAsync(Encoding encoding, ICredentials credentials, CancellationToken cancellationToken)
+   at TradingCourse.Application.Services.EmailService.SendEmailAsync(String to, String subject, String body) in E:\Projects\APSRA_TradingCourse\TradingCourse.Application\Services\EmailService.cs:line 70
+2026-07-09 00:05:52.575 +05:30 [WRN] Failed to process the job '2': an exception occurred. Retry attempt 1 of 10 will be performed in 00:00:34.
+MailKit.Security.AuthenticationException: 535: 5.7.8 Username and Password not accepted. For more information, go to
+5.7.8  https://support.google.com/mail/?p=BadCredentials 5a478bee46e88-31189cd8234sm11943104eec.9 - gsmtp
+ ---> MailKit.Net.Smtp.SmtpCommandException: 5.7.8 Username and Password not accepted. For more information, go to
+5.7.8  https://support.google.com/mail/?p=BadCredentials 5a478bee46e88-31189cd8234sm11943104eec.9 - gsmtp
+   --- End of inner exception stack trace ---
+   at MailKit.Net.Smtp.SmtpClient.AuthenticateAsync(Encoding encoding, ICredentials credentials, CancellationToken cancellationToken)
+   at TradingCourse.Application.Services.EmailService.SendEmailAsync(String to, String subject, String body) in E:\Projects\APSRA_TradingCourse\TradingCourse.Application\Services\EmailService.cs:line 70
+   at TradingCourse.Application.Services.EmailService.SendAdminNotificationEmailAsync(Int32 orderId) in E:\Projects\APSRA_TradingCourse\TradingCourse.Application\Services\EmailService.cs:line 183
+   at InvokeStub_TaskAwaiter.GetResult(Object, Object, IntPtr*)
+   at System.Reflection.MethodBaseInvoker.InvokeWithNoArgs(Object obj, BindingFlags invokeAttr)
+2026-07-09 00:06:22.747 +05:30 [INF] Processing purchase confirmation email job for Order ID: 1
+2026-07-09 00:06:22.758 +05:30 [INF] Connecting to SMTP server smtp.gmail.com:587...
+2026-07-09 00:06:24.452 +05:30 [INF] Authenticating SMTP user your_email@gmail.com...
+2026-07-09 00:06:25.719 +05:30 [ERR] Failed to send email to ahir@gmail.k with subject: Welcome to Trading Live Course: Price Action & Market Dynamics! - Enrollment Confirmed
+MailKit.Security.AuthenticationException: 535: 5.7.8 Username and Password not accepted. For more information, go to
+5.7.8  https://support.google.com/mail/?p=BadCredentials a92af1059eb24-13b659c865asm23653760c88.11 - gsmtp
+ ---> MailKit.Net.Smtp.SmtpCommandException: 5.7.8 Username and Password not accepted. For more information, go to
+5.7.8  https://support.google.com/mail/?p=BadCredentials a92af1059eb24-13b659c865asm23653760c88.11 - gsmtp
+   --- End of inner exception stack trace ---
+   at MailKit.Net.Smtp.SmtpClient.AuthenticateAsync(Encoding encoding, ICredentials credentials, CancellationToken cancellationToken)
+   at TradingCourse.Application.Services.EmailService.SendEmailAsync(String to, String subject, String body) in E:\Projects\APSRA_TradingCourse\TradingCourse.Application\Services\EmailService.cs:line 70
+2026-07-09 00:06:25.734 +05:30 [WRN] Failed to process the job '1': an exception occurred. Retry attempt 2 of 10 will be performed in 00:01:12.
+MailKit.Security.AuthenticationException: 535: 5.7.8 Username and Password not accepted. For more information, go to
+5.7.8  https://support.google.com/mail/?p=BadCredentials a92af1059eb24-13b659c865asm23653760c88.11 - gsmtp
+ ---> MailKit.Net.Smtp.SmtpCommandException: 5.7.8 Username and Password not accepted. For more information, go to
+5.7.8  https://support.google.com/mail/?p=BadCredentials a92af1059eb24-13b659c865asm23653760c88.11 - gsmtp
+   --- End of inner exception stack trace ---
+   at MailKit.Net.Smtp.SmtpClient.AuthenticateAsync(Encoding encoding, ICredentials credentials, CancellationToken cancellationToken)
+   at TradingCourse.Application.Services.EmailService.SendEmailAsync(String to, String subject, String body) in E:\Projects\APSRA_TradingCourse\TradingCourse.Application\Services\EmailService.cs:line 70
+   at TradingCourse.Application.Services.EmailService.SendPurchaseConfirmationEmailAsync(Int32 orderId) in E:\Projects\APSRA_TradingCourse\TradingCourse.Application\Services\EmailService.cs:line 137
+   at InvokeStub_TaskAwaiter.GetResult(Object, Object, IntPtr*)
+   at System.Reflection.MethodBaseInvoker.InvokeWithNoArgs(Object obj, BindingFlags invokeAttr)
+2026-07-09 00:06:37.784 +05:30 [INF] Processing admin notification email job for Order ID: 1
+2026-07-09 00:06:37.819 +05:30 [INF] Connecting to SMTP server smtp.gmail.com:587...
+2026-07-09 00:06:39.355 +05:30 [INF] Authenticating SMTP user your_email@gmail.com...
+2026-07-09 00:06:40.627 +05:30 [ERR] Failed to send email to admin@tradingcourse.com with subject: [New Enrollment] Trading Live Course: Price Action & Market Dynamics - Amit
+MailKit.Security.AuthenticationException: 535: 5.7.8 Username and Password not accepted. For more information, go to
+5.7.8  https://support.google.com/mail/?p=BadCredentials 5a478bee46e88-311747f5982sm24582772eec.5 - gsmtp
+ ---> MailKit.Net.Smtp.SmtpCommandException: 5.7.8 Username and Password not accepted. For more information, go to
+5.7.8  https://support.google.com/mail/?p=BadCredentials 5a478bee46e88-311747f5982sm24582772eec.5 - gsmtp
+   --- End of inner exception stack trace ---
+   at MailKit.Net.Smtp.SmtpClient.AuthenticateAsync(Encoding encoding, ICredentials credentials, CancellationToken cancellationToken)
+   at TradingCourse.Application.Services.EmailService.SendEmailAsync(String to, String subject, String body) in E:\Projects\APSRA_TradingCourse\TradingCourse.Application\Services\EmailService.cs:line 70
+2026-07-09 00:06:40.647 +05:30 [WRN] Failed to process the job '2': an exception occurred. Retry attempt 2 of 10 will be performed in 00:01:08.
+MailKit.Security.AuthenticationException: 535: 5.7.8 Username and Password not accepted. For more information, go to
+5.7.8  https://support.google.com/mail/?p=BadCredentials 5a478bee46e88-311747f5982sm24582772eec.5 - gsmtp
+ ---> MailKit.Net.Smtp.SmtpCommandException: 5.7.8 Username and Password not accepted. For more information, go to
+5.7.8  https://support.google.com/mail/?p=BadCredentials 5a478bee46e88-311747f5982sm24582772eec.5 - gsmtp
+   --- End of inner exception stack trace ---
+   at MailKit.Net.Smtp.SmtpClient.AuthenticateAsync(Encoding encoding, ICredentials credentials, CancellationToken cancellationToken)
+   at TradingCourse.Application.Services.EmailService.SendEmailAsync(String to, String subject, String body) in E:\Projects\APSRA_TradingCourse\TradingCourse.Application\Services\EmailService.cs:line 70
+   at TradingCourse.Application.Services.EmailService.SendAdminNotificationEmailAsync(Int32 orderId) in E:\Projects\APSRA_TradingCourse\TradingCourse.Application\Services\EmailService.cs:line 183
+   at InvokeStub_TaskAwaiter.GetResult(Object, Object, IntPtr*)
+   at System.Reflection.MethodBaseInvoker.InvokeWithNoArgs(Object obj, BindingFlags invokeAttr)
+2026-07-09 00:07:37.971 +05:30 [INF] Processing purchase confirmation email job for Order ID: 1
+2026-07-09 00:07:37.995 +05:30 [INF] Connecting to SMTP server smtp.gmail.com:587...
+2026-07-09 00:07:39.542 +05:30 [INF] Authenticating SMTP user your_email@gmail.com...
+2026-07-09 00:07:40.801 +05:30 [ERR] Failed to send email to ahir@gmail.k with subject: Welcome to Trading Live Course: Price Action & Market Dynamics! - Enrollment Confirmed
+MailKit.Security.AuthenticationException: 535: 5.7.8 Username and Password not accepted. For more information, go to
+5.7.8  https://support.google.com/mail/?p=BadCredentials 5a478bee46e88-3118389d9bcsm14184306eec.20 - gsmtp
+ ---> MailKit.Net.Smtp.SmtpCommandException: 5.7.8 Username and Password not accepted. For more information, go to
+5.7.8  https://support.google.com/mail/?p=BadCredentials 5a478bee46e88-3118389d9bcsm14184306eec.20 - gsmtp
+   --- End of inner exception stack trace ---
+   at MailKit.Net.Smtp.SmtpClient.AuthenticateAsync(Encoding encoding, ICredentials credentials, CancellationToken cancellationToken)
+   at TradingCourse.Application.Services.EmailService.SendEmailAsync(String to, String subject, String body) in E:\Projects\APSRA_TradingCourse\TradingCourse.Application\Services\EmailService.cs:line 70
+2026-07-09 00:07:40.825 +05:30 [WRN] Failed to process the job '1': an exception occurred. Retry attempt 3 of 10 will be performed in 00:01:43.
+MailKit.Security.AuthenticationException: 535: 5.7.8 Username and Password not accepted. For more information, go to
+5.7.8  https://support.google.com/mail/?p=BadCredentials 5a478bee46e88-3118389d9bcsm14184306eec.20 - gsmtp
+ ---> MailKit.Net.Smtp.SmtpCommandException: 5.7.8 Username and Password not accepted. For more information, go to
+5.7.8  https://support.google.com/mail/?p=BadCredentials 5a478bee46e88-3118389d9bcsm14184306eec.20 - gsmtp
+   --- End of inner exception stack trace ---
+   at MailKit.Net.Smtp.SmtpClient.AuthenticateAsync(Encoding encoding, ICredentials credentials, CancellationToken cancellationToken)
+   at TradingCourse.Application.Services.EmailService.SendEmailAsync(String to, String subject, String body) in E:\Projects\APSRA_TradingCourse\TradingCourse.Application\Services\EmailService.cs:line 70
+   at TradingCourse.Application.Services.EmailService.SendPurchaseConfirmationEmailAsync(Int32 orderId) in E:\Projects\APSRA_TradingCourse\TradingCourse.Application\Services\EmailService.cs:line 137
+   at InvokeStub_TaskAwaiter.GetResult(Object, Object, IntPtr*)
+   at System.Reflection.MethodBaseInvoker.InvokeWithNoArgs(Object obj, BindingFlags invokeAttr)
+2026-07-09 00:07:53.185 +05:30 [INF] Processing admin notification email job for Order ID: 1
+2026-07-09 00:07:53.193 +05:30 [INF] Connecting to SMTP server smtp.gmail.com:587...
+2026-07-09 00:07:54.963 +05:30 [INF] Authenticating SMTP user your_email@gmail.com...
+2026-07-09 00:07:56.121 +05:30 [ERR] Failed to send email to admin@tradingcourse.com with subject: [New Enrollment] Trading Live Course: Price Action & Market Dynamics - Amit
+MailKit.Security.AuthenticationException: 535: 5.7.8 Username and Password not accepted. For more information, go to
+5.7.8  https://support.google.com/mail/?p=BadCredentials a92af1059eb24-13b6593c4ddsm24103224c88.1 - gsmtp
+ ---> MailKit.Net.Smtp.SmtpCommandException: 5.7.8 Username and Password not accepted. For more information, go to
+5.7.8  https://support.google.com/mail/?p=BadCredentials a92af1059eb24-13b6593c4ddsm24103224c88.1 - gsmtp
+   --- End of inner exception stack trace ---
+   at MailKit.Net.Smtp.SmtpClient.AuthenticateAsync(Encoding encoding, ICredentials credentials, CancellationToken cancellationToken)
+   at TradingCourse.Application.Services.EmailService.SendEmailAsync(String to, String subject, String body) in E:\Projects\APSRA_TradingCourse\TradingCourse.Application\Services\EmailService.cs:line 70
+2026-07-09 00:07:56.157 +05:30 [WRN] Failed to process the job '2': an exception occurred. Retry attempt 3 of 10 will be performed in 00:01:28.
+MailKit.Security.AuthenticationException: 535: 5.7.8 Username and Password not accepted. For more information, go to
+5.7.8  https://support.google.com/mail/?p=BadCredentials a92af1059eb24-13b6593c4ddsm24103224c88.1 - gsmtp
+ ---> MailKit.Net.Smtp.SmtpCommandException: 5.7.8 Username and Password not accepted. For more information, go to
+5.7.8  https://support.google.com/mail/?p=BadCredentials a92af1059eb24-13b6593c4ddsm24103224c88.1 - gsmtp
+   --- End of inner exception stack trace ---
+   at MailKit.Net.Smtp.SmtpClient.AuthenticateAsync(Encoding encoding, ICredentials credentials, CancellationToken cancellationToken)
+   at TradingCourse.Application.Services.EmailService.SendEmailAsync(String to, String subject, String body) in E:\Projects\APSRA_TradingCourse\TradingCourse.Application\Services\EmailService.cs:line 70
+   at TradingCourse.Application.Services.EmailService.SendAdminNotificationEmailAsync(Int32 orderId) in E:\Projects\APSRA_TradingCourse\TradingCourse.Application\Services\EmailService.cs:line 183
+   at InvokeStub_TaskAwaiter.GetResult(Object, Object, IntPtr*)
+   at System.Reflection.MethodBaseInvoker.InvokeWithNoArgs(Object obj, BindingFlags invokeAttr)
+2026-07-09 00:09:23.632 +05:30 [INF] Processing purchase confirmation email job for Order ID: 1
+2026-07-09 00:09:23.644 +05:30 [INF] Connecting to SMTP server smtp.gmail.com:587...
+2026-07-09 00:09:25.046 +05:30 [INF] Authenticating SMTP user your_email@gmail.com...
+2026-07-09 00:09:26.271 +05:30 [ERR] Failed to send email to ahir@gmail.k with subject: Welcome to Trading Live Course: Price Action & Market Dynamics! - Enrollment Confirmed
+MailKit.Security.AuthenticationException: 535: 5.7.8 Username and Password not accepted. For more information, go to
+5.7.8  https://support.google.com/mail/?p=BadCredentials 5a478bee46e88-3118ee6080dsm10115726eec.17 - gsmtp
+ ---> MailKit.Net.Smtp.SmtpCommandException: 5.7.8 Username and Password not accepted. For more information, go to
+5.7.8  https://support.google.com/mail/?p=BadCredentials 5a478bee46e88-3118ee6080dsm10115726eec.17 - gsmtp
+   --- End of inner exception stack trace ---
+   at MailKit.Net.Smtp.SmtpClient.AuthenticateAsync(Encoding encoding, ICredentials credentials, CancellationToken cancellationToken)
+   at TradingCourse.Application.Services.EmailService.SendEmailAsync(String to, String subject, String body) in E:\Projects\APSRA_TradingCourse\TradingCourse.Application\Services\EmailService.cs:line 70
+2026-07-09 00:09:26.287 +05:30 [WRN] Failed to process the job '1': an exception occurred. Retry attempt 4 of 10 will be performed in 00:03:04.
+MailKit.Security.AuthenticationException: 535: 5.7.8 Username and Password not accepted. For more information, go to
+5.7.8  https://support.google.com/mail/?p=BadCredentials 5a478bee46e88-3118ee6080dsm10115726eec.17 - gsmtp
+ ---> MailKit.Net.Smtp.SmtpCommandException: 5.7.8 Username and Password not accepted. For more information, go to
+5.7.8  https://support.google.com/mail/?p=BadCredentials 5a478bee46e88-3118ee6080dsm10115726eec.17 - gsmtp
+   --- End of inner exception stack trace ---
+   at MailKit.Net.Smtp.SmtpClient.AuthenticateAsync(Encoding encoding, ICredentials credentials, CancellationToken cancellationToken)
+   at TradingCourse.Application.Services.EmailService.SendEmailAsync(String to, String subject, String body) in E:\Projects\APSRA_TradingCourse\TradingCourse.Application\Services\EmailService.cs:line 70
+   at TradingCourse.Application.Services.EmailService.SendPurchaseConfirmationEmailAsync(Int32 orderId) in E:\Projects\APSRA_TradingCourse\TradingCourse.Application\Services\EmailService.cs:line 137
+   at InvokeStub_TaskAwaiter.GetResult(Object, Object, IntPtr*)
+   at System.Reflection.MethodBaseInvoker.InvokeWithNoArgs(Object obj, BindingFlags invokeAttr)
+2026-07-09 00:09:38.679 +05:30 [INF] Processing admin notification email job for Order ID: 1
+2026-07-09 00:09:38.689 +05:30 [INF] Connecting to SMTP server smtp.gmail.com:587...
+2026-07-09 00:09:40.297 +05:30 [INF] Authenticating SMTP user your_email@gmail.com...
+2026-07-09 00:09:41.687 +05:30 [ERR] Failed to send email to admin@tradingcourse.com with subject: [New Enrollment] Trading Live Course: Price Action & Market Dynamics - Amit
+MailKit.Security.AuthenticationException: 535: 5.7.8 Username and Password not accepted. For more information, go to
+5.7.8  https://support.google.com/mail/?p=BadCredentials 5a478bee46e88-31198cb2b99sm5171421eec.26 - gsmtp
+ ---> MailKit.Net.Smtp.SmtpCommandException: 5.7.8 Username and Password not accepted. For more information, go to
+5.7.8  https://support.google.com/mail/?p=BadCredentials 5a478bee46e88-31198cb2b99sm5171421eec.26 - gsmtp
+   --- End of inner exception stack trace ---
+   at MailKit.Net.Smtp.SmtpClient.AuthenticateAsync(Encoding encoding, ICredentials credentials, CancellationToken cancellationToken)
+   at TradingCourse.Application.Services.EmailService.SendEmailAsync(String to, String subject, String body) in E:\Projects\APSRA_TradingCourse\TradingCourse.Application\Services\EmailService.cs:line 70
+2026-07-09 00:09:41.727 +05:30 [WRN] Failed to process the job '2': an exception occurred. Retry attempt 4 of 10 will be performed in 00:02:20.
+MailKit.Security.AuthenticationException: 535: 5.7.8 Username and Password not accepted. For more information, go to
+5.7.8  https://support.google.com/mail/?p=BadCredentials 5a478bee46e88-31198cb2b99sm5171421eec.26 - gsmtp
+ ---> MailKit.Net.Smtp.SmtpCommandException: 5.7.8 Username and Password not accepted. For more information, go to
+5.7.8  https://support.google.com/mail/?p=BadCredentials 5a478bee46e88-31198cb2b99sm5171421eec.26 - gsmtp
+   --- End of inner exception stack trace ---
+   at MailKit.Net.Smtp.SmtpClient.AuthenticateAsync(Encoding encoding, ICredentials credentials, CancellationToken cancellationToken)
+   at TradingCourse.Application.Services.EmailService.SendEmailAsync(String to, String subject, String body) in E:\Projects\APSRA_TradingCourse\TradingCourse.Application\Services\EmailService.cs:line 70
+   at TradingCourse.Application.Services.EmailService.SendAdminNotificationEmailAsync(Int32 orderId) in E:\Projects\APSRA_TradingCourse\TradingCourse.Application\Services\EmailService.cs:line 183
+   at System.RuntimeMethodHandle.InvokeMethod(Object target, Void** arguments, Signature sig, Boolean isConstructor)
+   at System.Reflection.MethodBaseInvoker.InvokeWithNoArgs(Object obj, BindingFlags invokeAttr)
+2026-07-09 00:12:08.926 +05:30 [INF] Processing admin notification email job for Order ID: 1
+2026-07-09 00:12:08.944 +05:30 [INF] Connecting to SMTP server smtp.gmail.com:587...
+2026-07-09 00:12:10.521 +05:30 [INF] Authenticating SMTP user your_email@gmail.com...
+2026-07-09 00:12:11.657 +05:30 [ERR] Failed to send email to admin@tradingcourse.com with subject: [New Enrollment] Trading Live Course: Price Action & Market Dynamics - Amit
+MailKit.Security.AuthenticationException: 535: 5.7.8 Username and Password not accepted. For more information, go to
+5.7.8  https://support.google.com/mail/?p=BadCredentials a92af1059eb24-13b659d8da9sm35675342c88.14 - gsmtp
+ ---> MailKit.Net.Smtp.SmtpCommandException: 5.7.8 Username and Password not accepted. For more information, go to
+5.7.8  https://support.google.com/mail/?p=BadCredentials a92af1059eb24-13b659d8da9sm35675342c88.14 - gsmtp
+   --- End of inner exception stack trace ---
+   at MailKit.Net.Smtp.SmtpClient.AuthenticateAsync(Encoding encoding, ICredentials credentials, CancellationToken cancellationToken)
+   at TradingCourse.Application.Services.EmailService.SendEmailAsync(String to, String subject, String body) in E:\Projects\APSRA_TradingCourse\TradingCourse.Application\Services\EmailService.cs:line 70
+2026-07-09 00:12:11.679 +05:30 [WRN] Failed to process the job '2': an exception occurred. Retry attempt 5 of 10 will be performed in 00:06:36.
+MailKit.Security.AuthenticationException: 535: 5.7.8 Username and Password not accepted. For more information, go to
+5.7.8  https://support.google.com/mail/?p=BadCredentials a92af1059eb24-13b659d8da9sm35675342c88.14 - gsmtp
+ ---> MailKit.Net.Smtp.SmtpCommandException: 5.7.8 Username and Password not accepted. For more information, go to
+5.7.8  https://support.google.com/mail/?p=BadCredentials a92af1059eb24-13b659d8da9sm35675342c88.14 - gsmtp
+   --- End of inner exception stack trace ---
+   at MailKit.Net.Smtp.SmtpClient.AuthenticateAsync(Encoding encoding, ICredentials credentials, CancellationToken cancellationToken)
+   at TradingCourse.Application.Services.EmailService.SendEmailAsync(String to, String subject, String body) in E:\Projects\APSRA_TradingCourse\TradingCourse.Application\Services\EmailService.cs:line 70
+   at TradingCourse.Application.Services.EmailService.SendAdminNotificationEmailAsync(Int32 orderId) in E:\Projects\APSRA_TradingCourse\TradingCourse.Application\Services\EmailService.cs:line 183
+   at InvokeStub_TaskAwaiter.GetResult(Object, Object, IntPtr*)
+   at System.Reflection.MethodBaseInvoker.InvokeWithNoArgs(Object obj, BindingFlags invokeAttr)
+2026-07-09 00:12:38.994 +05:30 [INF] Processing purchase confirmation email job for Order ID: 1
+2026-07-09 00:12:39.008 +05:30 [INF] Connecting to SMTP server smtp.gmail.com:587...
+2026-07-09 00:12:40.455 +05:30 [INF] Authenticating SMTP user your_email@gmail.com...
+2026-07-09 00:12:41.682 +05:30 [ERR] Failed to send email to ahir@gmail.k with subject: Welcome to Trading Live Course: Price Action & Market Dynamics! - Enrollment Confirmed
+MailKit.Security.AuthenticationException: 535: 5.7.8 Username and Password not accepted. For more information, go to
+5.7.8  https://support.google.com/mail/?p=BadCredentials 5a478bee46e88-31174a583bcsm25876153eec.19 - gsmtp
+ ---> MailKit.Net.Smtp.SmtpCommandException: 5.7.8 Username and Password not accepted. For more information, go to
+5.7.8  https://support.google.com/mail/?p=BadCredentials 5a478bee46e88-31174a583bcsm25876153eec.19 - gsmtp
+   --- End of inner exception stack trace ---
+   at MailKit.Net.Smtp.SmtpClient.AuthenticateAsync(Encoding encoding, ICredentials credentials, CancellationToken cancellationToken)
+   at TradingCourse.Application.Services.EmailService.SendEmailAsync(String to, String subject, String body) in E:\Projects\APSRA_TradingCourse\TradingCourse.Application\Services\EmailService.cs:line 70
+2026-07-09 00:12:41.705 +05:30 [WRN] Failed to process the job '1': an exception occurred. Retry attempt 5 of 10 will be performed in 00:06:41.
+MailKit.Security.AuthenticationException: 535: 5.7.8 Username and Password not accepted. For more information, go to
+5.7.8  https://support.google.com/mail/?p=BadCredentials 5a478bee46e88-31174a583bcsm25876153eec.19 - gsmtp
+ ---> MailKit.Net.Smtp.SmtpCommandException: 5.7.8 Username and Password not accepted. For more information, go to
+5.7.8  https://support.google.com/mail/?p=BadCredentials 5a478bee46e88-31174a583bcsm25876153eec.19 - gsmtp
+   --- End of inner exception stack trace ---
+   at MailKit.Net.Smtp.SmtpClient.AuthenticateAsync(Encoding encoding, ICredentials credentials, CancellationToken cancellationToken)
+   at TradingCourse.Application.Services.EmailService.SendEmailAsync(String to, String subject, String body) in E:\Projects\APSRA_TradingCourse\TradingCourse.Application\Services\EmailService.cs:line 70
+   at TradingCourse.Application.Services.EmailService.SendPurchaseConfirmationEmailAsync(Int32 orderId) in E:\Projects\APSRA_TradingCourse\TradingCourse.Application\Services\EmailService.cs:line 137
+   at InvokeStub_TaskAwaiter.GetResult(Object, Object, IntPtr*)
+   at System.Reflection.MethodBaseInvoker.InvokeWithNoArgs(Object obj, BindingFlags invokeAttr)
+2026-07-09 00:18:54.721 +05:30 [INF] Processing admin notification email job for Order ID: 1
+2026-07-09 00:18:54.733 +05:30 [INF] Connecting to SMTP server smtp.gmail.com:587...
+2026-07-09 00:18:56.397 +05:30 [INF] Authenticating SMTP user your_email@gmail.com...
+2026-07-09 00:18:57.678 +05:30 [ERR] Failed to send email to admin@tradingcourse.com with subject: [New Enrollment] Trading Live Course: Price Action & Market Dynamics - Amit
+MailKit.Security.AuthenticationException: 535: 5.7.8 Username and Password not accepted. For more information, go to
+5.7.8  https://support.google.com/mail/?p=BadCredentials 5a478bee46e88-311747f598dsm23682853eec.6 - gsmtp
+ ---> MailKit.Net.Smtp.SmtpCommandException: 5.7.8 Username and Password not accepted. For more information, go to
+5.7.8  https://support.google.com/mail/?p=BadCredentials 5a478bee46e88-311747f598dsm23682853eec.6 - gsmtp
+   --- End of inner exception stack trace ---
+   at MailKit.Net.Smtp.SmtpClient.AuthenticateAsync(Encoding encoding, ICredentials credentials, CancellationToken cancellationToken)
+   at TradingCourse.Application.Services.EmailService.SendEmailAsync(String to, String subject, String body) in E:\Projects\APSRA_TradingCourse\TradingCourse.Application\Services\EmailService.cs:line 70
+2026-07-09 00:18:57.701 +05:30 [WRN] Failed to process the job '2': an exception occurred. Retry attempt 6 of 10 will be performed in 00:12:46.
+MailKit.Security.AuthenticationException: 535: 5.7.8 Username and Password not accepted. For more information, go to
+5.7.8  https://support.google.com/mail/?p=BadCredentials 5a478bee46e88-311747f598dsm23682853eec.6 - gsmtp
+ ---> MailKit.Net.Smtp.SmtpCommandException: 5.7.8 Username and Password not accepted. For more information, go to
+5.7.8  https://support.google.com/mail/?p=BadCredentials 5a478bee46e88-311747f598dsm23682853eec.6 - gsmtp
+   --- End of inner exception stack trace ---
+   at MailKit.Net.Smtp.SmtpClient.AuthenticateAsync(Encoding encoding, ICredentials credentials, CancellationToken cancellationToken)
+   at TradingCourse.Application.Services.EmailService.SendEmailAsync(String to, String subject, String body) in E:\Projects\APSRA_TradingCourse\TradingCourse.Application\Services\EmailService.cs:line 70
+   at TradingCourse.Application.Services.EmailService.SendAdminNotificationEmailAsync(Int32 orderId) in E:\Projects\APSRA_TradingCourse\TradingCourse.Application\Services\EmailService.cs:line 183
+   at System.RuntimeMethodHandle.InvokeMethod(Object target, Void** arguments, Signature sig, Boolean isConstructor)
+   at System.Reflection.MethodBaseInvoker.InvokeWithNoArgs(Object obj, BindingFlags invokeAttr)
+2026-07-09 00:19:24.827 +05:30 [INF] Processing purchase confirmation email job for Order ID: 1
+2026-07-09 00:19:24.838 +05:30 [INF] Connecting to SMTP server smtp.gmail.com:587...
+2026-07-09 00:19:26.639 +05:30 [INF] Authenticating SMTP user your_email@gmail.com...
+2026-07-09 00:19:27.888 +05:30 [ERR] Failed to send email to ahir@gmail.k with subject: Welcome to Trading Live Course: Price Action & Market Dynamics! - Enrollment Confirmed
+MailKit.Security.AuthenticationException: 535: 5.7.8 Username and Password not accepted. For more information, go to
+5.7.8  https://support.google.com/mail/?p=BadCredentials 5a478bee46e88-3118ee6091dsm14103146eec.14 - gsmtp
+ ---> MailKit.Net.Smtp.SmtpCommandException: 5.7.8 Username and Password not accepted. For more information, go to
+5.7.8  https://support.google.com/mail/?p=BadCredentials 5a478bee46e88-3118ee6091dsm14103146eec.14 - gsmtp
+   --- End of inner exception stack trace ---
+   at MailKit.Net.Smtp.SmtpClient.AuthenticateAsync(Encoding encoding, ICredentials credentials, CancellationToken cancellationToken)
+   at TradingCourse.Application.Services.EmailService.SendEmailAsync(String to, String subject, String body) in E:\Projects\APSRA_TradingCourse\TradingCourse.Application\Services\EmailService.cs:line 70
+2026-07-09 00:19:27.914 +05:30 [WRN] Failed to process the job '1': an exception occurred. Retry attempt 6 of 10 will be performed in 00:13:34.
+MailKit.Security.AuthenticationException: 535: 5.7.8 Username and Password not accepted. For more information, go to
+5.7.8  https://support.google.com/mail/?p=BadCredentials 5a478bee46e88-3118ee6091dsm14103146eec.14 - gsmtp
+ ---> MailKit.Net.Smtp.SmtpCommandException: 5.7.8 Username and Password not accepted. For more information, go to
+5.7.8  https://support.google.com/mail/?p=BadCredentials 5a478bee46e88-3118ee6091dsm14103146eec.14 - gsmtp
+   --- End of inner exception stack trace ---
+   at MailKit.Net.Smtp.SmtpClient.AuthenticateAsync(Encoding encoding, ICredentials credentials, CancellationToken cancellationToken)
+   at TradingCourse.Application.Services.EmailService.SendEmailAsync(String to, String subject, String body) in E:\Projects\APSRA_TradingCourse\TradingCourse.Application\Services\EmailService.cs:line 70
+   at TradingCourse.Application.Services.EmailService.SendPurchaseConfirmationEmailAsync(Int32 orderId) in E:\Projects\APSRA_TradingCourse\TradingCourse.Application\Services\EmailService.cs:line 137
+   at InvokeStub_TaskAwaiter.GetResult(Object, Object, IntPtr*)
+   at System.Reflection.MethodBaseInvoker.InvokeWithNoArgs(Object obj, BindingFlags invokeAttr)
+2026-07-09 00:27:32.723 +05:30 [INF] Start installing Hangfire SQL objects...
+2026-07-09 00:27:33.818 +05:30 [INF] Hangfire SQL objects installed.
+2026-07-09 00:27:34.160 +05:30 [INF] Seeding database and running migrations...
+2026-07-09 00:27:36.708 +05:30 [INF] Starting web application...
+2026-07-09 00:27:37.059 +05:30 [INF] Starting Hangfire Server using job storage: 'SQL Server: (localdb)\TradingDBInstance@TradingCourseDb'
+2026-07-09 00:27:37.060 +05:30 [INF] Using the following options for SQL Server job storage: Queue poll interval: 00:00:00.
+2026-07-09 00:27:37.060 +05:30 [INF] Using the following options for Hangfire Server:
+    Worker count: 20
+    Listening queues: 'default'
+    Shutdown timeout: 00:00:15
+    Schedule polling interval: 00:00:15
+2026-07-09 00:27:37.309 +05:30 [INF] Server desktop-pm1e9oh:6496:8cf23c59 successfully announced in 214.7569 ms
+2026-07-09 00:27:37.314 +05:30 [INF] Server desktop-pm1e9oh:6496:8cf23c59 is starting the registered dispatchers: ServerWatchdog, ServerJobCancellationWatcher, SqlServerHeartbeatProcess, ExpirationManager, CountersAggregator, Worker, DelayedJobScheduler, RecurringJobScheduler...
+2026-07-09 00:27:37.391 +05:30 [INF] Server desktop-pm1e9oh:6496:8cf23c59 all the dispatchers started
+2026-07-09 00:28:26.804 +05:30 [WRN] Failed to determine the https port for redirect.
+2026-07-09 00:31:44.699 +05:30 [INF] Processing admin notification email job for Order ID: 1
+2026-07-09 00:31:44.862 +05:30 [INF] Connecting to SMTP server smtp.gmail.com:587...
+2026-07-09 00:31:46.667 +05:30 [INF] Authenticating SMTP user your_email@gmail.com...
+2026-07-09 00:31:47.940 +05:30 [ERR] Failed to send email to admin@tradingcourse.com with subject: [New Enrollment] Trading Live Course: Price Action & Market Dynamics - Amit
+MailKit.Security.AuthenticationException: 535: 5.7.8 Username and Password not accepted. For more information, go to
+5.7.8  https://support.google.com/mail/?p=BadCredentials a92af1059eb24-13b659d7c8bsm24099316c88.12 - gsmtp
+ ---> MailKit.Net.Smtp.SmtpCommandException: 5.7.8 Username and Password not accepted. For more information, go to
+5.7.8  https://support.google.com/mail/?p=BadCredentials a92af1059eb24-13b659d7c8bsm24099316c88.12 - gsmtp
+   --- End of inner exception stack trace ---
+   at MailKit.Net.Smtp.SmtpClient.AuthenticateAsync(Encoding encoding, ICredentials credentials, CancellationToken cancellationToken)
+   at TradingCourse.Application.Services.EmailService.SendEmailAsync(String to, String subject, String body) in E:\Projects\APSRA_TradingCourse\TradingCourse.Application\Services\EmailService.cs:line 70
+2026-07-09 00:31:47.999 +05:30 [WRN] Failed to process the job '2': an exception occurred. Retry attempt 7 of 10 will be performed in 00:23:15.
+MailKit.Security.AuthenticationException: 535: 5.7.8 Username and Password not accepted. For more information, go to
+5.7.8  https://support.google.com/mail/?p=BadCredentials a92af1059eb24-13b659d7c8bsm24099316c88.12 - gsmtp
+ ---> MailKit.Net.Smtp.SmtpCommandException: 5.7.8 Username and Password not accepted. For more information, go to
+5.7.8  https://support.google.com/mail/?p=BadCredentials a92af1059eb24-13b659d7c8bsm24099316c88.12 - gsmtp
+   --- End of inner exception stack trace ---
+   at MailKit.Net.Smtp.SmtpClient.AuthenticateAsync(Encoding encoding, ICredentials credentials, CancellationToken cancellationToken)
+   at TradingCourse.Application.Services.EmailService.SendEmailAsync(String to, String subject, String body) in E:\Projects\APSRA_TradingCourse\TradingCourse.Application\Services\EmailService.cs:line 70
+   at TradingCourse.Application.Services.EmailService.SendAdminNotificationEmailAsync(Int32 orderId) in E:\Projects\APSRA_TradingCourse\TradingCourse.Application\Services\EmailService.cs:line 183
+   at System.RuntimeMethodHandle.InvokeMethod(Object target, Void** arguments, Signature sig, Boolean isConstructor)
+   at System.Reflection.MethodBaseInvoker.InvokeWithNoArgs(Object obj, BindingFlags invokeAttr)
+2026-07-09 00:32:37.339 +05:30 [INF] 1 servers were removed due to timeout
+2026-07-09 00:33:14.829 +05:30 [INF] Processing purchase confirmation email job for Order ID: 1
+2026-07-09 00:33:14.843 +05:30 [INF] Connecting to SMTP server smtp.gmail.com:587...
+2026-07-09 00:33:16.340 +05:30 [INF] Authenticating SMTP user your_email@gmail.com...
+2026-07-09 00:33:17.409 +05:30 [ERR] Failed to send email to ahir@gmail.k with subject: Welcome to Trading Live Course: Price Action & Market Dynamics! - Enrollment Confirmed
+MailKit.Security.AuthenticationException: 535: 5.7.8 Username and Password not accepted. For more information, go to
+5.7.8  https://support.google.com/mail/?p=BadCredentials 5a478bee46e88-311747f72a6sm25995634eec.1 - gsmtp
+ ---> MailKit.Net.Smtp.SmtpCommandException: 5.7.8 Username and Password not accepted. For more information, go to
+5.7.8  https://support.google.com/mail/?p=BadCredentials 5a478bee46e88-311747f72a6sm25995634eec.1 - gsmtp
+   --- End of inner exception stack trace ---
+   at MailKit.Net.Smtp.SmtpClient.AuthenticateAsync(Encoding encoding, ICredentials credentials, CancellationToken cancellationToken)
+   at TradingCourse.Application.Services.EmailService.SendEmailAsync(String to, String subject, String body) in E:\Projects\APSRA_TradingCourse\TradingCourse.Application\Services\EmailService.cs:line 70
+2026-07-09 00:33:17.437 +05:30 [WRN] Failed to process the job '1': an exception occurred. Retry attempt 7 of 10 will be performed in 00:25:07.
+MailKit.Security.AuthenticationException: 535: 5.7.8 Username and Password not accepted. For more information, go to
+5.7.8  https://support.google.com/mail/?p=BadCredentials 5a478bee46e88-311747f72a6sm25995634eec.1 - gsmtp
+ ---> MailKit.Net.Smtp.SmtpCommandException: 5.7.8 Username and Password not accepted. For more information, go to
+5.7.8  https://support.google.com/mail/?p=BadCredentials 5a478bee46e88-311747f72a6sm25995634eec.1 - gsmtp
+   --- End of inner exception stack trace ---
+   at MailKit.Net.Smtp.SmtpClient.AuthenticateAsync(Encoding encoding, ICredentials credentials, CancellationToken cancellationToken)
+   at TradingCourse.Application.Services.EmailService.SendEmailAsync(String to, String subject, String body) in E:\Projects\APSRA_TradingCourse\TradingCourse.Application\Services\EmailService.cs:line 70
+   at TradingCourse.Application.Services.EmailService.SendPurchaseConfirmationEmailAsync(Int32 orderId) in E:\Projects\APSRA_TradingCourse\TradingCourse.Application\Services\EmailService.cs:line 137
+   at System.RuntimeMethodHandle.InvokeMethod(Object target, Void** arguments, Signature sig, Boolean isConstructor)
+   at System.Reflection.MethodBaseInvoker.InvokeWithNoArgs(Object obj, BindingFlags invokeAttr)
+2026-07-09 00:35:21.975 +05:30 [WRN] The static asset '/test_banner.png' was not found in the built time manifest. This file will not be available at runtime if it is not available at compile time during the publish process. If the file was not added to the project during development, and is created at runtime, use the StaticFiles middleware to serve it instead.
+2026-07-09 00:36:26.845 +05:30 [WRN] The static asset '/test_banner.png' was not found in the built time manifest. This file will not be available at runtime if it is not available at compile time during the publish process. If the file was not added to the project during development, and is created at runtime, use the StaticFiles middleware to serve it instead.
+2026-07-09 00:37:31.901 +05:30 [WRN] The static asset '/test_banner.png' was not found in the built time manifest. This file will not be available at runtime if it is not available at compile time during the publish process. If the file was not added to the project during development, and is created at runtime, use the StaticFiles middleware to serve it instead.
+2026-07-09 00:39:01.431 +05:30 [WRN] The static asset '/test_banner.png' was not found in the built time manifest. This file will not be available at runtime if it is not available at compile time during the publish process. If the file was not added to the project during development, and is created at runtime, use the StaticFiles middleware to serve it instead.
+2026-07-09 00:40:37.687 +05:30 [WRN] The static asset '/test_banner.png' was not found in the built time manifest. This file will not be available at runtime if it is not available at compile time during the publish process. If the file was not added to the project during development, and is created at runtime, use the StaticFiles middleware to serve it instead.
+2026-07-09 00:42:03.271 +05:30 [WRN] The static asset '/test_banner.png' was not found in the built time manifest. This file will not be available at runtime if it is not available at compile time during the publish process. If the file was not added to the project during development, and is created at runtime, use the StaticFiles middleware to serve it instead.
+2026-07-09 00:45:29.323 +05:30 [WRN] The static asset '/test_banner.png' was not found in the built time manifest. This file will not be available at runtime if it is not available at compile time during the publish process. If the file was not added to the project during development, and is created at runtime, use the StaticFiles middleware to serve it instead.
+2026-07-09 00:50:10.321 +05:30 [INF] Start installing Hangfire SQL objects...
+2026-07-09 00:50:12.106 +05:30 [INF] Hangfire SQL objects installed.
+2026-07-09 00:50:12.476 +05:30 [INF] Seeding database and running migrations...
+2026-07-09 00:50:14.812 +05:30 [INF] Starting web application...
+2026-07-09 00:50:15.064 +05:30 [INF] Starting Hangfire Server using job storage: 'SQL Server: (localdb)\TradingDBInstance@TradingCourseDb'
+2026-07-09 00:50:15.064 +05:30 [INF] Using the following options for SQL Server job storage: Queue poll interval: 00:00:00.
+2026-07-09 00:50:15.064 +05:30 [INF] Using the following options for Hangfire Server:
+    Worker count: 20
+    Listening queues: 'default'
+    Shutdown timeout: 00:00:15
+    Schedule polling interval: 00:00:15
+2026-07-09 00:50:15.330 +05:30 [INF] Server desktop-pm1e9oh:17720:975f6ead successfully announced in 212.5724 ms
+2026-07-09 00:50:15.337 +05:30 [INF] Server desktop-pm1e9oh:17720:975f6ead is starting the registered dispatchers: ServerWatchdog, ServerJobCancellationWatcher, SqlServerHeartbeatProcess, ExpirationManager, CountersAggregator, Worker, DelayedJobScheduler, RecurringJobScheduler...
+2026-07-09 00:50:15.416 +05:30 [INF] Server desktop-pm1e9oh:17720:975f6ead all the dispatchers started
+2026-07-09 00:52:18.977 +05:30 [WRN] Failed to determine the https port for redirect.
+2026-07-09 00:55:20.059 +05:30 [INF] 1 servers were removed due to timeout
+2026-07-09 00:55:22.375 +05:30 [INF] Processing admin notification email job for Order ID: 1
+2026-07-09 00:55:25.787 +05:30 [INF] Connecting to SMTP server smtp.gmail.com:587...
+2026-07-09 00:55:28.164 +05:30 [INF] Authenticating SMTP user your_email@gmail.com...
+2026-07-09 00:55:29.554 +05:30 [ERR] Failed to send email to admin@tradingcourse.com with subject: [New Enrollment] Trading Live Course: Price Action & Market Dynamics - Amit
+MailKit.Security.AuthenticationException: 535: 5.7.8 Username and Password not accepted. For more information, go to
+5.7.8  https://support.google.com/mail/?p=BadCredentials 5a478bee46e88-3117d847e17sm20145631eec.18 - gsmtp
+ ---> MailKit.Net.Smtp.SmtpCommandException: 5.7.8 Username and Password not accepted. For more information, go to
+5.7.8  https://support.google.com/mail/?p=BadCredentials 5a478bee46e88-3117d847e17sm20145631eec.18 - gsmtp
+   --- End of inner exception stack trace ---
+   at MailKit.Net.Smtp.SmtpClient.AuthenticateAsync(Encoding encoding, ICredentials credentials, CancellationToken cancellationToken)
+   at TradingCourse.Application.Services.EmailService.SendEmailAsync(String to, String subject, String body) in E:\Projects\APSRA_TradingCourse\TradingCourse.Application\Services\EmailService.cs:line 70
+2026-07-09 00:55:30.229 +05:30 [WRN] Failed to process the job '2': an exception occurred. Retry attempt 8 of 10 will be performed in 00:43:12.
+MailKit.Security.AuthenticationException: 535: 5.7.8 Username and Password not accepted. For more information, go to
+5.7.8  https://support.google.com/mail/?p=BadCredentials 5a478bee46e88-3117d847e17sm20145631eec.18 - gsmtp
+ ---> MailKit.Net.Smtp.SmtpCommandException: 5.7.8 Username and Password not accepted. For more information, go to
+5.7.8  https://support.google.com/mail/?p=BadCredentials 5a478bee46e88-3117d847e17sm20145631eec.18 - gsmtp
+   --- End of inner exception stack trace ---
+   at MailKit.Net.Smtp.SmtpClient.AuthenticateAsync(Encoding encoding, ICredentials credentials, CancellationToken cancellationToken)
+   at TradingCourse.Application.Services.EmailService.SendEmailAsync(String to, String subject, String body) in E:\Projects\APSRA_TradingCourse\TradingCourse.Application\Services\EmailService.cs:line 70
+   at TradingCourse.Application.Services.EmailService.SendAdminNotificationEmailAsync(Int32 orderId) in E:\Projects\APSRA_TradingCourse\TradingCourse.Application\Services\EmailService.cs:line 183
+   at System.RuntimeMethodHandle.InvokeMethod(Object target, Void** arguments, Signature sig, Boolean isConstructor)
+   at System.Reflection.MethodBaseInvoker.InvokeWithNoArgs(Object obj, BindingFlags invokeAttr)
+2026-07-09 00:58:27.054 +05:30 [INF] Processing purchase confirmation email job for Order ID: 1
+2026-07-09 00:58:27.492 +05:30 [INF] Connecting to SMTP server smtp.gmail.com:587...
+2026-07-09 00:58:29.233 +05:30 [INF] Authenticating SMTP user your_email@gmail.com...
+2026-07-09 00:58:30.361 +05:30 [ERR] Failed to send email to ahir@gmail.k with subject: Welcome to Trading Live Course: Price Action & Market Dynamics! - Enrollment Confirmed
+MailKit.Security.AuthenticationException: 535: 5.7.8 Username and Password not accepted. For more information, go to
+5.7.8  https://support.google.com/mail/?p=BadCredentials 5a478bee46e88-3117d847e17sm20168548eec.18 - gsmtp
+ ---> MailKit.Net.Smtp.SmtpCommandException: 5.7.8 Username and Password not accepted. For more information, go to
+5.7.8  https://support.google.com/mail/?p=BadCredentials 5a478bee46e88-3117d847e17sm20168548eec.18 - gsmtp
+   --- End of inner exception stack trace ---
+   at MailKit.Net.Smtp.SmtpClient.AuthenticateAsync(Encoding encoding, ICredentials credentials, CancellationToken cancellationToken)
+   at TradingCourse.Application.Services.EmailService.SendEmailAsync(String to, String subject, String body) in E:\Projects\APSRA_TradingCourse\TradingCourse.Application\Services\EmailService.cs:line 70
+2026-07-09 00:58:30.419 +05:30 [WRN] Failed to process the job '1': an exception occurred. Retry attempt 8 of 10 will be performed in 00:42:24.
+MailKit.Security.AuthenticationException: 535: 5.7.8 Username and Password not accepted. For more information, go to
+5.7.8  https://support.google.com/mail/?p=BadCredentials 5a478bee46e88-3117d847e17sm20168548eec.18 - gsmtp
+ ---> MailKit.Net.Smtp.SmtpCommandException: 5.7.8 Username and Password not accepted. For more information, go to
+5.7.8  https://support.google.com/mail/?p=BadCredentials 5a478bee46e88-3117d847e17sm20168548eec.18 - gsmtp
+   --- End of inner exception stack trace ---
+   at MailKit.Net.Smtp.SmtpClient.AuthenticateAsync(Encoding encoding, ICredentials credentials, CancellationToken cancellationToken)
+   at TradingCourse.Application.Services.EmailService.SendEmailAsync(String to, String subject, String body) in E:\Projects\APSRA_TradingCourse\TradingCourse.Application\Services\EmailService.cs:line 70
+   at TradingCourse.Application.Services.EmailService.SendPurchaseConfirmationEmailAsync(Int32 orderId) in E:\Projects\APSRA_TradingCourse\TradingCourse.Application\Services\EmailService.cs:line 137
+   at System.RuntimeMethodHandle.InvokeMethod(Object target, Void** arguments, Signature sig, Boolean isConstructor)
+   at System.Reflection.MethodBaseInvoker.InvokeWithNoArgs(Object obj, BindingFlags invokeAttr)
+2026-07-09 01:12:04.652 +05:30 [INF] Execution DelayedJobScheduler recovered from the Faulted state after 00:00:16.7009596 and is in the Running state now
+2026-07-09 01:16:05.384 +05:30 [WRN] The static asset '/uploads/04f42909-45bd-4f23-9ffd-8933732388a6.png' was not found in the built time manifest. This file will not be available at runtime if it is not available at compile time during the publish process. If the file was not added to the project during development, and is created at runtime, use the StaticFiles middleware to serve it instead.
+2026-07-09 01:16:19.378 +05:30 [WRN] The static asset '/uploads/04f42909-45bd-4f23-9ffd-8933732388a6.png' was not found in the built time manifest. This file will not be available at runtime if it is not available at compile time during the publish process. If the file was not added to the project during development, and is created at runtime, use the StaticFiles middleware to serve it instead.
+2026-07-09 01:16:57.161 +05:30 [WRN] The static asset '/uploads/39da49df-000b-4931-91e2-4e6b7973b80d.png' was not found in the built time manifest. This file will not be available at runtime if it is not available at compile time during the publish process. If the file was not added to the project during development, and is created at runtime, use the StaticFiles middleware to serve it instead.
+2026-07-09 01:16:57.164 +05:30 [WRN] The static asset '/uploads/04f42909-45bd-4f23-9ffd-8933732388a6.png' was not found in the built time manifest. This file will not be available at runtime if it is not available at compile time during the publish process. If the file was not added to the project during development, and is created at runtime, use the StaticFiles middleware to serve it instead.
+2026-07-09 01:17:01.710 +05:30 [WRN] The static asset '/uploads/39da49df-000b-4931-91e2-4e6b7973b80d.png' was not found in the built time manifest. This file will not be available at runtime if it is not available at compile time during the publish process. If the file was not added to the project during development, and is created at runtime, use the StaticFiles middleware to serve it instead.
+2026-07-09 01:17:01.712 +05:30 [WRN] The static asset '/uploads/04f42909-45bd-4f23-9ffd-8933732388a6.png' was not found in the built time manifest. This file will not be available at runtime if it is not available at compile time during the publish process. If the file was not added to the project during development, and is created at runtime, use the StaticFiles middleware to serve it instead.
+2026-07-09 01:19:46.160 +05:30 [INF] Start installing Hangfire SQL objects...
+2026-07-09 01:19:49.130 +05:30 [INF] Hangfire SQL objects installed.
+2026-07-09 01:19:49.579 +05:30 [INF] Seeding database and running migrations...
+2026-07-09 01:19:52.600 +05:30 [INF] Starting web application...
+2026-07-09 01:19:53.087 +05:30 [INF] Starting Hangfire Server using job storage: 'SQL Server: (localdb)\TradingDBInstance@TradingCourseDb'
+2026-07-09 01:19:53.087 +05:30 [INF] Using the following options for SQL Server job storage: Queue poll interval: 00:00:00.
+2026-07-09 01:19:53.088 +05:30 [INF] Using the following options for Hangfire Server:
+    Worker count: 20
+    Listening queues: 'default'
+    Shutdown timeout: 00:00:15
+    Schedule polling interval: 00:00:15
+2026-07-09 01:19:53.814 +05:30 [INF] Server desktop-pm1e9oh:7612:4348a51d successfully announced in 637.6584 ms
+2026-07-09 01:19:53.823 +05:30 [INF] Server desktop-pm1e9oh:7612:4348a51d is starting the registered dispatchers: ServerWatchdog, ServerJobCancellationWatcher, SqlServerHeartbeatProcess, ExpirationManager, CountersAggregator, Worker, DelayedJobScheduler, RecurringJobScheduler...
+2026-07-09 01:19:54.116 +05:30 [INF] Server desktop-pm1e9oh:7612:4348a51d all the dispatchers started
+2026-07-09 01:19:57.616 +05:30 [WRN] Failed to determine the https port for redirect.
+2026-07-09 01:24:39.731 +05:30 [WRN] The static asset '/uploads/ab78e495-dd2c-46e7-a0f4-e403cc27d92a.jpg' was not found in the built time manifest. This file will not be available at runtime if it is not available at compile time during the publish process. If the file was not added to the project during development, and is created at runtime, use the StaticFiles middleware to serve it instead.
+2026-07-09 01:24:54.268 +05:30 [INF] 1 servers were removed due to timeout
+2026-07-09 01:24:58.891 +05:30 [WRN] The static asset '/uploads/ab78e495-dd2c-46e7-a0f4-e403cc27d92a.jpg' was not found in the built time manifest. This file will not be available at runtime if it is not available at compile time during the publish process. If the file was not added to the project during development, and is created at runtime, use the StaticFiles middleware to serve it instead.
+2026-07-09 01:25:59.916 +05:30 [WRN] The static asset '/uploads/ab78e495-dd2c-46e7-a0f4-e403cc27d92a.jpg' was not found in the built time manifest. This file will not be available at runtime if it is not available at compile time during the publish process. If the file was not added to the project during development, and is created at runtime, use the StaticFiles middleware to serve it instead.
+2026-07-09 01:28:38.430 +05:30 [INF] Start installing Hangfire SQL objects...
+2026-07-09 01:28:42.813 +05:30 [INF] Hangfire SQL objects installed.
+2026-07-09 01:28:43.241 +05:30 [INF] Seeding database and running migrations...
+2026-07-09 01:28:46.181 +05:30 [INF] Starting web application...
+2026-07-09 01:28:46.603 +05:30 [INF] Starting Hangfire Server using job storage: 'SQL Server: (localdb)\TradingDBInstance@TradingCourseDb'
+2026-07-09 01:28:46.604 +05:30 [INF] Using the following options for SQL Server job storage: Queue poll interval: 00:00:00.
+2026-07-09 01:28:46.604 +05:30 [INF] Using the following options for Hangfire Server:
+    Worker count: 20
+    Listening queues: 'default'
+    Shutdown timeout: 00:00:15
+    Schedule polling interval: 00:00:15
+2026-07-09 01:28:47.295 +05:30 [INF] Server desktop-pm1e9oh:7608:18d174de successfully announced in 625.8887 ms
+2026-07-09 01:28:47.320 +05:30 [INF] Server desktop-pm1e9oh:7608:18d174de is starting the registered dispatchers: ServerWatchdog, ServerJobCancellationWatcher, SqlServerHeartbeatProcess, ExpirationManager, CountersAggregator, Worker, DelayedJobScheduler, RecurringJobScheduler...
+2026-07-09 01:28:48.514 +05:30 [INF] Server desktop-pm1e9oh:7608:18d174de all the dispatchers started
+2026-07-09 01:29:38.673 +05:30 [WRN] Failed to determine the https port for redirect.
+2026-07-09 01:33:47.598 +05:30 [INF] 1 servers were removed due to timeout
+2026-07-09 01:38:49.982 +05:30 [INF] Processing admin notification email job for Order ID: 1
+2026-07-09 01:38:50.119 +05:30 [INF] Connecting to SMTP server smtp.gmail.com:587...
+2026-07-09 01:38:51.950 +05:30 [INF] Authenticating SMTP user your_email@gmail.com...
+2026-07-09 01:38:53.169 +05:30 [ERR] Failed to send email to admin@tradingcourse.com with subject: [New Enrollment] Trading Live Course: Price Action & Market Dynamic - Amit
+MailKit.Security.AuthenticationException: 535: 5.7.8 Username and Password not accepted. For more information, go to
+5.7.8  https://support.google.com/mail/?p=BadCredentials 5a478bee46e88-31174a92eccsm21562363eec.23 - gsmtp
+ ---> MailKit.Net.Smtp.SmtpCommandException: 5.7.8 Username and Password not accepted. For more information, go to
+5.7.8  https://support.google.com/mail/?p=BadCredentials 5a478bee46e88-31174a92eccsm21562363eec.23 - gsmtp
+   --- End of inner exception stack trace ---
+   at MailKit.Net.Smtp.SmtpClient.AuthenticateAsync(Encoding encoding, ICredentials credentials, CancellationToken cancellationToken)
+   at TradingCourse.Application.Services.EmailService.SendEmailAsync(String to, String subject, String body) in E:\Projects\APSRA_TradingCourse\TradingCourse.Application\Services\EmailService.cs:line 70
+2026-07-09 01:38:53.251 +05:30 [WRN] Failed to process the job '2': an exception occurred. Retry attempt 9 of 10 will be performed in 01:10:37.
+MailKit.Security.AuthenticationException: 535: 5.7.8 Username and Password not accepted. For more information, go to
+5.7.8  https://support.google.com/mail/?p=BadCredentials 5a478bee46e88-31174a92eccsm21562363eec.23 - gsmtp
+ ---> MailKit.Net.Smtp.SmtpCommandException: 5.7.8 Username and Password not accepted. For more information, go to
+5.7.8  https://support.google.com/mail/?p=BadCredentials 5a478bee46e88-31174a92eccsm21562363eec.23 - gsmtp
+   --- End of inner exception stack trace ---
+   at MailKit.Net.Smtp.SmtpClient.AuthenticateAsync(Encoding encoding, ICredentials credentials, CancellationToken cancellationToken)
+   at TradingCourse.Application.Services.EmailService.SendEmailAsync(String to, String subject, String body) in E:\Projects\APSRA_TradingCourse\TradingCourse.Application\Services\EmailService.cs:line 70
+   at TradingCourse.Application.Services.EmailService.SendAdminNotificationEmailAsync(Int32 orderId) in E:\Projects\APSRA_TradingCourse\TradingCourse.Application\Services\EmailService.cs:line 183
+   at System.RuntimeMethodHandle.InvokeMethod(Object target, Void** arguments, Signature sig, Boolean isConstructor)
+   at System.Reflection.MethodBaseInvoker.InvokeWithNoArgs(Object obj, BindingFlags invokeAttr)
+2026-07-09 01:41:05.313 +05:30 [INF] Processing purchase confirmation email job for Order ID: 1
+2026-07-09 01:41:05.333 +05:30 [INF] Connecting to SMTP server smtp.gmail.com:587...
+2026-07-09 01:41:06.983 +05:30 [INF] Authenticating SMTP user your_email@gmail.com...
+2026-07-09 01:41:08.263 +05:30 [ERR] Failed to send email to ahir@gmail.k with subject: Welcome to Trading Live Course: Price Action & Market Dynamic! - Enrollment Confirmed
+MailKit.Security.AuthenticationException: 535: 5.7.8 Username and Password not accepted. For more information, go to
+5.7.8  https://support.google.com/mail/?p=BadCredentials 5a478bee46e88-31174a583bcsm26466121eec.19 - gsmtp
+ ---> MailKit.Net.Smtp.SmtpCommandException: 5.7.8 Username and Password not accepted. For more information, go to
+5.7.8  https://support.google.com/mail/?p=BadCredentials 5a478bee46e88-31174a583bcsm26466121eec.19 - gsmtp
+   --- End of inner exception stack trace ---
+   at MailKit.Net.Smtp.SmtpClient.AuthenticateAsync(Encoding encoding, ICredentials credentials, CancellationToken cancellationToken)
+   at TradingCourse.Application.Services.EmailService.SendEmailAsync(String to, String subject, String body) in E:\Projects\APSRA_TradingCourse\TradingCourse.Application\Services\EmailService.cs:line 70
+2026-07-09 01:41:08.295 +05:30 [WRN] Failed to process the job '1': an exception occurred. Retry attempt 9 of 10 will be performed in 01:10:01.
+MailKit.Security.AuthenticationException: 535: 5.7.8 Username and Password not accepted. For more information, go to
+5.7.8  https://support.google.com/mail/?p=BadCredentials 5a478bee46e88-31174a583bcsm26466121eec.19 - gsmtp
+ ---> MailKit.Net.Smtp.SmtpCommandException: 5.7.8 Username and Password not accepted. For more information, go to
+5.7.8  https://support.google.com/mail/?p=BadCredentials 5a478bee46e88-31174a583bcsm26466121eec.19 - gsmtp
+   --- End of inner exception stack trace ---
+   at MailKit.Net.Smtp.SmtpClient.AuthenticateAsync(Encoding encoding, ICredentials credentials, CancellationToken cancellationToken)
+   at TradingCourse.Application.Services.EmailService.SendEmailAsync(String to, String subject, String body) in E:\Projects\APSRA_TradingCourse\TradingCourse.Application\Services\EmailService.cs:line 70
+   at TradingCourse.Application.Services.EmailService.SendPurchaseConfirmationEmailAsync(Int32 orderId) in E:\Projects\APSRA_TradingCourse\TradingCourse.Application\Services\EmailService.cs:line 137
+   at System.RuntimeMethodHandle.InvokeMethod(Object target, Void** arguments, Signature sig, Boolean isConstructor)
+   at System.Reflection.MethodBaseInvoker.InvokeWithNoArgs(Object obj, BindingFlags invokeAttr)
+2026-07-09 01:45:39.054 +05:30 [INF] Start installing Hangfire SQL objects...
+2026-07-09 01:45:41.689 +05:30 [INF] Hangfire SQL objects installed.
+2026-07-09 01:45:42.077 +05:30 [INF] Seeding database and running migrations...
+2026-07-09 01:45:44.874 +05:30 [INF] Starting web application...
+2026-07-09 01:45:45.189 +05:30 [INF] Starting Hangfire Server using job storage: 'SQL Server: (localdb)\TradingDBInstance@TradingCourseDb'
+2026-07-09 01:45:45.190 +05:30 [INF] Using the following options for SQL Server job storage: Queue poll interval: 00:00:00.
+2026-07-09 01:45:45.190 +05:30 [INF] Using the following options for Hangfire Server:
+    Worker count: 20
+    Listening queues: 'default'
+    Shutdown timeout: 00:00:15
+    Schedule polling interval: 00:00:15
+2026-07-09 01:45:45.441 +05:30 [INF] Server desktop-pm1e9oh:3696:c66fcebd successfully announced in 215.4293 ms
+2026-07-09 01:45:45.450 +05:30 [INF] Server desktop-pm1e9oh:3696:c66fcebd is starting the registered dispatchers: ServerWatchdog, ServerJobCancellationWatcher, SqlServerHeartbeatProcess, ExpirationManager, CountersAggregator, Worker, DelayedJobScheduler, RecurringJobScheduler...
+2026-07-09 01:45:45.512 +05:30 [INF] Server desktop-pm1e9oh:3696:c66fcebd all the dispatchers started
+2026-07-09 01:46:18.874 +05:30 [WRN] Failed to determine the https port for redirect.
+2026-07-09 01:50:13.708 +05:30 [WRN] The static asset '/uploads/ea115190-6c17-4e6c-981c-93b721d81ff2.jpg' was not found in the built time manifest. This file will not be available at runtime if it is not available at compile time during the publish process. If the file was not added to the project during development, and is created at runtime, use the StaticFiles middleware to serve it instead.
+2026-07-09 01:50:45.624 +05:30 [INF] 1 servers were removed due to timeout
+2026-07-09 01:52:26.983 +05:30 [INF] Processing admin notification email job for Order ID: 4
+2026-07-09 01:52:26.983 +05:30 [INF] Processing purchase confirmation email job for Order ID: 4
+2026-07-09 01:52:27.175 +05:30 [INF] Connecting to SMTP server smtp.gmail.com:587...
+2026-07-09 01:52:27.176 +05:30 [INF] Connecting to SMTP server smtp.gmail.com:587...
+2026-07-09 01:52:29.219 +05:30 [INF] Authenticating SMTP user your_email@gmail.com...
+2026-07-09 01:52:29.220 +05:30 [INF] Authenticating SMTP user your_email@gmail.com...
+2026-07-09 01:52:30.510 +05:30 [ERR] Failed to send email to admin@tradingcourse.com with subject: [New Enrollment] Londiya baji - Sumit
+MailKit.Security.AuthenticationException: 535: 5.7.8 Username and Password not accepted. For more information, go to
+5.7.8  https://support.google.com/mail/?p=BadCredentials a92af1059eb24-13b6593c4ddsm24766750c88.1 - gsmtp
+ ---> MailKit.Net.Smtp.SmtpCommandException: 5.7.8 Username and Password not accepted. For more information, go to
+5.7.8  https://support.google.com/mail/?p=BadCredentials a92af1059eb24-13b6593c4ddsm24766750c88.1 - gsmtp
+   --- End of inner exception stack trace ---
+   at MailKit.Net.Smtp.SmtpClient.AuthenticateAsync(Encoding encoding, ICredentials credentials, CancellationToken cancellationToken)
+   at TradingCourse.Application.Services.EmailService.SendEmailAsync(String to, String subject, String body) in E:\Projects\APSRA_TradingCourse\TradingCourse.Application\Services\EmailService.cs:line 70
+2026-07-09 01:52:30.520 +05:30 [ERR] Failed to send email to eramt@fsl.sdg with subject: Enrollment Confirmed: Londiya baji
+MailKit.Security.AuthenticationException: 535: 5.7.8 Username and Password not accepted. For more information, go to
+5.7.8  https://support.google.com/mail/?p=BadCredentials a92af1059eb24-13b659c8572sm23068481c88.9 - gsmtp
+ ---> MailKit.Net.Smtp.SmtpCommandException: 5.7.8 Username and Password not accepted. For more information, go to
+5.7.8  https://support.google.com/mail/?p=BadCredentials a92af1059eb24-13b659c8572sm23068481c88.9 - gsmtp
+   --- End of inner exception stack trace ---
+   at MailKit.Net.Smtp.SmtpClient.AuthenticateAsync(Encoding encoding, ICredentials credentials, CancellationToken cancellationToken)
+   at TradingCourse.Application.Services.EmailService.SendEmailAsync(String to, String subject, String body) in E:\Projects\APSRA_TradingCourse\TradingCourse.Application\Services\EmailService.cs:line 70
+2026-07-09 01:52:30.606 +05:30 [WRN] Failed to process the job '3': an exception occurred. Retry attempt 1 of 10 will be performed in 00:00:22.
+MailKit.Security.AuthenticationException: 535: 5.7.8 Username and Password not accepted. For more information, go to
+5.7.8  https://support.google.com/mail/?p=BadCredentials a92af1059eb24-13b659c8572sm23068481c88.9 - gsmtp
+ ---> MailKit.Net.Smtp.SmtpCommandException: 5.7.8 Username and Password not accepted. For more information, go to
+5.7.8  https://support.google.com/mail/?p=BadCredentials a92af1059eb24-13b659c8572sm23068481c88.9 - gsmtp
+   --- End of inner exception stack trace ---
+   at MailKit.Net.Smtp.SmtpClient.AuthenticateAsync(Encoding encoding, ICredentials credentials, CancellationToken cancellationToken)
+   at TradingCourse.Application.Services.EmailService.SendEmailAsync(String to, String subject, String body) in E:\Projects\APSRA_TradingCourse\TradingCourse.Application\Services\EmailService.cs:line 70
+   at TradingCourse.Application.Services.EmailService.SendPurchaseConfirmationEmailAsync(Int32 orderId) in E:\Projects\APSRA_TradingCourse\TradingCourse.Application\Services\EmailService.cs:line 137
+   at InvokeStub_TaskAwaiter.GetResult(Object, Object, IntPtr*)
+   at System.Reflection.MethodBaseInvoker.InvokeWithNoArgs(Object obj, BindingFlags invokeAttr)
+2026-07-09 01:52:30.606 +05:30 [WRN] Failed to process the job '4': an exception occurred. Retry attempt 1 of 10 will be performed in 00:00:41.
+MailKit.Security.AuthenticationException: 535: 5.7.8 Username and Password not accepted. For more information, go to
+5.7.8  https://support.google.com/mail/?p=BadCredentials a92af1059eb24-13b6593c4ddsm24766750c88.1 - gsmtp
+ ---> MailKit.Net.Smtp.SmtpCommandException: 5.7.8 Username and Password not accepted. For more information, go to
+5.7.8  https://support.google.com/mail/?p=BadCredentials a92af1059eb24-13b6593c4ddsm24766750c88.1 - gsmtp
+   --- End of inner exception stack trace ---
+   at MailKit.Net.Smtp.SmtpClient.AuthenticateAsync(Encoding encoding, ICredentials credentials, CancellationToken cancellationToken)
+   at TradingCourse.Application.Services.EmailService.SendEmailAsync(String to, String subject, String body) in E:\Projects\APSRA_TradingCourse\TradingCourse.Application\Services\EmailService.cs:line 70
+   at TradingCourse.Application.Services.EmailService.SendAdminNotificationEmailAsync(Int32 orderId) in E:\Projects\APSRA_TradingCourse\TradingCourse.Application\Services\EmailService.cs:line 183
+   at System.RuntimeMethodHandle.InvokeMethod(Object target, Void** arguments, Signature sig, Boolean isConstructor)
+   at System.Reflection.MethodBaseInvoker.InvokeWithNoArgs(Object obj, BindingFlags invokeAttr)
+2026-07-09 01:53:03.188 +05:30 [INF] Processing purchase confirmation email job for Order ID: 4
+2026-07-09 01:53:03.198 +05:30 [INF] Connecting to SMTP server smtp.gmail.com:587...

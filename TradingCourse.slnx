@@ -1,0 +1,5 @@
+<Solution>
+  <Project Path="TradingCourse.Application/TradingCourse.Application.csproj" />
+  <Project Path="TradingCourse.Shared/TradingCourse.Shared.csproj" />
+  <Project Path="TradingCourse.Web/TradingCourse.Web.csproj" />
+</Solution>

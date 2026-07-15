@@ -1,0 +1,162 @@
+@model IEnumerable<TradingCourse.Application.Models.Order>
+@{
+    ViewData["Title"] = "Manage Enrolments & Leads";
+}
+
+<div class="py-4">
+    <!-- Header -->
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <div>
+            <a asp-area="Admin" asp-controller="Home" asp-action="Index" class="text-secondary text-decoration-none small">
+                <i class="bi bi-chevron-left"></i> Dashboard
+            </a>
+            <h1 class="text-white fw-bold mb-0 mt-1">Enrolments & Leads</h1>
+        </div>
+        <a asp-action="ExportToCsv" 
+           asp-route-courseId="@ViewBag.SelectedCourseId" 
+           asp-route-status="@ViewBag.SelectedStatus" 
+           asp-route-search="@ViewBag.SearchQuery" 
+           class="btn btn-outline-custom" 
+           id="btn-export-csv">
+            <i class="bi bi-download me-1"></i> Export CSV
+        </a>
+    </div>
+
+    <!-- Filters Panel -->
+    <div class="glass-card mb-4" id="filters-card">
+        <form asp-action="Index" method="get" class="row g-3 align-items-end" id="filters-form">
+            <div class="col-md-4">
+                <label for="search" class="form-label form-label-custom">Search Student</label>
+                <input type="text" name="search" id="search" class="form-control form-control-custom" placeholder="Name, Email, or Mobile" value="@ViewBag.SearchQuery" />
+            </div>
+
+            <div class="col-md-3">
+                <label for="courseId" class="form-label form-label-custom">Filter by Course</label>
+                <select name="courseId" id="courseId" class="form-select form-control-custom" asp-items="ViewBag.Courses">
+                    <option value="">-- All Courses --</option>
+                </select>
+            </div>
+
+            <div class="col-md-3">
+                <label for="status" class="form-label form-label-custom">Filter by Status</label>
+                <select name="status" id="status" class="form-select form-control-custom">
+                    <option value="">-- All Statuses --</option>
+                    @foreach (var val in Enum.GetValues<TradingCourse.Application.Models.PaymentStatus>())
+                    {
+                        if (ViewBag.SelectedStatus == val)
+                        {
+                            <option value="@val" selected>@val</option>
+                        }
+                        else
+                        {
+                            <option value="@val">@val</option>
+                        }
+                    }
+                </select>
+            </div>
+
+            <div class="col-md-2 d-flex gap-2">
+                <button type="submit" class="btn btn-premium w-100 py-2" id="btn-apply-filters">
+                    Filter
+                </button>
+                <a asp-action="Index" class="btn btn-outline-custom w-100 py-2">
+                    Clear
+                </a>
+            </div>
+        </form>
+    </div>
+
+    <!-- Table -->
+    <div class="glass-card" id="leads-list-card">
+        @if (Model == null || !Model.Any())
+        {
+            <p class="text-secondary text-center py-5 mb-0">No lead entries match the current filter options.</p>
+        }
+        else
+        {
+            <div class="table-responsive">
+                <table class="table table-dark table-hover mb-0 align-middle" style="border-color: var(--card-border);">
+                    <thead>
+                        <tr class="text-secondary">
+                            <th>ID</th>
+                            <th>Student</th>
+                            <th>Mobile</th>
+                            <th>Course</th>
+                            <th>Paid</th>
+                            <th>Coupon</th>
+                            <th>Status</th>
+                            <th>Date</th>
+                            <th>Transaction Reference</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var lead in Model)
+                        {
+                            <tr>
+                                <td class="font-monospace text-muted">#@lead.Id</td>
+                                <td>
+                                    <strong class="text-white">@lead.CustomerName</strong>
+                                    <span class="d-block text-secondary small text-break">@lead.CustomerEmail</span>
+                                </td>
+                                <td>@lead.CustomerMobile</td>
+                                <td>@lead.Course?.Title</td>
+                                <td>₹@lead.AmountPaid.ToString("N2")</td>
+                                <td>
+                                    @if (!string.IsNullOrEmpty(lead.CouponCode))
+                                    {
+                                        <span class="badge bg-info bg-opacity-20 text-info border border-info border-opacity-35 font-monospace">@lead.CouponCode</span>
+                                    }
+                                    else
+                                    {
+                                        <span class="text-muted small">None</span>
+                                    }
+                                </td>
+                                <td>
+                                    @if (lead.PaymentStatus == TradingCourse.Application.Models.PaymentStatus.Success)
+                                    {
+                                        <span class="badge bg-success bg-opacity-20 text-success border border-success border-opacity-35 px-3 py-2">Paid</span>
+                                    }
+                                    else if (lead.PaymentStatus == TradingCourse.Application.Models.PaymentStatus.Pending)
+                                    {
+                                        <span class="badge bg-warning bg-opacity-20 text-warning border border-warning border-opacity-35 px-3 py-2">Pending</span>
+                                    }
+                                    else
+                                    {
+                                        <span class="badge bg-danger bg-opacity-20 text-danger border border-danger border-opacity-35 px-3 py-2">Failed</span>
+                                    }
+                                </td>
+                                <td>@lead.CreatedAt.ToLocalTime().ToString("yyyy-MM-dd HH:mm")</td>
+                                <td>
+                                    <span class="d-block text-secondary small">Order: <span class="font-monospace text-white">@lead.RazorpayOrderId</span></span>
+                                    @if (!string.IsNullOrEmpty(lead.RazorpayPaymentId))
+                                    {
+                                        <span class="d-block text-secondary small">Pay: <span class="font-monospace text-white">@lead.RazorpayPaymentId</span></span>
+                                    }
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        }
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        document.getElementById('btn-export-csv')?.addEventListener('click', function(e) {
+            e.preventDefault();
+            const search = document.getElementById('search')?.value || '';
+            const courseId = document.getElementById('courseId')?.value || '';
+            const status = document.getElementById('status')?.value || '';
+            
+            let url = '/Admin/Order/ExportToCsv?';
+            const params = [];
+            if (search) params.push('search=' + encodeURIComponent(search));
+            if (courseId) params.push('courseId=' + encodeURIComponent(courseId));
+            if (status) params.push('status=' + encodeURIComponent(status));
+            
+            window.location.href = url + params.join('&');
+        });
+    </script>
+}

@@ -1,0 +1,200 @@
+@model TradingCourse.Application.Models.Course
+@{
+    ViewData["Title"] = "Edit Course - " + Model.Title;
+}
+
+<div class="py-4">
+    <div class="mb-4">
+        <a asp-action="Index" class="text-secondary text-decoration-none small" id="back-to-list">
+            <i class="bi bi-chevron-left"></i> Back to Courses
+        </a>
+        <h1 class="text-white fw-bold mb-0 mt-1">Edit Course</h1>
+    </div>
+
+    <div class="glass-card" id="edit-course-card">
+        <form asp-action="Edit" method="post" enctype="multipart/form-data" class="needs-validation" novalidate id="edit-course-form">
+            <input type="hidden" asp-for="Id" />
+            
+            <div class="row g-4">
+                <!-- Core Details -->
+                <div class="col-md-6">
+                    <h3 class="text-white h5 mb-3 border-bottom border-secondary border-opacity-10 pb-2">Core Information</h3>
+
+                    <div class="mb-3">
+                        <label asp-for="Title" class="form-label form-label-custom">Course Title</label>
+                        <input asp-for="Title" class="form-control form-control-custom" id="course-title" placeholder="e.g. Price Action Masterclass" required />
+                        <span asp-validation-for="Title" class="invalid-feedback">Title is required.</span>
+                    </div>
+
+                    <div class="mb-3">
+                        <label asp-for="Slug" class="form-label form-label-custom">URL Slug (Unique)</label>
+                        <input asp-for="Slug" class="form-control form-control-custom" id="course-slug" placeholder="e.g. price-action-masterclass" required />
+                        <span asp-validation-for="Slug" class="invalid-feedback">Slug is required.</span>
+                    </div>
+
+                    <div class="mb-3">
+                        <label asp-for="Instructor" class="form-label form-label-custom">Instructor Name</label>
+                        <input asp-for="Instructor" class="form-control form-control-custom" placeholder="e.g. Amit Sharma" required />
+                        <span asp-validation-for="Instructor" class="invalid-feedback">Instructor name is required.</span>
+                    </div>
+
+                    <div class="mb-3">
+                        <label asp-for="Schedule" class="form-label form-label-custom">Class Schedule Description</label>
+                        <input asp-for="Schedule" class="form-control form-control-custom" placeholder="e.g. Sat & Sun, 7:00 PM IST" required />
+                        <span asp-validation-for="Schedule" class="invalid-feedback">Schedule info is required.</span>
+                    </div>
+
+                    <div class="mb-3">
+                        <label asp-for="PurchaseDurationDays" class="form-label form-label-custom">Enrollment Duration (Days)</label>
+                        <input asp-for="PurchaseDurationDays" type="number" class="form-control form-control-custom" required />
+                        <span asp-validation-for="PurchaseDurationDays" class="invalid-feedback">Duration is required.</span>
+                    </div>
+                </div>
+
+                <!-- Pricing & Setup -->
+                <div class="col-md-6">
+                    <h3 class="text-white h5 mb-3 border-bottom border-secondary border-opacity-10 pb-2">Pricing & Status</h3>
+
+                    <div class="mb-3">
+                        <label asp-for="Price" class="form-label form-label-custom">Regular Price (INR)</label>
+                        <input asp-for="Price" type="number" step="0.01" class="form-control form-control-custom" placeholder="9999.00" required />
+                        <span asp-validation-for="Price" class="invalid-feedback">Price is required.</span>
+                    </div>
+
+                    <div class="mb-3">
+                        <label asp-for="SalePrice" class="form-label form-label-custom">Sale Price (INR, Optional)</label>
+                        <input asp-for="SalePrice" type="number" step="0.01" class="form-control form-control-custom" placeholder="4999.00" />
+                        <span asp-validation-for="SalePrice" class="invalid-feedback"></span>
+                    </div>
+
+                    <div class="mb-3">
+                        <label asp-for="LiveClassLink" class="form-label form-label-custom">Live Joining Classroom Link (Optional)</label>
+                        <input asp-for="LiveClassLink" type="url" class="form-control form-control-custom" placeholder="https://zoom.us/j/..." />
+                        <span asp-validation-for="LiveClassLink" class="invalid-feedback">Please enter a valid URL.</span>
+                    </div>
+
+                    <div class="form-check mb-3 mt-4">
+                        <input asp-for="IsLive" type="checkbox" class="form-check-input" id="is-live-checkbox" />
+                        <label class="form-check-label text-white fw-semibold" for="is-live-checkbox">Course is Live and Accepting Cohort Registrations</label>
+                    </div>
+                </div>
+
+                <!-- Media Settings -->
+                <div class="col-12">
+                    <h3 class="text-white h5 mb-3 border-bottom border-secondary border-opacity-10 pb-2">Media Settings (Optional)</h3>
+                    <div class="row">
+                        <div class="col-md-4 mb-3">
+                            <label asp-for="MediaType" class="form-label form-label-custom">Course Media Type</label>
+                            <select asp-for="MediaType" class="form-select form-control-custom" id="select-course-media-type">
+                                <option value="">None</option>
+                                <option value="Image">Image (Local File)</option>
+                                <option value="Video">Video (Local File)</option>
+                                <option value="YouTube">YouTube Video</option>
+                            </select>
+                        </div>
+                        <div class="col-md-8 mb-3" id="course-media-file-container" style="display: none;">
+                            <label class="form-label form-label-custom">Upload New Media File</label>
+                            <input type="file" name="courseMediaFile" id="input-course-media-file" class="form-control form-control-custom" accept="image/*,video/*" />
+                            @if (!string.IsNullOrEmpty(Model.MediaType) && Model.MediaType != "YouTube" && !string.IsNullOrEmpty(Model.MediaUrl))
+                            {
+                                <div class="mt-2 text-cyan small">Current File: <a href="@Model.MediaUrl" target="_blank">@Model.MediaUrl</a></div>
+                            }
+                            <div class="form-text text-secondary small mt-2">
+                                Leave blank to keep existing file. For Image: Max 3MB (JPG, PNG, WEBP). For Video: Max 10MB (MP4, WEBM).
+                            </div>
+                        </div>
+                        <div class="col-md-8 mb-3" id="course-media-url-container" style="display: none;">
+                            <label asp-for="MediaUrl" class="form-label form-label-custom">YouTube Video URL</label>
+                            <input asp-for="MediaUrl" class="form-control form-control-custom" id="input-course-media-url" placeholder="e.g. https://www.youtube.com/watch?v=..." />
+                            <span class="form-text text-secondary small">Provide the link to the YouTube video.</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Descriptions -->
+                <div class="col-12">
+                    <h3 class="text-white h5 mb-3 border-bottom border-secondary border-opacity-10 pb-2">Descriptions</h3>
+                    
+                    <div class="mb-3">
+                        <label asp-for="ShortDescription" class="form-label form-label-custom">Short Summary Description</label>
+                        <textarea asp-for="ShortDescription" class="form-control form-control-custom" rows="2" placeholder="Brief tagline of course features" required maxLength="500"></textarea>
+                        <span asp-validation-for="ShortDescription" class="invalid-feedback">Short description is required.</span>
+                    </div>
+
+                    <div class="mb-3">
+                        <label asp-for="FullDescription" class="form-label form-label-custom">Full Curriculum (HTML Supported)</label>
+                        <textarea asp-for="FullDescription" class="form-control form-control-custom font-monospace" rows="6" placeholder="<h3>Course Syllabus</h3><p>Detailed syllabus breakdown goes here...</p>" required></textarea>
+                        <span asp-validation-for="FullDescription" class="invalid-feedback">Full description is required.</span>
+                    </div>
+                </div>
+
+                <!-- Custom Email Notification Template -->
+                <div class="col-12">
+                    <h3 class="text-white h5 mb-3 border-bottom border-secondary border-opacity-10 pb-2">Custom Transactional Email Template</h3>
+                    <p class="text-secondary small">Define customized confirmation copy sent to enrolling students. Fallbacks will apply if left blank.</p>
+                    
+                    <div class="mb-3">
+                        <label asp-for="EmailTemplateSubject" class="form-label form-label-custom">Email Subject Line</label>
+                        <input asp-for="EmailTemplateSubject" class="form-control form-control-custom" placeholder="Welcome to {CourseTitle}!" />
+                    </div>
+
+                    <div class="mb-3">
+                        <label asp-for="EmailTemplateBody" class="form-label form-label-custom">Email Body (HTML Supported)</label>
+                        <textarea asp-for="EmailTemplateBody" class="form-control form-control-custom font-monospace" rows="6" placeholder="Available tags: {CustomerName}, {CourseTitle}, {InstructorName}, {Schedule}, {LiveClassLink}, {OrderId}, {AmountPaid}"></textarea>
+                    </div>
+                </div>
+
+                <div class="col-12 d-flex gap-3 mt-4">
+                    <button type="submit" class="btn btn-premium btn-lg" id="btn-save-course">
+                        Save Changes <i class="bi bi-check-lg ms-1"></i>
+                    </button>
+                    <a asp-area="Admin" asp-controller="Course" asp-action="Index" class="btn btn-outline-custom btn-lg">Cancel</a>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            // Apply standard validation
+            var forms = document.querySelectorAll('.needs-validation');
+            Array.prototype.slice.call(forms).forEach(function (form) {
+                form.addEventListener('submit', function (event) {
+                    if (!form.checkValidity()) {
+                        event.preventDefault();
+                        event.stopPropagation();
+                    }
+                    form.classList.add('was-validated');
+                }, false);
+            });
+
+            // Toggle course media fields helper
+            function initCourseMediaDisplay() {
+                const type = $('#select-course-media-type').val();
+                if (type === 'Image' || type === 'Video') {
+                    $('#course-media-file-container').show();
+                    $('#course-media-url-container').hide();
+                    
+                    if (type === 'Image') {
+                        $('#input-course-media-file').attr('accept', 'image/*');
+                    } else {
+                        $('#input-course-media-file').attr('accept', 'video/*');
+                    }
+                } else if (type === 'YouTube') {
+                    $('#course-media-file-container').hide();
+                    $('#course-media-url-container').show();
+                } else {
+                    $('#course-media-file-container').hide();
+                    $('#course-media-url-container').hide();
+                }
+            }
+
+            // On change
+            $('#select-course-media-type').on('change', initCourseMediaDisplay);
+            // On load
+            initCourseMediaDisplay();
+        });
+    </script>
+}

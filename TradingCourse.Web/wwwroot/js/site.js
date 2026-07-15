@@ -1,0 +1,1 @@
+document.addEventListener('DOMContentLoaded', () => { const toggle = document.getElementById('theme-toggle'); if (!toggle) return; toggle.addEventListener('click', () => { const next = document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark'; document.documentElement.dataset.theme = next; localStorage.setItem('apsra-theme', next); }); });

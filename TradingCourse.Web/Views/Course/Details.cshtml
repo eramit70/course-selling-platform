@@ -1,0 +1,105 @@
+@model TradingCourse.Application.Models.Course
+@{
+    ViewData["Title"] = Model.Title;
+}
+
+<div class="py-5">
+    <div class="mb-4">
+        <a asp-action="Index" class="text-secondary text-decoration-none" id="back-to-catalog">
+            <i class="bi bi-arrow-left"></i> Back to Courses
+        </a>
+    </div>
+
+    <div class="row g-5">
+        <!-- Main content: Title and Description -->
+        <div class="col-lg-8">
+            <div class="mb-3">
+                @if (Model.IsLive)
+                {
+                    <span class="live-indicator" id="details-live-badge">
+                        <span class="live-dot"></span> LIVE ACADEMY COHORT
+                    </span>
+                }
+                else
+                {
+                    <span class="badge-custom" id="details-recorded-badge">SELF-PACED COURSE</span>
+                }
+            </div>
+
+            <h1 class="text-white display-4 fw-bold mb-3" id="course-title">@Model.Title</h1>
+            <p class="text-secondary fs-5 mb-4" id="course-short-description">@Model.ShortDescription</p>
+
+            <div class="glass-card mb-5" id="course-info-panel">
+                <h3 class="text-white mb-4">Course Highlights</h3>
+                <div class="row g-4 text-center">
+                    <div class="col-sm-4">
+                        <div class="p-3 border border-secondary border-opacity-10 rounded">
+                            <i class="bi bi-person-video3 text-cyan fs-2 mb-2 d-block"></i>
+                            <span class="d-block text-muted small">Instructor</span>
+                            <strong class="text-white">@Model.Instructor</strong>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="p-3 border border-secondary border-opacity-10 rounded">
+                            <i class="bi bi-calendar-event text-cyan fs-2 mb-2 d-block"></i>
+                            <span class="d-block text-muted small">Schedule</span>
+                            <strong class="text-white">@Model.Schedule</strong>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="p-3 border border-secondary border-opacity-10 rounded">
+                            <i class="bi bi-shield-lock text-cyan fs-2 mb-2 d-block"></i>
+                            <span class="d-block text-muted small">Validity</span>
+                            <strong class="text-white">@Model.PurchaseDurationDays Days Access</strong>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Full Description (renders raw HTML for richness) -->
+            <div class="course-full-description text-secondary fs-6" id="course-full-description" style="line-height: 1.8;">
+                <h3 class="text-white mb-4">Course Curriculum & Details</h3>
+                @Html.Raw(Model.FullDescription)
+            </div>
+        </div>
+
+        <!-- Sidebar: Pricing & Checkout Card -->
+        <div class="col-lg-4">
+            <div class="glass-card sticky-top" style="top: 2rem;" id="checkout-pricing-card">
+                <h3 class="text-white h4 mb-3">Get Enrolled Today</h3>
+                <p class="text-secondary small mb-4">Join active students learning institutional-grade trading mechanics.</p>
+                
+                <div class="border border-secondary border-opacity-10 rounded p-4 mb-4">
+                    <span class="text-muted d-block small mb-1">One-Time Enrolment Fee</span>
+                    <div class="d-flex align-items-baseline gap-2">
+                        @if (Model.SalePrice.HasValue)
+                        {
+                            <span class="fs-2 fw-bold text-white" id="details-sale-price">₹@Model.SalePrice.Value.ToString("N2")</span>
+                            <span class="text-decoration-line-through text-muted" id="details-regular-price">₹@Model.Price.ToString("N2")</span>
+                        }
+                        else
+                        {
+                            <span class="fs-2 fw-bold text-white" id="details-regular-price-only">₹@Model.Price.ToString("N2")</span>
+                        }
+                    </div>
+                    @if (Model.SalePrice.HasValue)
+                    {
+                        <span class="badge-custom mt-2" id="discount-badge" style="background: rgba(20, 184, 166, 0.1); color: var(--accent-teal); border-color: rgba(20, 184, 166, 0.2);">
+                            SAVE @Math.Round((1 - (Model.SalePrice.Value / Model.Price)) * 100)%
+                        </span>
+                    }
+                </div>
+
+                <div class="mb-4">
+                    <a asp-action="Checkout" asp-route-slug="@Model.Slug" class="btn btn-premium w-100 btn-lg text-center" id="btn-checkout-enroll">
+                        Proceed to Checkout <i class="bi bi-wallet2 ms-2"></i>
+                    </a>
+                </div>
+
+                <div class="text-center">
+                    <p class="text-secondary small mb-0"><i class="bi bi-shield-fill-check text-cyan"></i> Secure 256-bit encrypted checkout via Razorpay</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

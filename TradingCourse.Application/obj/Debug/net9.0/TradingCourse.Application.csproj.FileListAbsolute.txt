@@ -1,0 +1,17 @@
+E:\Projects\APSRA_TradingCourse\TradingCourse.Application\bin\Debug\net9.0\TradingCourse.Application.deps.json
+E:\Projects\APSRA_TradingCourse\TradingCourse.Application\bin\Debug\net9.0\TradingCourse.Application.runtimeconfig.json
+E:\Projects\APSRA_TradingCourse\TradingCourse.Application\bin\Debug\net9.0\TradingCourse.Application.dll
+E:\Projects\APSRA_TradingCourse\TradingCourse.Application\bin\Debug\net9.0\TradingCourse.Application.pdb
+E:\Projects\APSRA_TradingCourse\TradingCourse.Application\bin\Debug\net9.0\TradingCourse.Shared.dll
+E:\Projects\APSRA_TradingCourse\TradingCourse.Application\bin\Debug\net9.0\TradingCourse.Shared.pdb
+E:\Projects\APSRA_TradingCourse\TradingCourse.Application\obj\Debug\net9.0\TradingCourse.Application.csproj.AssemblyReference.cache
+E:\Projects\APSRA_TradingCourse\TradingCourse.Application\obj\Debug\net9.0\TradingCourse.Application.GeneratedMSBuildEditorConfig.editorconfig
+E:\Projects\APSRA_TradingCourse\TradingCourse.Application\obj\Debug\net9.0\TradingCourse.Application.AssemblyInfoInputs.cache
+E:\Projects\APSRA_TradingCourse\TradingCourse.Application\obj\Debug\net9.0\TradingCourse.Application.AssemblyInfo.cs
+E:\Projects\APSRA_TradingCourse\TradingCourse.Application\obj\Debug\net9.0\TradingCourse.Application.csproj.CoreCompileInputs.cache
+E:\Projects\APSRA_TradingCourse\TradingCourse.Application\obj\Debug\net9.0\TradingC.ADAA7D0C.Up2Date
+E:\Projects\APSRA_TradingCourse\TradingCourse.Application\obj\Debug\net9.0\TradingCourse.Application.dll
+E:\Projects\APSRA_TradingCourse\TradingCourse.Application\obj\Debug\net9.0\refint\TradingCourse.Application.dll
+E:\Projects\APSRA_TradingCourse\TradingCourse.Application\obj\Debug\net9.0\TradingCourse.Application.pdb
+E:\Projects\APSRA_TradingCourse\TradingCourse.Application\obj\Debug\net9.0\TradingCourse.Application.genruntimeconfig.cache
+E:\Projects\APSRA_TradingCourse\TradingCourse.Application\obj\Debug\net9.0\ref\TradingCourse.Application.dll

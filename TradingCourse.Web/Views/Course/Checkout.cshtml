@@ -1,0 +1,402 @@
+@model TradingCourse.Application.Models.Course
+@{
+    ViewData["Title"] = "Checkout - " + Model.Title;
+}
+
+<div class="py-5">
+    <div class="row g-5">
+        <!-- Checkout Form -->
+        <div class="col-lg-7">
+            <div class="glass-card" id="checkout-form-card">
+                <h2 class="text-white mb-4">Student Information</h2>
+                <form id="checkout-form" novalidate>
+                    <input type="hidden" id="course-id" value="@Model.Id" />
+                    
+                    <div class="mb-3">
+                        <label for="customer-name" class="form-label form-label-custom">Full Name</label>
+                        <input type="text" class="form-control form-control-custom" id="customer-name" placeholder="John Doe" required />
+                        <div class="invalid-feedback">Please enter your full name.</div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="customer-email" class="form-label form-label-custom">Email Address</label>
+                        <input type="email" class="form-control form-control-custom" id="customer-email" placeholder="john@example.com" required />
+                        <div class="invalid-feedback">Please enter a valid email address.</div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="customer-mobile" class="form-label form-label-custom">Mobile Number</label>
+                        <input type="tel" class="form-control form-control-custom" id="customer-mobile" placeholder="9876543210" required pattern="^[6-9]\d{9}$" />
+                        <div class="invalid-feedback">Please enter a valid 10-digit mobile number.</div>
+                    </div>
+
+                    <!-- Coupon Code Input -->
+                    <div class="mb-4">
+                        <label for="coupon-code" class="form-label form-label-custom">Coupon Code (Optional)</label>
+                        <div class="input-group">
+                            <input type="text" class="form-control form-control-custom" id="coupon-code" placeholder="ENTER CODE" />
+                            <button type="button" class="btn btn-premium" id="btn-apply-coupon">Apply</button>
+                        </div>
+                        <div id="coupon-message" class="mt-2 small" style="display: none;"></div>
+                    </div>
+
+                    <div class="form-check mb-4">
+                        <input class="form-check-input" type="checkbox" id="terms-checkbox" required />
+                        <label class="form-check-label text-secondary small" for="terms-checkbox">
+                            I agree to the terms of service and class schedule guidelines.
+                        </label>
+                        <div class="invalid-feedback">You must agree to the terms to proceed.</div>
+                    </div>
+
+                    <button type="submit" class="btn btn-premium btn-lg w-100" id="btn-submit-payment">
+                        Proceed to Pay <i class="bi bi-shield-lock-fill ms-2"></i>
+                    </button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Order Summary -->
+        <div class="col-lg-5">
+            <div class="glass-card" id="checkout-summary-card">
+                <h3 class="text-white h4 mb-4">Order Summary</h3>
+                
+                <div class="d-flex justify-content-between mb-2">
+                    <span class="text-secondary">Course</span>
+                    <span class="text-white fw-semibold">@Model.Title</span>
+                </div>
+                <div class="d-flex justify-content-between mb-3">
+                    <span class="text-secondary">Type</span>
+                    <span class="text-white">@(Model.IsLive ? "Live Training Cohort" : "Self-Paced Training")</span>
+                </div>
+
+                <hr class="border-secondary opacity-25 my-3" />
+
+                <!-- Price details -->
+                @{
+                    decimal originalPrice = Model.Price;
+                    decimal currentBasePrice = Model.SalePrice ?? Model.Price;
+                    decimal originalDiscount = Model.SalePrice.HasValue ? (Model.Price - Model.SalePrice.Value) : 0;
+                }
+                
+                <div class="d-flex justify-content-between mb-2">
+                    <span class="text-secondary">Regular Price</span>
+                    <span class="text-white text-decoration-line-through">₹@originalPrice.ToString("N2")</span>
+                </div>
+                
+                @if (originalDiscount > 0)
+                {
+                    <div class="d-flex justify-content-between mb-2">
+                        <span class="text-secondary">Cohort Discount</span>
+                        <span class="text-teal" style="color: var(--accent-teal);">-₹@originalDiscount.ToString("N2")</span>
+                    </div>
+                }
+
+                <div class="d-flex justify-content-between mb-2" id="coupon-discount-row" style="display: none !important;">
+                    <span class="text-secondary">Promo Discount (<span id="applied-coupon-label"></span>)</span>
+                    <span class="text-teal" id="coupon-discount-value" style="color: var(--accent-teal);">-₹0.00</span>
+                </div>
+
+                <hr class="border-secondary opacity-25 my-3" />
+
+                <div class="d-flex justify-content-between align-items-baseline mb-4">
+                    <span class="text-white fw-bold fs-5">Total Amount</span>
+                    <span class="fs-3 fw-bold" id="checkout-total-price" style="color: var(--accent-cyan);" data-base="@currentBasePrice">
+                        ₹@currentBasePrice.ToString("N2")
+                    </span>
+                </div>
+
+                <div class="border border-secondary border-opacity-10 rounded p-3 text-secondary small">
+                    <p class="mb-2"><i class="bi bi-check-circle-fill text-cyan me-2"></i> 100% Secure Transaction</p>
+                    <p class="mb-0"><i class="bi bi-check-circle-fill text-cyan me-2"></i> Instant email enrollment delivery</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Duplicate Purchase Modal -->
+<div class="modal fade" id="duplicatePurchaseModal" tabindex="-1" aria-labelledby="duplicatePurchaseModalLabel" aria-hidden="true" data-bs-backdrop="static">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content bg-dark border-secondary">
+            <div class="modal-header border-secondary">
+                <h5 class="modal-title text-white" id="duplicatePurchaseModalLabel">
+                    <i class="bi bi-exclamation-triangle-fill text-warning me-2"></i> Already Enrolled
+                </h5>
+            </div>
+            <div class="modal-body text-secondary">
+                <p>It looks like you are already active in <strong>@Model.Title</strong>.</p>
+                <p>Would you like us to resend your course enrollment details and live class joining links to your email?</p>
+            </div>
+            <div class="modal-footer border-secondary">
+                <button type="button" class="btn btn-outline-custom" id="btn-close-resend" data-bs-dismiss="modal">No, Cancel</button>
+                <button type="button" class="btn btn-premium" id="btn-confirm-resend">Yes, Resend Details</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Payment Simulator Modal -->
+<div class="modal fade" id="simulatorModal" tabindex="-1" aria-labelledby="simulatorModalLabel" aria-hidden="true" data-bs-backdrop="static">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content bg-dark border-secondary">
+            <div class="modal-header border-secondary">
+                <h5 class="modal-title text-white" id="simulatorModalLabel">
+                    <i class="bi bi-terminal-fill text-cyan me-2"></i> Razorpay Simulator Mode
+                </h5>
+            </div>
+            <div class="modal-body text-secondary">
+                <p>No active Razorpay API key configured. The application is running in simulator mode.</p>
+                <p>Select the simulated checkout outcome below to proceed:</p>
+                <div class="border border-secondary border-opacity-10 rounded p-3 bg-black bg-opacity-20 mb-3">
+                    <strong>Order ID:</strong> <span id="sim-order-id" class="font-monospace text-white"></span><br/>
+                    <strong>Amount:</strong> <span id="sim-amount" class="text-white"></span>
+                </div>
+            </div>
+            <div class="modal-footer border-secondary d-flex justify-content-between">
+                <button type="button" class="btn btn-danger w-45" id="btn-simulate-failure">Simulate Failure</button>
+                <button type="button" class="btn btn-success w-45" id="btn-simulate-success">Simulate Success</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <!-- Load Razorpay Checkout Script -->
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+    <script>
+        $(document).ready(function () {
+            let appliedCouponCode = null;
+            let finalDiscountAmount = 0;
+            let currentTotal = parseFloat($('#checkout-total-price').data('base'));
+            let activeRzpOrderId = null;
+            let duplicateEmail = "";
+            let duplicateCourseId = 0;
+
+            const duplicateModal = new bootstrap.Modal(document.getElementById('duplicatePurchaseModal'));
+            const simulatorModal = new bootstrap.Modal(document.getElementById('simulatorModal'));
+
+            // Apply Coupon logic
+            $('#btn-apply-coupon').click(function () {
+                const code = $('#coupon-code').val().trim();
+                const courseId = $('#course-id').val();
+                const messageDiv = $('#coupon-message');
+                
+                if (!code) {
+                    messageDiv.removeClass('text-success').addClass('text-danger').text('Please enter a coupon code.').show();
+                    return;
+                }
+
+                messageDiv.removeClass('text-success text-danger').text('Validating...').show();
+
+                $.ajax({
+                    url: '/api/checkout/validate-coupon',
+                    type: 'POST',
+                    contentType: 'application/json',
+                    data: JSON.stringify({
+                        code: code,
+                        courseId: parseInt(courseId),
+                        orderAmount: parseFloat($('#checkout-total-price').data('base'))
+                    }),
+                    success: function (res) {
+                        if (res.success) {
+                            appliedCouponCode = code;
+                            finalDiscountAmount = res.data.discountAmount;
+                            const newTotal = res.data.discountedAmount;
+                            
+                            // Update labels
+                            $('#applied-coupon-label').text(code.toUpperCase());
+                            $('#coupon-discount-value').text('-₹' + finalDiscountAmount.toFixed(2));
+                            $('#coupon-discount-row').attr('style', 'display: flex !important;');
+                            $('#checkout-total-price').text('₹' + newTotal.toFixed(2));
+                            
+                            messageDiv.removeClass('text-danger').addClass('text-success').text(res.message).show();
+                        } else {
+                            resetCoupon();
+                            messageDiv.removeClass('text-success').addClass('text-danger').text(res.message).show();
+                        }
+                    },
+                    error: function (xhr) {
+                        resetCoupon();
+                        const errorMsg = xhr.responseJSON ? xhr.responseJSON.message : 'Error validating coupon.';
+                        messageDiv.removeClass('text-success').addClass('text-danger').text(errorMsg).show();
+                    }
+                });
+            });
+
+            function resetCoupon() {
+                appliedCouponCode = null;
+                finalDiscountAmount = 0;
+                const baseTotal = parseFloat($('#checkout-total-price').data('base'));
+                $('#coupon-discount-row').attr('style', 'display: none !important;');
+                $('#checkout-total-price').text('₹' + baseTotal.ToStringFormat());
+                $('#applied-coupon-label').text('');
+            }
+
+            // Custom C# style floating string formatting in JS helper
+            Number.prototype.ToStringFormat = function() {
+                return this.toLocaleString('en-IN', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+            };
+
+            // Form Submit / Payment Initiation
+            $('#checkout-form').submit(function (e) {
+                e.preventDefault();
+                
+                // HTML5 validation check
+                if (this.checkValidity() === false) {
+                    e.stopPropagation();
+                    $(this).addClass('was-validated');
+                    return;
+                }
+
+                const name = $('#customer-name').val().trim();
+                const email = $('#customer-email').val().trim();
+                const mobile = $('#customer-mobile').val().trim();
+                const courseId = $('#course-id').val();
+
+                const payButton = $('#btn-submit-payment');
+                payButton.prop('disabled', true).html('Processing <span class="spinner-border spinner-border-sm ms-2"></span>');
+
+                $.ajax({
+                    url: '/api/checkout/create-order',
+                    type: 'POST',
+                    contentType: 'application/json',
+                    data: JSON.stringify({
+                        courseId: parseInt(courseId),
+                        customerName: name,
+                        customerEmail: email,
+                        customerMobile: mobile,
+                        couponCode: appliedCouponCode
+                    }),
+                    success: function (res) {
+                        payButton.prop('disabled', false).html('Proceed to Pay <i class="bi bi-shield-lock-fill ms-2"></i>');
+                        
+                        if (res.success) {
+                            const data = res.data;
+                            
+                            // Check if simulator mode or live
+                            if (data.isSimulator) {
+                                activeRzpOrderId = data.razorpayOrderId;
+                                $('#sim-order-id').text(data.razorpayOrderId);
+                                $('#sim-amount').text('₹' + (data.amount / 100).toFixed(2));
+                                simulatorModal.show();
+                            } else {
+                                // Launch Razorpay Checkout Modal
+                                launchRazorpay(data, name, email, mobile);
+                            }
+                        }
+                    },
+                    error: function (xhr) {
+                        payButton.prop('disabled', false).html('Proceed to Pay <i class="bi bi-shield-lock-fill ms-2"></i>');
+                        const response = xhr.responseJSON;
+                        
+                        if (response && response.statusCode === 409) {
+                            // Duplicate purchase detected!
+                            duplicateEmail = email;
+                            duplicateCourseId = parseInt(courseId);
+                            duplicateModal.show();
+                        } else {
+                            const msg = response ? response.message : 'Error creating order.';
+                            alert(msg);
+                        }
+                    }
+                });
+            });
+
+            // Resend Details Confirm
+            $('#btn-confirm-resend').click(function () {
+                const button = $(this);
+                button.prop('disabled', true).html('Sending <span class="spinner-border spinner-border-sm ms-2"></span>');
+                
+                $.ajax({
+                    url: '/api/checkout/resend-details',
+                    type: 'POST',
+                    contentType: 'application/json',
+                    data: JSON.stringify({
+                        email: duplicateEmail,
+                        courseId: duplicateCourseId
+                    }),
+                    success: function (res) {
+                        button.prop('disabled', false).text('Yes, Resend Details');
+                        duplicateModal.hide();
+                        alert(res.message || 'Details have been sent to your email.');
+                    },
+                    error: function (xhr) {
+                        button.prop('disabled', false).text('Yes, Resend Details');
+                        const errorMsg = xhr.responseJSON ? xhr.responseJSON.message : 'Error sending email.';
+                        alert(errorMsg);
+                    }
+                });
+            });
+
+            // Simulator outcome handlers
+            $('#btn-simulate-success').click(function () {
+                simulatorModal.hide();
+                verifyPayment({
+                    razorpay_order_id: activeRzpOrderId,
+                    razorpay_payment_id: 'pay_sim_' + Math.random().toString(36).substring(2, 12),
+                    razorpay_signature: 'simulated_signature'
+                });
+            });
+
+            $('#btn-simulate-failure').click(function () {
+                simulatorModal.hide();
+                alert('Payment simulation failed.');
+            });
+
+            // Live Razorpay payment trigger
+            function launchRazorpay(orderData, name, email, mobile) {
+                var options = {
+                    "key": orderData.razorpayKey,
+                    "amount": orderData.amount,
+                    "currency": "INR",
+                    "name": "APSRA Trading Academy",
+                    "description": "@Model.Title",
+                    "order_id": orderData.razorpayOrderId,
+                    "handler": function (response) {
+                        verifyPayment(response);
+                    },
+                    "prefill": {
+                        "name": name,
+                        "email": email,
+                        "contact": mobile
+                    },
+                    "theme": {
+                        "color": "#06b6d4"
+                    },
+                    "modal": {
+                        "ondismiss": function () {
+                            alert("Payment window closed. If amount was deducted, contact support.");
+                        }
+                    }
+                };
+                var rzp = new Razorpay(options);
+                rzp.open();
+            }
+
+            // Verify Payment Signature
+            function verifyPayment(paymentPayload) {
+                $.ajax({
+                    url: '/api/checkout/verify-payment',
+                    type: 'POST',
+                    contentType: 'application/json',
+                    data: JSON.stringify({
+                        razorpayOrderId: paymentPayload.razorpay_order_id,
+                        razorpayPaymentId: paymentPayload.razorpay_payment_id,
+                        razorpaySignature: paymentPayload.razorpay_signature
+                    }),
+                    success: function (res) {
+                        if (res.success) {
+                            window.location.href = '/courses/success?orderId=' + res.data.orderId;
+                        } else {
+                            alert('Signature verification failed: ' + res.message);
+                        }
+                    },
+                    error: function (xhr) {
+                        const msg = xhr.responseJSON ? xhr.responseJSON.message : 'Error verifying payment.';
+                        alert('Signature verification failed: ' + msg);
+                    }
+                });
+            }
+        });
+    </script>
+}

@@ -1,0 +1,199 @@
+@model TradingCourse.Web.Models.HomeIndexViewModel
+@{
+    ViewData["Title"] = "Trade with clarity";
+    var banners = Model.Banners ?? System.Array.Empty<TradingCourse.Application.Models.HomepageBanner>();
+    var bannerList = banners.ToList();
+    var hasBanners = bannerList.Any();
+    var defaultHeading = "Trade smarter. Build your edge.";
+    var defaultCopy = "Practical trading education, live market clarity, and a disciplined path to your next level.";
+}
+
+@section Styles {
+    <style>
+        .hero-carousel { min-height: 600px; position: relative; }
+        .hero-carousel .carousel-item { min-height: 600px; position: relative; }
+        .hero-carousel .carousel-item img,
+        .hero-carousel .carousel-item video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+        .hero-carousel .carousel-item .carousel-overlay { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(11,15,25,0.35) 0%, rgba(11,15,25,0.9) 100%); z-index: 2; }
+        .hero-carousel .carousel-caption-custom { position: relative; z-index: 3; }
+        .hero-carousel .carousel-indicators { z-index: 4; margin-bottom: 1.5rem; }
+        .hero-carousel .carousel-indicators [data-bs-target] { width: 32px; height: 4px; border-radius: 2px; background: rgba(255,255,255,0.4); border: 0; opacity: 1; }
+        .hero-carousel .carousel-indicators .active { background: #2dd4bf; }
+        .hero-carousel .carousel-control-prev,
+        .hero-carousel .carousel-control-next { width: 48px; height: 48px; border-radius: 50%; background: rgba(11,15,25,0.6); border: 1px solid rgba(255,255,255,0.15); top: 50%; transform: translateY(-50%); margin: 0 16px; opacity: 0; transition: opacity .3s; }
+        .hero-carousel:hover .carousel-control-prev,
+        .hero-carousel:hover .carousel-control-next { opacity: 1; }
+        .hero-carousel .carousel-control-prev-icon,
+        .hero-carousel .carousel-control-next-icon { filter: invert(1); width: 1.2rem; height: 1.2rem; }
+        .course-track { display: flex; gap: 20px; overflow-x: auto; scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; padding-bottom: 16px; scrollbar-width: none; }
+        .course-track::-webkit-scrollbar { display: none; }
+        .course-track .course-slide { flex: 0 0 calc(25% - 15px); min-width: 260px; scroll-snap-align: start; }
+        @@media (max-width: 991px) { .course-track .course-slide { flex: 0 0 calc(33.333% - 14px); } }
+        @@media (max-width: 600px) { .course-track .course-slide { flex: 0 0 85%; } }
+    </style>
+}
+
+<section class="hero-carousel" id="homepage-slider">
+    @if (hasBanners)
+    {
+        <div id="heroCarousel" class="carousel slide carousel-fade" data-bs-ride="carousel" data-bs-interval="6000">
+            <div class="carousel-indicators">
+                @for (int i = 0; i < bannerList.Count; i++)
+                {
+                    <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="@i" class="@(i == 0 ? "active" : "")" aria-label="Slide @(i + 1)"></button>
+                }
+            </div>
+            <div class="carousel-inner">
+                @for (int i = 0; i < bannerList.Count; i++)
+                {
+                    var b = bannerList[i];
+                    <div class="carousel-item @(i == 0 ? "active" : "")">
+                        @if (b.MediaType == "Video" && !string.IsNullOrEmpty(b.MediaUrl))
+                        {
+                            <video autoplay loop muted playsinline><source src="@b.MediaUrl" type="video/mp4" /></video>
+                        }
+                        else if (b.MediaType == "Photo" && !string.IsNullOrEmpty(b.MediaUrl))
+                        {
+                            <img src="@b.MediaUrl" alt="@b.Heading" loading="@(i == 0 ? "eager" : "lazy")" />
+                        }
+                        <div class="carousel-overlay"></div>
+                        <div class="container carousel-caption-custom d-flex align-items-center" style="min-height: 600px;">
+                            <div class="py-5" style="max-width: 640px;">
+                                <div class="eyebrow mb-3"><span class="eyebrow-dot"></span> Apsra Trading Academy</div>
+                                <h1 class="text-white" style="font-size: clamp(2.6rem, 4.4vw, 4.4rem); line-height: .98; margin: 16px 0 20px;">@b.Heading</h1>
+                                <p class="text-secondary mb-4" style="line-height: 1.8; max-width: 520px; font-size: 1rem;">@b.Subheading</p>
+                                <div class="d-flex gap-3 flex-wrap">
+                                    @if (!string.IsNullOrEmpty(b.ButtonUrl))
+                                    {
+                                        <a href="@b.ButtonUrl" class="btn btn-brand">@(string.IsNullOrEmpty(b.ButtonText) ? "Explore programs" : b.ButtonText) <i class="bi bi-arrow-up-right"></i></a>
+                                    }
+                                    <a href="#academy-features" class="btn btn-quiet">How we teach <i class="bi bi-play-circle"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#heroCarousel" data-bs-slide="prev"><span class="carousel-control-prev-icon" aria-hidden="true"></span><span class="visually-hidden">Previous</span></button>
+            <button class="carousel-control-next" type="button" data-bs-target="#heroCarousel" data-bs-slide="next"><span class="carousel-control-next-icon" aria-hidden="true"></span><span class="visually-hidden">Next</span></button>
+        </div>
+    }
+    else
+    {
+        <div class="container d-flex align-items-center" style="min-height: 600px; position: relative; z-index: 2;">
+            <div class="py-5" style="max-width: 640px;">
+                <div class="eyebrow mb-3"><span class="eyebrow-dot"></span> Apsra Trading Academy</div>
+                <h1 class="text-white" style="font-size: clamp(2.6rem, 4.4vw, 4.4rem); line-height: .98; margin: 16px 0 20px;">@defaultHeading</h1>
+                <p class="text-secondary mb-4" style="line-height: 1.8; max-width: 520px; font-size: 1rem;">@defaultCopy</p>
+                <div class="d-flex gap-3 flex-wrap">
+                    <a asp-controller="Course" asp-action="Index" class="btn btn-brand">Explore programs <i class="bi bi-arrow-up-right"></i></a>
+                    <a href="#academy-features" class="btn btn-quiet">How we teach <i class="bi bi-play-circle"></i></a>
+                </div>
+            </div>
+        </div>
+    }
+</section>
+
+<section class="trusted-strip" aria-label="Academy benefits">
+    <span>REAL-WORLD LEARNING</span><i></i>
+    <span>LIVE MARKET CONTEXT</span><i></i>
+    <span>RISK-FIRST PROCESS</span><i></i>
+    <span>DESIGNED FOR DISCIPLINE</span>
+</section>
+
+<section class="feature-section" id="academy-features">
+    <div class="section-heading">
+        <div>
+            <span class="eyebrow">The Apsra approach</span>
+            <h2>Learn the craft behind<br />confident decisions.</h2>
+        </div>
+        <p>Market knowledge is only useful when it becomes a repeatable process. Our training brings theory, execution, and risk together.</p>
+    </div>
+    <div class="feature-grid">
+        <article class="feature-card">
+            <span class="feature-icon"><i class="bi bi-person-check"></i></span>
+            <span class="feature-count">01</span>
+            <h3>Expert-led clarity</h3>
+            <p>Learn from market professionals who make complex setups understandable and actionable.</p>
+        </article>
+        <article class="feature-card feature-card-highlight">
+            <span class="feature-icon"><i class="bi bi-broadcast"></i></span>
+            <span class="feature-count">02</span>
+            <h3>Live market rooms</h3>
+            <p>See preparation, analysis, and execution in context — not just after the chart has moved.</p>
+        </article>
+        <article class="feature-card">
+            <span class="feature-icon"><i class="bi bi-shield-check"></i></span>
+            <span class="feature-count">03</span>
+            <h3>Risk comes first</h3>
+            <p>Build the habits that protect capital and help your edge compound over time.</p>
+        </article>
+    </div>
+</section>
+
+@if (Model.Courses != null && Model.Courses.Any())
+{
+    <section class="courses-slider-section py-5">
+        <div class="container">
+            <div class="section-heading mb-4">
+                <div>
+                    <span class="eyebrow">Programs</span>
+                    <h2>Start your next cohort</h2>
+                </div>
+                <a asp-controller="Course" asp-action="Index" class="btn btn-brand">View all programs <i class="bi bi-arrow-up-right"></i></a>
+            </div>
+
+            <div class="course-track" id="courseTrack">
+                @foreach (var course in Model.Courses)
+                {
+                    <div class="course-slide">
+                        <div class="glass-card h-100 d-flex flex-column justify-content-between p-4">
+                            <div>
+                                <div class="d-flex justify-content-between align-items-center mb-3">
+                                    @if (course.IsLive)
+                                    {
+                                        <span class="live-indicator"><span class="live-dot"></span> LIVE</span>
+                                    }
+                                    else
+                                    {
+                                        <span class="badge-custom">Self-Paced</span>
+                                    }
+                                    <small class="text-muted"><i class="bi bi-clock"></i> @course.Schedule</small>
+                                </div>
+
+                                <h3 class="text-white h4 mb-2">@course.Title</h3>
+                                <p class="text-secondary small mb-3">By <strong>@course.Instructor</strong></p>
+
+                                <p class="text-secondary text-sm mb-4">@course.ShortDescription</p>
+                            </div>
+
+                            <div>
+                                <hr class="border-secondary opacity-25 my-3" />
+                                
+                                <div class="d-flex align-items-center justify-content-between">
+                                    <div>
+                                        <span class="d-block text-muted small">Course Fee</span>
+                                        <span class="fs-5 fw-bold text-white">
+                                            @if (course.SalePrice.HasValue)
+                                            {
+                                                <span class="text-decoration-line-through text-muted small me-2">₹@course.Price.ToString("N2")</span>
+                                                <span style="color: var(--accent-cyan);">₹@course.SalePrice.Value.ToString("N2")</span>
+                                            }
+                                            else
+                                            {
+                                                <span style="color: var(--accent-cyan);">₹@course.Price.ToString("N2")</span>
+                                            }
+                                        </span>
+                                    </div>
+                                    <a asp-controller="Course" asp-action="Details" asp-route-slug="@course.Slug" class="btn btn-premium">
+                                        Details <i class="bi bi-arrow-right-short"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </section>
+}

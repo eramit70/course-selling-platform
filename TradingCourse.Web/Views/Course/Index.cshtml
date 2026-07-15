@@ -1,0 +1,80 @@
+@model IEnumerable<TradingCourse.Application.Models.Course>
+@{
+    ViewData["Title"] = "Explore Courses";
+}
+
+<div class="py-5">
+    <div class="text-center mb-5">
+        <h1 class="text-white display-4 fw-bold">Professional Trading Programs</h1>
+        <p class="text-secondary fs-5">Elevate your understanding of the financial markets with structured live training</p>
+    </div>
+
+    @if (Model == null || !Model.Any())
+    {
+        <div class="glass-card text-center py-5" id="no-courses-card">
+            <i class="bi bi-journal-x fs-1 text-muted mb-3 d-block"></i>
+            <h3 class="text-white">No Courses Available</h3>
+            <p class="text-secondary">We are preparing new cohorts. Please check back later or contact support to get notified.</p>
+        </div>
+    }
+    else
+    {
+        <div class="row g-4" id="courses-grid">
+            @foreach (var course in Model)
+            {
+                <div class="col-md-6 col-lg-4">
+                    <div class="glass-card h-100 d-flex flex-column justify-content-between p-4" id="course-card-@course.Id">
+                        <div>
+                            <!-- Badge / Live status -->
+                            <div class="d-flex justify-content-between align-items-center mb-3">
+                                @if (course.IsLive)
+                                {
+                                    <span class="live-indicator" id="live-badge-@course.Id">
+                                        <span class="live-dot"></span> LIVE
+                                    </span>
+                                }
+                                else
+                                {
+                                    <span class="badge-custom" id="recorded-badge-@course.Id">Self-Paced</span>
+                                }
+                                <small class="text-muted"><i class="bi bi-clock"></i> @course.Schedule</small>
+                            </div>
+
+                            <!-- Course Title -->
+                            <h3 class="text-white h4 mb-2" id="course-title-@course.Id">@course.Title</h3>
+                            <p class="text-secondary small mb-3">By <strong>@course.Instructor</strong></p>
+
+                            <!-- Short Description -->
+                            <p class="text-secondary text-sm mb-4" id="course-desc-@course.Id">@course.ShortDescription</p>
+                        </div>
+
+                        <div>
+                            <hr class="border-secondary opacity-25 my-3" />
+                            
+                            <!-- Pricing & Details link -->
+                            <div class="d-flex align-items-center justify-content-between">
+                                <div>
+                                    <span class="d-block text-muted small">Course Fee</span>
+                                    <span class="fs-5 fw-bold text-white" id="course-price-@course.Id">
+                                        @if (course.SalePrice.HasValue)
+                                        {
+                                            <span class="text-decoration-line-through text-muted small me-2">₹@course.Price.ToString("N2")</span>
+                                            <span style="color: var(--accent-cyan);">₹@course.SalePrice.Value.ToString("N2")</span>
+                                        }
+                                        else
+                                        {
+                                            <span style="color: var(--accent-cyan);">₹@course.Price.ToString("N2")</span>
+                                        }
+                                    </span>
+                                </div>
+                                <a asp-controller="Course" asp-action="Details" asp-route-slug="@course.Slug" class="btn btn-premium" id="btn-details-@course.Slug">
+                                    Details <i class="bi bi-arrow-right-short"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    }
+</div>

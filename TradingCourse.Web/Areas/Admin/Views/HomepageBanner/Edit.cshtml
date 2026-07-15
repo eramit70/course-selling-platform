@@ -1,0 +1,192 @@
+@model TradingCourse.Application.Models.HomepageBanner
+@{
+    ViewData["Title"] = "Edit Homepage Slide";
+}
+
+<div class="py-4">
+    <div class="mb-4">
+        <a asp-action="Index" class="text-secondary text-decoration-none small" id="back-to-list">
+            <i class="bi bi-chevron-left"></i> Back to Slider List
+        </a>
+        <h1 class="text-white fw-bold mb-0 mt-1">Edit Homepage Slide</h1>
+    </div>
+
+    <div class="row">
+        <!-- Form Settings -->
+        <div class="col-xl-6 mb-4">
+            <div class="glass-card">
+                <form asp-action="Edit" method="post" enctype="multipart/form-data" class="needs-validation" novalidate id="edit-banner-form">
+                    <input type="hidden" asp-for="Id" />
+                    
+                    <div class="mb-3">
+                        <label asp-for="Heading" class="form-label form-label-custom">Slide Heading Text</label>
+                        <input asp-for="Heading" class="form-control form-control-custom" id="input-heading" placeholder="e.g. Master the Art of Price Action" required maxLength="100" />
+                        <div class="form-text text-secondary text-end small"><span id="heading-char-count">@Model.Heading.Length</span> / 100 chars</div>
+                        <span asp-validation-for="Heading" class="invalid-feedback">Heading is required.</span>
+                    </div>
+
+                    <div class="mb-3">
+                        <label asp-for="Subheading" class="form-label form-label-custom">Slide Subheading Text</label>
+                        <textarea asp-for="Subheading" class="form-control form-control-custom" id="input-subheading" rows="2" placeholder="e.g. Learn technical analysis and risk management from industry veterans." required maxLength="250">@Model.Subheading</textarea>
+                        <div class="form-text text-secondary text-end small"><span id="subheading-char-count">@Model.Subheading.Length</span> / 250 chars</div>
+                        <span asp-validation-for="Subheading" class="invalid-feedback">Subheading is required.</span>
+                    </div>
+
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <label asp-for="MediaType" class="form-label form-label-custom">Media Backdrop Type</label>
+                            <select asp-for="MediaType" class="form-select form-control-custom" id="select-media-type" required>
+                                <option value="Photo" selected="@(Model.MediaType == "Photo" ? "selected" : null)">Photo (Image)</option>
+                                <option value="Video" selected="@(Model.MediaType == "Video" ? "selected" : null)">Video (Local MP4/WebM)</option>
+                            </select>
+                        </div>
+                        <div class="col-md-6">
+                            <label asp-for="DisplayOrder" class="form-label form-label-custom">Display Sequence Order</label>
+                            <input asp-for="DisplayOrder" type="number" class="form-control form-control-custom" required />
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <label asp-for="ButtonText" class="form-label form-label-custom">Button Text (Optional)</label>
+                            <input asp-for="ButtonText" class="form-control form-control-custom" id="input-button-text" placeholder="e.g. Explore programs" maxLength="50" />
+                        </div>
+                        <div class="col-md-6">
+                            <label asp-for="ButtonUrl" class="form-label form-label-custom">Button Link URL (Optional)</label>
+                            <input asp-for="ButtonUrl" class="form-control form-control-custom" id="input-button-url" placeholder="e.g. /courses" maxLength="500" />
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label form-label-custom" for="mediaFile">Upload New Backdrop (Optional)</label>
+                        <input type="file" name="mediaFile" id="input-media-file" class="form-control form-control-custom" accept="image/*,video/*" />
+                        <div class="form-text text-secondary small mt-2" id="media-upload-help">
+                            Leave empty to keep current backdrop file. <br />
+                            <span class="text-cyan fw-semibold">Photo size:</span> Max 3 MB (Recom: 1920x1080, JPG/PNG/WEBP).<br />
+                            <span class="text-cyan fw-semibold">Video size:</span> Max 10 MB (MP4/WEBM format).
+                        </div>
+                    </div>
+
+                    <div class="form-check mb-4 mt-3">
+                        <input asp-for="IsActive" type="checkbox" class="form-check-input" id="is-active-checkbox" />
+                        <label class="form-check-label text-white fw-semibold" for="is-active-checkbox">Active Slide (Display on Live Portfolio)</label>
+                    </div>
+
+                    <div class="d-flex gap-3">
+                        <button type="submit" class="btn btn-premium btn-lg" id="btn-save-banner">
+                            Save Changes <i class="bi bi-check-lg ms-1"></i>
+                        </button>
+                        <a asp-area="Admin" asp-controller="HomepageBanner" asp-action="Index" class="btn btn-outline-custom btn-lg">Cancel</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- Live Preview Block -->
+        <div class="col-xl-6">
+            <h3 class="text-white h5 mb-3">Live Slider Preview</h3>
+            <div class="glass-card p-0 position-relative overflow-hidden" style="height: 400px; border-radius: 12px; border-color: var(--accent-cyan);">
+                
+                <!-- Background Media Previews -->
+                <img id="preview-image" src="@(Model.MediaType == "Photo" ? Model.MediaUrl : "")" alt="Backdrop Preview" class="w-100 h-100 position-absolute" style="object-fit: cover; top: 0; left: 0; display: @(Model.MediaType == "Photo" ? "block" : "none"); z-index: 1;" />
+                
+                <video id="preview-video" src="@(Model.MediaType == "Video" ? Model.MediaUrl : "")" autoplay loop muted playsinline class="w-100 h-100 position-absolute" style="object-fit: cover; top: 0; left: 0; display: @(Model.MediaType == "Video" ? "block" : "none"); z-index: 1;"></video>
+                
+                <!-- Dark Overlay -->
+                <div class="position-absolute w-100 h-100" style="background: linear-gradient(180deg, rgba(11, 15, 25, 0.4) 0%, rgba(11, 15, 25, 0.85) 100%); top: 0; left: 0; z-index: 2;"></div>
+
+                <!-- Text Overlay Content -->
+                <div class="position-absolute d-flex flex-column justify-content-center p-5 text-start" style="top: 0; left: 0; right: 0; bottom: 0; z-index: 3;">
+                    <span class="badge bg-cyan bg-opacity-20 text-cyan border border-info border-opacity-30 align-self-start mb-3" style="width: auto;">Preview Mode</span>
+                    <h1 class="hero-title fs-2 text-white mb-2" id="preview-heading" style="line-height: 1.2;">@Model.Heading</h1>
+                    <p class="hero-subtitle fs-6 text-secondary mb-0" id="preview-subheading">@Model.Subheading</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            // Live Text Syncing
+            $('#input-heading').on('input', function () {
+                const val = $(this).val();
+                $('#preview-heading').text(val || "Your Heading Text Here");
+                $('#heading-char-count').text(val.length);
+            });
+
+            $('#input-subheading').on('input', function () {
+                const val = $(this).val();
+                $('#preview-subheading').text(val || "Your subheading description text will appear here.");
+                $('#subheading-char-count').text(val.length);
+            });
+
+            // Toggle file upload validation restrictions
+            $('#select-media-type').on('change', function () {
+                const mediaType = $(this).val();
+                const fileInput = $('#input-media-file');
+                
+                if (mediaType === "Photo") {
+                    fileInput.attr('accept', 'image/*');
+                } else {
+                    fileInput.attr('accept', 'video/*');
+                }
+                
+                // Refresh preview media container
+                triggerMediaPreview();
+            });
+
+            // Live Media File Previewing
+            $('#input-media-file').on('change', function () {
+                triggerMediaPreview();
+            });
+
+            function triggerMediaPreview() {
+                const mediaType = $('#select-media-type').val();
+                const fileInput = document.getElementById('input-media-file');
+                const file = fileInput.files[0];
+
+                const imgPreview = $('#preview-image');
+                const videoPreview = $('#preview-video');
+
+                if (file) {
+                    const objectUrl = URL.createObjectURL(file);
+                    if (mediaType === "Photo") {
+                        videoPreview.hide().attr('src', '');
+                        imgPreview.attr('src', objectUrl).fadeIn(250);
+                    } else if (mediaType === "Video") {
+                        imgPreview.hide().attr('src', '');
+                        videoPreview.attr('src', objectUrl).fadeIn(250);
+                    }
+                } else {
+                    // Fall back to original saved media if no new file is uploaded
+                    if (mediaType === "@Model.MediaType") {
+                        if (mediaType === "Photo") {
+                            videoPreview.hide().attr('src', '');
+                            imgPreview.attr('src', "@Model.MediaUrl").show();
+                        } else {
+                            imgPreview.hide().attr('src', '');
+                            videoPreview.attr('src', "@Model.MediaUrl").show();
+                        }
+                    } else {
+                        imgPreview.hide().attr('src', '');
+                        videoPreview.hide().attr('src', '');
+                    }
+                }
+            }
+
+            // Apply styling checks on forms
+            var forms = document.querySelectorAll('.needs-validation');
+            Array.prototype.slice.call(forms).forEach(function (form) {
+                form.addEventListener('submit', function (event) {
+                    if (!form.checkValidity()) {
+                        event.preventDefault();
+                        event.stopPropagation();
+                    }
+                    form.classList.add('was-validated');
+                }, false);
+            });
+        });
+    </script>
+}

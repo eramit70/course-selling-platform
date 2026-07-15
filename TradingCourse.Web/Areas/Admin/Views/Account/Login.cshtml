@@ -1,0 +1,57 @@
+@{
+    Layout = "_Layout";
+    ViewData["Title"] = "Admin Login";
+}
+
+<div class="py-5 d-flex justify-content-center align-items-center" style="min-height: 70vh;">
+    <div class="glass-card w-100" style="max-width: 450px;" id="login-card">
+        <div class="text-center mb-4">
+            <i class="bi bi-shield-lock-fill" style="font-size: 4rem; background: var(--accent-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; filter: drop-shadow(0 0 10px rgba(6, 182, 212, 0.4));"></i>
+            <h1 class="text-white h3 mt-3">Administration Login</h1>
+            <p class="text-secondary small">Access the course management controls</p>
+        </div>
+
+        <form asp-area="Admin" asp-controller="Account" asp-action="Login" asp-route-returnUrl="@ViewData["ReturnUrl"]" method="post" class="needs-validation" novalidate id="login-form">
+            <div asp-validation-summary="ModelOnly" class="alert alert-danger bg-danger bg-opacity-10 border-danger border-opacity-20 text-danger small mb-3"></div>
+
+            <div class="mb-3">
+                <label for="email-input" class="form-label form-label-custom">Email Address</label>
+                <input type="email" name="email" class="form-control form-control-custom" id="email-input" required placeholder="admin@tradingcourse.com" />
+                <div class="invalid-feedback">Please enter your email address.</div>
+            </div>
+
+            <div class="mb-3">
+                <label for="password-input" class="form-label form-label-custom">Password</label>
+                <input type="password" name="password" class="form-control form-control-custom" id="password-input" required placeholder="••••••••" />
+                <div class="invalid-feedback">Please enter your password.</div>
+            </div>
+
+            <div class="form-check mb-4">
+                <input type="checkbox" name="rememberMe" value="true" class="form-check-input" id="remember-me-checkbox" />
+                <label class="form-check-label text-secondary small" for="remember-me-checkbox">Remember this device</label>
+            </div>
+
+            <button type="submit" class="btn btn-premium w-100 py-2" id="btn-login-submit">
+                Sign In <i class="bi bi-box-arrow-in-right ms-2"></i>
+            </button>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            // Apply bootstrap validation
+            var forms = document.querySelectorAll('.needs-validation');
+            Array.prototype.slice.call(forms).forEach(function (form) {
+                form.addEventListener('submit', function (event) {
+                    if (!form.checkValidity()) {
+                        event.preventDefault();
+                        event.stopPropagation();
+                    }
+                    form.classList.add('was-validated');
+                }, false);
+            });
+        });
+    </script>
+}
