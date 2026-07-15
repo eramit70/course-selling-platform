@@ -19,13 +19,13 @@ jobs:
           dotnet-version: '9.x'
 
       - name: Restore dependencies
-        run: dotnet restore
+        run: dotnet restore APSRA_TradingCourse.sln
 
       - name: Build
-        run: dotnet build --no-restore --configuration Release
+        run: dotnet build APSRA_TradingCourse.sln --no-restore --configuration Release
 
       - name: Test
-        run: dotnet test --no-build --verbosity normal
+        run: dotnet test APSRA_TradingCourse.sln --no-build --verbosity normal
 
       - name: Publish
         run: dotnet publish TradingCourse.Web/TradingCourse.Web.csproj -c Release -o ${{env.DOTNET_ROOT}}/myapp
