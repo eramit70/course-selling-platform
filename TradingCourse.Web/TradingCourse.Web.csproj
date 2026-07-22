@@ -21,6 +21,9 @@
     <TargetFramework>net9.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
+    <AspNetCoreHostingModel>OutOfProcess</AspNetCoreHostingModel>
+    <AspNetCoreStdoutLogEnabled>true</AspNetCoreStdoutLogEnabled>
+    <AspNetCoreStdoutLogFile>\\?\%home%\LogFiles\stdout</AspNetCoreStdoutLogFile>
   </PropertyGroup>
 
 </Project>

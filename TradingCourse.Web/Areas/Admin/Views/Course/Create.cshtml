@@ -5,7 +5,7 @@
 
 <div class="py-4">
     <div class="mb-4">
-        <a asp-action="Index" class="text-secondary text-decoration-none small" id="back-to-list">
+        <a asp-area="Admin" asp-action="Index" class="text-secondary text-decoration-none small" id="back-to-list">
             <i class="bi bi-chevron-left"></i> Back to Courses
         </a>
         <h1 class="text-white fw-bold mb-0 mt-1">Add New Course</h1>
@@ -96,6 +96,8 @@
                             <div class="form-text text-secondary small mt-2">
                                 For Image: Max 3MB (JPG, PNG, WEBP). For Video: Max 10MB (MP4, WEBM).
                             </div>
+                            <span class="invalid-feedback" id="course-media-file-client-error">Please select a supported file within the size limit.</span>
+                            @Html.ValidationMessage("courseMediaFile", new { @class = "d-block text-danger small mt-2" })
                         </div>
                         <div class="col-md-8 mb-3" id="course-media-url-container" style="display: none;">
                             <label asp-for="MediaUrl" class="form-label form-label-custom">YouTube Video URL</label>
@@ -181,7 +183,33 @@
                     $('#course-media-file-container').hide();
                     $('#course-media-url-container').hide();
                 }
+
+                validateCourseMediaFile();
             });
+
+            $('#input-course-media-file').on('change', validateCourseMediaFile);
+
+            function validateCourseMediaFile() {
+                const type = $('#select-course-media-type').val();
+                const fileInput = document.getElementById('input-course-media-file');
+                const file = fileInput.files[0];
+                const isImage = type === 'Image';
+                const allowedExtensions = isImage ? ['jpg', 'jpeg', 'png', 'webp'] : ['mp4', 'webm'];
+                const maxSize = isImage ? 3 * 1024 * 1024 : 10 * 1024 * 1024;
+                let message = '';
+
+                if (file && (type === 'Image' || type === 'Video')) {
+                    const extension = file.name.split('.').pop().toLowerCase();
+                    if (!allowedExtensions.includes(extension)) {
+                        message = isImage ? 'Choose a JPG, JPEG, PNG, or WEBP image.' : 'Choose an MP4 or WEBM video.';
+                    } else if (file.size > maxSize) {
+                        message = isImage ? 'Image files must be 3 MB or smaller.' : 'Video files must be 10 MB or smaller.';
+                    }
+                }
+
+                fileInput.setCustomValidity(message);
+                $('#course-media-file-client-error').text(message || 'Please select a supported file within the size limit.');
+            }
 
             // Apply standard validation
             var forms = document.querySelectorAll('.needs-validation');

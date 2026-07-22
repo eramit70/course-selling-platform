@@ -40,14 +40,28 @@ public class ExceptionMiddleware
 
             _logger.LogError(ex, "An unhandled exception occurred: {Message}", ex.Message);
 
+            try
+            {
+                var emailService = context.RequestServices.GetService(typeof(TradingCourse.Application.Services.IEmailService)) as TradingCourse.Application.Services.IEmailService;
+                if (emailService != null)
+                {
+                    // Fire and forget so we don't delay the error response
+                    _ = emailService.SendExceptionEmailAsync(ex, context.Request.Path);
+                }
+            }
+            catch (Exception emailEx)
+            {
+                _logger.LogError(emailEx, "Failed to send exception email.");
+            }
+
             if (context.Request.Path.StartsWithSegments("/api"))
             {
                 await HandleApiExceptionAsync(context, ex);
             }
             else
             {
-                // Rethrow and let the MVC UseExceptionHandler handle it for HTML pages
-                throw;
+                // Redirect to generic error page
+                context.Response.Redirect("/Home/Error");
             }
         }
     }

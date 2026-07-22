@@ -5,7 +5,7 @@
 
 <div class="py-4">
     <div class="mb-4">
-        <a asp-action="Index" class="text-secondary text-decoration-none small" id="back-to-list">
+        <a asp-area="Admin" asp-action="Index" class="text-secondary text-decoration-none small" id="back-to-list">
             <i class="bi bi-chevron-left"></i> Back to Slider List
         </a>
         <h1 class="text-white fw-bold mb-0 mt-1">Edit Homepage Slide</h1>
@@ -26,10 +26,20 @@
                     </div>
 
                     <div class="mb-3">
+                        <label asp-for="HeadingColor" class="form-label form-label-custom">Heading Color</label>
+                        <input asp-for="HeadingColor" type="color" class="form-control form-control-color form-control-custom" id="input-heading-color" value="@(Model.HeadingColor ?? "#FFFFFF")" title="Select heading color" />
+                    </div>
+
+                    <div class="mb-3">
                         <label asp-for="Subheading" class="form-label form-label-custom">Slide Subheading Text</label>
                         <textarea asp-for="Subheading" class="form-control form-control-custom" id="input-subheading" rows="2" placeholder="e.g. Learn technical analysis and risk management from industry veterans." required maxLength="250">@Model.Subheading</textarea>
                         <div class="form-text text-secondary text-end small"><span id="subheading-char-count">@Model.Subheading.Length</span> / 250 chars</div>
                         <span asp-validation-for="Subheading" class="invalid-feedback">Subheading is required.</span>
+                    </div>
+
+                    <div class="mb-3">
+                        <label asp-for="SubheadingColor" class="form-label form-label-custom">Subheading Color</label>
+                        <input asp-for="SubheadingColor" type="color" class="form-control form-control-color form-control-custom" id="input-subheading-color" value="@(Model.SubheadingColor ?? "#CBD5E1")" title="Select subheading color" />
                     </div>
 
                     <div class="row mb-3">
@@ -44,6 +54,11 @@
                             <label asp-for="DisplayOrder" class="form-label form-label-custom">Display Sequence Order</label>
                             <input asp-for="DisplayOrder" type="number" class="form-control form-control-custom" required />
                         </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label asp-for="ButtonColor" class="form-label form-label-custom">Button Background Color</label>
+                        <input asp-for="ButtonColor" type="color" class="form-control form-control-color form-control-custom" id="input-button-color" value="@(Model.ButtonColor ?? "#14B8A6")" title="Select button background color" />
                     </div>
 
                     <div class="row mb-3">
@@ -65,6 +80,7 @@
                             <span class="text-cyan fw-semibold">Photo size:</span> Max 3 MB (Recom: 1920x1080, JPG/PNG/WEBP).<br />
                             <span class="text-cyan fw-semibold">Video size:</span> Max 10 MB (MP4/WEBM format).
                         </div>
+                        @Html.ValidationMessage("mediaFile", new { @class = "d-block text-danger small mt-2" })
                     </div>
 
                     <div class="form-check mb-4 mt-3">
@@ -98,8 +114,9 @@
                 <!-- Text Overlay Content -->
                 <div class="position-absolute d-flex flex-column justify-content-center p-5 text-start" style="top: 0; left: 0; right: 0; bottom: 0; z-index: 3;">
                     <span class="badge bg-cyan bg-opacity-20 text-cyan border border-info border-opacity-30 align-self-start mb-3" style="width: auto;">Preview Mode</span>
-                    <h1 class="hero-title fs-2 text-white mb-2" id="preview-heading" style="line-height: 1.2;">@Model.Heading</h1>
-                    <p class="hero-subtitle fs-6 text-secondary mb-0" id="preview-subheading">@Model.Subheading</p>
+                    <h1 class="hero-title fs-2 mb-2" id="preview-heading" style="line-height: 1.2; color: @(Model.HeadingColor ?? "#FFFFFF");">@Model.Heading</h1>
+                    <p class="hero-subtitle fs-6 mb-0" id="preview-subheading" style="color: @(Model.SubheadingColor ?? "#CBD5E1");">@Model.Subheading</p>
+                    <span class="btn btn-sm text-white align-self-start mt-3" id="preview-button" style="background-color: @(Model.ButtonColor ?? "#14B8A6");">Preview button</span>
                 </div>
             </div>
         </div>
@@ -120,6 +137,16 @@
                 const val = $(this).val();
                 $('#preview-subheading').text(val || "Your subheading description text will appear here.");
                 $('#subheading-char-count').text(val.length);
+            });
+
+            $('#input-heading-color').on('input change', function () {
+                $('#preview-heading').css('color', $(this).val());
+            });
+            $('#input-subheading-color').on('input change', function () {
+                $('#preview-subheading').css('color', $(this).val());
+            });
+            $('#input-button-color').on('input change', function () {
+                $('#preview-button').css('background-color', $(this).val());
             });
 
             // Toggle file upload validation restrictions

@@ -116,7 +116,7 @@ public static class DbInitializer
                 EmailTemplateBody = @"<div style=""font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; max-width: 600px; margin: 0 auto; padding: 30px; border: 1px solid #e2e8f0; border-radius: 12px; background-color: #ffffff; color: #1a202c;"">
     <div style=""text-align: center; margin-bottom: 25px;"">
         <h2 style=""color: #0ea5e9; font-weight: 700; margin: 0;"">Enrollment Confirmed!</h2>
-        <p style=""color: #64748b; font-size: 14px; margin-top: 5px;"">Thank you for joining APSRA Trading Academy</p>
+        <p style=""color: #64748b; font-size: 14px; margin-top: 5px;"">Thank you for joining The GrowLog</p>
     </div>
     
     <p>Hi <strong>{CustomerName}</strong>,</p>
@@ -153,12 +153,12 @@ public static class DbInitializer
     <h3 style=""color: #334155; border-bottom: 1px solid #e2e8f0; padding-bottom: 8px; font-size: 16px; margin-top: 25px;"">Support and Channels</h3>
     <p style=""font-size: 14px; color: #475569; margin-bottom: 5px;"">If you face any issues joining the cohort, contact us immediately:</p>
     <ul style=""padding-left: 20px; font-size: 14px; color: #475569; margin-top: 5px;"">
-        <li>Email: support@apsratrading.com</li>
+        <li>Email: support@thegrowlog.com</li>
         <li>WhatsApp Support: +91 98765 43210</li>
     </ul>
 
     <p style=""margin-top: 35px; border-top: 1px solid #f1f5f9; padding-top: 20px; font-size: 13px; color: #94a3b8; text-align: center;"">
-        APSRA Trading Academy &bull; Empowering Better Trading Decisions
+        The GrowLog &bull; Empowering Better Trading Decisions
     </p>
 </div>",
                 PurchaseDurationDays = 365,

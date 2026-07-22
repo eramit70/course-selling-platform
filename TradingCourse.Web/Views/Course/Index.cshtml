@@ -23,53 +23,66 @@
             @foreach (var course in Model)
             {
                 <div class="col-md-6 col-lg-4">
-                    <div class="glass-card h-100 d-flex flex-column justify-content-between p-4" id="course-card-@course.Id">
-                        <div>
-                            <!-- Badge / Live status -->
-                            <div class="d-flex justify-content-between align-items-center mb-3">
-                                @if (course.IsLive)
+                    <div class="glass-card h-100 d-flex flex-column justify-content-between p-0 overflow-hidden" id="course-card-@course.Id">
+                        @if (!string.IsNullOrEmpty(course.MediaUrl))
+                        {
+                            <div style="height: 180px; position: relative; border-bottom: 1px solid var(--line);">
+                                @if (course.MediaType == "Video")
                                 {
-                                    <span class="live-indicator" id="live-badge-@course.Id">
-                                        <span class="live-dot"></span> LIVE
-                                    </span>
+                                    <div class="w-100 h-100 bg-dark d-flex align-items-center justify-content-center">
+                                        <i class="bi bi-play-circle text-secondary" style="font-size: 3rem;"></i>
+                                    </div>
                                 }
                                 else
                                 {
-                                    <span class="badge-custom" id="recorded-badge-@course.Id">Self-Paced</span>
+                                    <img src="@course.MediaUrl" alt="@course.Title" class="w-100 h-100 object-fit-cover" />
                                 }
-                                <small class="text-muted"><i class="bi bi-clock"></i> @course.Schedule</small>
                             </div>
-
-                            <!-- Course Title -->
-                            <h3 class="text-white h4 mb-2" id="course-title-@course.Id">@course.Title</h3>
-                            <p class="text-secondary small mb-3">By <strong>@course.Instructor</strong></p>
-
-                            <!-- Short Description -->
-                            <p class="text-secondary text-sm mb-4" id="course-desc-@course.Id">@course.ShortDescription</p>
-                        </div>
-
-                        <div>
-                            <hr class="border-secondary opacity-25 my-3" />
+                        }
+                        <div class="p-4 d-flex flex-column justify-content-between flex-grow-1">
+                            <div>
+                                <!-- Title -->
+                                <h3 class="text-white h5 mb-3 fw-bold" style="line-height: 1.4;">@course.Title</h3>
+                                
+                                <!-- Basic Info -->
+                                <ul class="list-unstyled mb-4">
+                                    <li class="d-flex align-items-start mb-2">
+                                        <i class="bi bi-person-video3 text-muted me-2 mt-1"></i>
+                                        <span class="text-secondary small">Instructor: @course.Instructor</span>
+                                    </li>
+                                    <li class="d-flex align-items-start">
+                                        <i class="bi bi-calendar-event text-muted me-2 mt-1"></i>
+                                        <span class="text-secondary small">@course.Schedule</span>
+                                    </li>
+                                </ul>
+                            </div>
                             
-                            <!-- Pricing & Details link -->
-                            <div class="d-flex align-items-center justify-content-between">
-                                <div>
-                                    <span class="d-block text-muted small">Course Fee</span>
-                                    <span class="fs-5 fw-bold text-white" id="course-price-@course.Id">
-                                        @if (course.SalePrice.HasValue)
-                                        {
-                                            <span class="text-decoration-line-through text-muted small me-2">₹@course.Price.ToString("N2")</span>
-                                            <span style="color: var(--accent-cyan);">₹@course.SalePrice.Value.ToString("N2")</span>
-                                        }
-                                        else
-                                        {
-                                            <span style="color: var(--accent-cyan);">₹@course.Price.ToString("N2")</span>
-                                        }
-                                    </span>
+                            <div>
+                                <hr class="border-secondary opacity-25 mt-0 mb-3" />
+                                
+                                <!-- Pricing -->
+                                <div class="mb-3">
+                                    @if (course.SalePrice.HasValue)
+                                    {
+                                        <span class="fs-4 fw-bold text-white">₹@course.SalePrice.Value.ToString("N2")</span>
+                                        <span class="text-decoration-line-through text-muted small ms-2">₹@course.Price.ToString("N2")</span>
+                                    }
+                                    else
+                                    {
+                                        <span class="fs-4 fw-bold text-white">₹@course.Price.ToString("N2")</span>
+                                    }
+                                    <span class="d-block text-muted" style="font-size: 0.65rem;">(ONE-TIME FEE)</span>
                                 </div>
-                                <a asp-controller="Course" asp-action="Details" asp-route-slug="@course.Slug" class="btn btn-premium" id="btn-details-@course.Slug">
-                                    Details <i class="bi bi-arrow-right-short"></i>
-                                </a>
+                                
+                                <!-- Actions -->
+                                <div class="d-flex gap-2">
+                                    <a asp-controller="Course" asp-action="Details" asp-route-slug="@course.Slug" class="btn flex-grow-1 text-uppercase fw-bold text-center" style="font-size: 0.75rem; padding: 0.7rem 0; border: 1px solid var(--accent-cyan); color: var(--accent-cyan);">
+                                        Explore
+                                    </a>
+                                    <a asp-controller="Course" asp-action="Checkout" asp-route-slug="@course.Slug" class="btn btn-brand flex-grow-1 text-uppercase fw-bold text-center" style="font-size: 0.75rem; padding: 0.7rem 0;">
+                                        Book a Seat
+                                    </a>
+                                </div>
                             </div>
                         </div>
                     </div>

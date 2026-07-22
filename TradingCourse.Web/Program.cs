@@ -82,6 +82,7 @@ try
     // Map Hangfire dashboard
     app.UseHangfireDashboard("/admin/hangfire");
 
+    app.UseStaticFiles(); // Required for runtime uploads (/uploads/...)
     app.MapStaticAssets();
 
     // Map Health Check endpoint

@@ -15,6 +15,14 @@ public class HomepageBanner
     [MaxLength(250)]
     public string Subheading { get; set; } = string.Empty;
 
+    [RegularExpression("^#[0-9A-Fa-f]{6}$", ErrorMessage = "Heading color must be a valid hexadecimal color.")]
+    [MaxLength(7)]
+    public string? HeadingColor { get; set; } = "#FFFFFF";
+
+    [RegularExpression("^#[0-9A-Fa-f]{6}$", ErrorMessage = "Subheading color must be a valid hexadecimal color.")]
+    [MaxLength(7)]
+    public string? SubheadingColor { get; set; } = "#CBD5E1";
+
     [Required]
     [MaxLength(20)]
     public string MediaType { get; set; } = "Photo"; // "Photo" or "Video"
@@ -26,6 +34,10 @@ public class HomepageBanner
 
     [MaxLength(500)]
     public string? ButtonUrl { get; set; }
+
+    [RegularExpression("^#[0-9A-Fa-f]{6}$", ErrorMessage = "Button color must be a valid hexadecimal color.")]
+    [MaxLength(7)]
+    public string? ButtonColor { get; set; } = "#14B8A6";
 
     public int DisplayOrder { get; set; } = 0;
 

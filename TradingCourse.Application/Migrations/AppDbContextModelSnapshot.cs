@@ -363,6 +363,10 @@ namespace TradingCourse.Application.Migrations
                         .HasMaxLength(200)
                         .HasColumnType("nvarchar(200)");
 
+                    b.Property<string>("ButtonColor")
+                        .HasMaxLength(7)
+                        .HasColumnType("nvarchar(7)");
+
                     b.Property<string>("ButtonUrl")
                         .HasMaxLength(500)
                         .HasColumnType("nvarchar(500)");
@@ -377,6 +381,10 @@ namespace TradingCourse.Application.Migrations
                         .IsRequired()
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
+
+                    b.Property<string>("HeadingColor")
+                        .HasMaxLength(7)
+                        .HasColumnType("nvarchar(7)");
 
                     b.Property<bool>("IsActive")
                         .HasColumnType("bit");
@@ -394,6 +402,10 @@ namespace TradingCourse.Application.Migrations
                         .IsRequired()
                         .HasMaxLength(250)
                         .HasColumnType("nvarchar(250)");
+
+                    b.Property<string>("SubheadingColor")
+                        .HasMaxLength(7)
+                        .HasColumnType("nvarchar(7)");
 
                     b.Property<DateTime>("UpdatedAt")
                         .HasColumnType("datetime2");

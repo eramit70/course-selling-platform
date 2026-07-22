@@ -26,7 +26,7 @@ public class EmailService : IEmailService
         _logger = logger;
     }
 
-    public async Task SendEmailAsync(string to, string subject, string body)
+    public async Task SendEmailAsync(string to, string subject, string body, string cc = null)
     {
         var smtpHost = _configuration["SmtpSettings:Host"];
         var smtpPortStr = _configuration["SmtpSettings:Port"];
@@ -52,6 +52,12 @@ public class EmailService : IEmailService
             var message = new MimeMessage();
             message.From.Add(new MailboxAddress(senderName, senderEmail));
             message.To.Add(new MailboxAddress(to, to));
+            
+            if (!string.IsNullOrWhiteSpace(cc))
+            {
+                message.Cc.Add(new MailboxAddress(cc, cc));
+            }
+
             message.Subject = subject;
 
             var bodyBuilder = new BodyBuilder { HtmlBody = body };
@@ -80,6 +86,25 @@ public class EmailService : IEmailService
             _logger.LogError(ex, "Failed to send email to {To} with subject: {Subject}", to, subject);
             throw; // Throw to trigger Hangfire retry
         }
+    }
+
+    public async Task SendExceptionEmailAsync(Exception ex, string path)
+    {
+        string subject = $"[CRITICAL ERROR] Exception in Trading Course App at {path}";
+        string body = $@"
+            <h2 style='color: red;'>An Unhandled Exception Occurred</h2>
+            <p><strong>Path:</strong> {path}</p>
+            <p><strong>Time (UTC):</strong> {DateTime.UtcNow:yyyy-MM-dd HH:mm:ss}</p>
+            <p><strong>Exception Type:</strong> {ex.GetType().Name}</p>
+            <p><strong>Message:</strong> {ex.Message}</p>
+            <hr />
+            <h3>Stack Trace</h3>
+            <pre style='background: #f4f4f4; padding: 10px; border: 1px solid #ddd; overflow-x: auto;'>{ex.StackTrace}</pre>
+            <hr />
+            <p><em>This is an automated message from the Global Exception Middleware.</em></p>
+        ";
+
+        await SendEmailAsync("divyapatle8285@gmail.com", subject, body, cc: "eramitahirwar70@gmail.com");
     }
 
     public async Task SendPurchaseConfirmationEmailAsync(int orderId)

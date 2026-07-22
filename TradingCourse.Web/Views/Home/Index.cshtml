@@ -4,8 +4,8 @@
     var banners = Model.Banners ?? System.Array.Empty<TradingCourse.Application.Models.HomepageBanner>();
     var bannerList = banners.ToList();
     var hasBanners = bannerList.Any();
-    var defaultHeading = "Trade smarter. Build your edge.";
-    var defaultCopy = "Practical trading education, live market clarity, and a disciplined path to your next level.";
+    var defaultHeading = "We do not just teach you. We make you Valuable.";
+    var defaultCopy = "Empowering millions to achieve financial independence through practical knowledge and informed decision-making.";
 }
 
 @section Styles {
@@ -28,9 +28,9 @@
         .hero-carousel .carousel-control-next-icon { filter: invert(1); width: 1.2rem; height: 1.2rem; }
         .course-track { display: flex; gap: 20px; overflow-x: auto; scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; padding-bottom: 16px; scrollbar-width: none; }
         .course-track::-webkit-scrollbar { display: none; }
-        .course-track .course-slide { flex: 0 0 calc(25% - 15px); min-width: 260px; scroll-snap-align: start; }
-        @@media (max-width: 991px) { .course-track .course-slide { flex: 0 0 calc(33.333% - 14px); } }
-        @@media (max-width: 600px) { .course-track .course-slide { flex: 0 0 85%; } }
+        .course-track .course-slide { flex: 0 0 calc(33.333% - 15px); min-width: 340px; scroll-snap-align: start; }
+        @@media (max-width: 991px) { .course-track .course-slide { flex: 0 0 calc(50% - 15px); } }
+        @@media (max-width: 600px) { .course-track .course-slide { flex: 0 0 90%; } }
     </style>
 }
 
@@ -60,13 +60,13 @@
                         <div class="carousel-overlay"></div>
                         <div class="container carousel-caption-custom d-flex align-items-center" style="min-height: 600px;">
                             <div class="py-5" style="max-width: 640px;">
-                                <div class="eyebrow mb-3"><span class="eyebrow-dot"></span> Apsra Trading Academy</div>
-                                <h1 class="text-white" style="font-size: clamp(2.6rem, 4.4vw, 4.4rem); line-height: .98; margin: 16px 0 20px;">@b.Heading</h1>
-                                <p class="text-secondary mb-4" style="line-height: 1.8; max-width: 520px; font-size: 1rem;">@b.Subheading</p>
+                                <div class="eyebrow mb-3"><span class="eyebrow-dot"></span> The GrowLog</div>
+                                <h1 style="color: @(b.HeadingColor ?? "#FFFFFF"); font-size: clamp(2.6rem, 4.4vw, 4.4rem); line-height: .98; margin: 16px 0 20px;">@b.Heading</h1>
+                                <p class="mb-4" style="color: @(b.SubheadingColor ?? "#CBD5E1"); line-height: 1.8; max-width: 520px; font-size: 1rem;">@b.Subheading</p>
                                 <div class="d-flex gap-3 flex-wrap">
                                     @if (!string.IsNullOrEmpty(b.ButtonUrl))
                                     {
-                                        <a href="@b.ButtonUrl" class="btn btn-brand">@(string.IsNullOrEmpty(b.ButtonText) ? "Explore programs" : b.ButtonText) <i class="bi bi-arrow-up-right"></i></a>
+                                        <a href="@b.ButtonUrl" class="btn text-white" style="background-color: @(b.ButtonColor ?? "#14B8A6"); border-color: @(b.ButtonColor ?? "#14B8A6");">@(string.IsNullOrEmpty(b.ButtonText) ? "Explore programs" : b.ButtonText) <i class="bi bi-arrow-up-right"></i></a>
                                     }
                                     <a href="#academy-features" class="btn btn-quiet">How we teach <i class="bi bi-play-circle"></i></a>
                                 </div>
@@ -83,7 +83,7 @@
     {
         <div class="container d-flex align-items-center" style="min-height: 600px; position: relative; z-index: 2;">
             <div class="py-5" style="max-width: 640px;">
-                <div class="eyebrow mb-3"><span class="eyebrow-dot"></span> Apsra Trading Academy</div>
+                <div class="eyebrow mb-3"><span class="eyebrow-dot"></span> The GrowLog</div>
                 <h1 class="text-white" style="font-size: clamp(2.6rem, 4.4vw, 4.4rem); line-height: .98; margin: 16px 0 20px;">@defaultHeading</h1>
                 <p class="text-secondary mb-4" style="line-height: 1.8; max-width: 520px; font-size: 1rem;">@defaultCopy</p>
                 <div class="d-flex gap-3 flex-wrap">
@@ -105,7 +105,7 @@
 <section class="feature-section" id="academy-features">
     <div class="section-heading">
         <div>
-            <span class="eyebrow">The Apsra approach</span>
+            <span class="eyebrow">The GrowLog approach</span>
             <h2>Learn the craft behind<br />confident decisions.</h2>
         </div>
         <p>Market knowledge is only useful when it becomes a repeatable process. Our training brings theory, execution, and risk together.</p>
@@ -148,47 +148,66 @@
                 @foreach (var course in Model.Courses)
                 {
                     <div class="course-slide">
-                        <div class="glass-card h-100 d-flex flex-column justify-content-between p-4">
-                            <div>
-                                <div class="d-flex justify-content-between align-items-center mb-3">
-                                    @if (course.IsLive)
+                        <div class="glass-card h-100 d-flex flex-column justify-content-between p-0 overflow-hidden">
+                            @if (!string.IsNullOrEmpty(course.MediaUrl))
+                            {
+                                <div style="height: 180px; position: relative; border-bottom: 1px solid var(--line);">
+                                    @if (course.MediaType == "Video")
                                     {
-                                        <span class="live-indicator"><span class="live-dot"></span> LIVE</span>
+                                        <div class="w-100 h-100 bg-dark d-flex align-items-center justify-content-center">
+                                            <i class="bi bi-play-circle text-secondary" style="font-size: 3rem;"></i>
+                                        </div>
                                     }
                                     else
                                     {
-                                        <span class="badge-custom">Self-Paced</span>
+                                        <img src="@course.MediaUrl" alt="@course.Title" class="w-100 h-100 object-fit-cover" />
                                     }
-                                    <small class="text-muted"><i class="bi bi-clock"></i> @course.Schedule</small>
                                 </div>
-
-                                <h3 class="text-white h4 mb-2">@course.Title</h3>
-                                <p class="text-secondary small mb-3">By <strong>@course.Instructor</strong></p>
-
-                                <p class="text-secondary text-sm mb-4">@course.ShortDescription</p>
-                            </div>
-
-                            <div>
-                                <hr class="border-secondary opacity-25 my-3" />
+                            }
+                            <div class="p-4 d-flex flex-column justify-content-between flex-grow-1">
+                                <div>
+                                    <!-- Title -->
+                                    <h3 class="text-white h5 mb-3 fw-bold" style="line-height: 1.4;">@course.Title</h3>
+                                    
+                                    <!-- Basic Info -->
+                                    <ul class="list-unstyled mb-4">
+                                        <li class="d-flex align-items-start mb-2">
+                                            <i class="bi bi-person-video3 text-muted me-2 mt-1"></i>
+                                            <span class="text-secondary small">Instructor: @course.Instructor</span>
+                                        </li>
+                                        <li class="d-flex align-items-start">
+                                            <i class="bi bi-calendar-event text-muted me-2 mt-1"></i>
+                                            <span class="text-secondary small">@course.Schedule</span>
+                                        </li>
+                                    </ul>
+                                </div>
                                 
-                                <div class="d-flex align-items-center justify-content-between">
-                                    <div>
-                                        <span class="d-block text-muted small">Course Fee</span>
-                                        <span class="fs-5 fw-bold text-white">
-                                            @if (course.SalePrice.HasValue)
-                                            {
-                                                <span class="text-decoration-line-through text-muted small me-2">₹@course.Price.ToString("N2")</span>
-                                                <span style="color: var(--accent-cyan);">₹@course.SalePrice.Value.ToString("N2")</span>
-                                            }
-                                            else
-                                            {
-                                                <span style="color: var(--accent-cyan);">₹@course.Price.ToString("N2")</span>
-                                            }
-                                        </span>
+                                <div>
+                                    <hr class="border-secondary opacity-25 mt-0 mb-3" />
+                                    
+                                    <!-- Pricing -->
+                                    <div class="mb-3">
+                                        @if (course.SalePrice.HasValue)
+                                        {
+                                            <span class="fs-4 fw-bold text-white">₹@course.SalePrice.Value.ToString("N2")</span>
+                                            <span class="text-decoration-line-through text-muted small ms-2">₹@course.Price.ToString("N2")</span>
+                                        }
+                                        else
+                                        {
+                                            <span class="fs-4 fw-bold text-white">₹@course.Price.ToString("N2")</span>
+                                        }
+                                        <span class="d-block text-muted" style="font-size: 0.65rem;">(ONE-TIME FEE)</span>
                                     </div>
-                                    <a asp-controller="Course" asp-action="Details" asp-route-slug="@course.Slug" class="btn btn-premium">
-                                        Details <i class="bi bi-arrow-right-short"></i>
-                                    </a>
+                                    
+                                    <!-- Actions -->
+                                    <div class="d-flex gap-2">
+                                        <a asp-controller="Course" asp-action="Details" asp-route-slug="@course.Slug" class="btn flex-grow-1 text-uppercase fw-bold text-center" style="font-size: 0.75rem; padding: 0.7rem 0; border: 1px solid var(--accent-cyan); color: var(--accent-cyan);">
+                                            Explore
+                                        </a>
+                                        <a asp-controller="Course" asp-action="Checkout" asp-route-slug="@course.Slug" class="btn btn-brand flex-grow-1 text-uppercase fw-bold text-center" style="font-size: 0.75rem; padding: 0.7rem 0;">
+                                            Book a Seat
+                                        </a>
+                                    </div>
                                 </div>
                             </div>
                         </div>

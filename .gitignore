@@ -9,7 +9,10 @@ obj/
 
 # Logs
 *.log
+Logs/
+build_log.txt
+query
 
 # OS files
 Thumbs.db
-Desktop.ini
+Desktop.ini

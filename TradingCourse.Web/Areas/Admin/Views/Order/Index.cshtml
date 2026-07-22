@@ -59,8 +59,8 @@
                 <button type="submit" class="btn btn-premium w-100 py-2" id="btn-apply-filters">
                     Filter
                 </button>
-                <a asp-action="Index" class="btn btn-outline-custom w-100 py-2">
-                    Clear
+                <a asp-area="Admin" asp-action="Index" class="btn btn-outline-custom w-100 py-2">
+                    <i class="bi bi-x-circle me-1"></i> Reset Filters
                 </a>
             </div>
         </form>
@@ -114,15 +114,15 @@
                                 <td>
                                     @if (lead.PaymentStatus == TradingCourse.Application.Models.PaymentStatus.Success)
                                     {
-                                        <span class="badge bg-success bg-opacity-20 text-success border border-success border-opacity-35 px-3 py-2">Paid</span>
+                                        <span class="badge-success">Paid</span>
                                     }
                                     else if (lead.PaymentStatus == TradingCourse.Application.Models.PaymentStatus.Pending)
                                     {
-                                        <span class="badge bg-warning bg-opacity-20 text-warning border border-warning border-opacity-35 px-3 py-2">Pending</span>
+                                        <span class="badge-warning">Pending</span>
                                     }
                                     else
                                     {
-                                        <span class="badge bg-danger bg-opacity-20 text-danger border border-danger border-opacity-35 px-3 py-2">Failed</span>
+                                        <span class="badge-danger">Failed</span>
                                     }
                                 </td>
                                 <td>@lead.CreatedAt.ToLocalTime().ToString("yyyy-MM-dd HH:mm")</td>

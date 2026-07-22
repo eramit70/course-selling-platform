@@ -63,7 +63,7 @@ public class HomepageBannerController : Controller
 
         if (ModelState.IsValid && mediaFile != null)
         {
-            banner.MediaUrl = await SaveUploadedFileAsync(mediaFile);
+            banner.MediaUrl = await SaveUploadedFileAsync(mediaFile, banner.MediaType);
             await _bannerService.CreateBannerAsync(banner);
             TempData["SuccessMessage"] = $"Slide '{banner.Heading}' Created Successfully";
             return RedirectToAction(nameof(Index), "HomepageBanner", new { area = "Admin" });
@@ -107,7 +107,7 @@ public class HomepageBannerController : Controller
         {
             if (mediaFile != null && mediaFile.Length > 0)
             {
-                banner.MediaUrl = await SaveUploadedFileAsync(mediaFile);
+                banner.MediaUrl = await SaveUploadedFileAsync(mediaFile, banner.MediaType);
             }
             else
             {
@@ -117,10 +117,13 @@ public class HomepageBannerController : Controller
             // Manually transfer properties to keep change tracking happy
             existingBanner.Heading = banner.Heading;
             existingBanner.Subheading = banner.Subheading;
+            existingBanner.HeadingColor = banner.HeadingColor;
+            existingBanner.SubheadingColor = banner.SubheadingColor;
             existingBanner.MediaType = banner.MediaType;
             existingBanner.MediaUrl = banner.MediaUrl;
             existingBanner.ButtonText = banner.ButtonText;
             existingBanner.ButtonUrl = banner.ButtonUrl;
+            existingBanner.ButtonColor = banner.ButtonColor;
             existingBanner.DisplayOrder = banner.DisplayOrder;
             existingBanner.IsActive = banner.IsActive;
 
@@ -182,9 +185,10 @@ public class HomepageBannerController : Controller
         }
     }
 
-    private async Task<string> SaveUploadedFileAsync(IFormFile file)
+    private async Task<string> SaveUploadedFileAsync(IFormFile file, string mediaType)
     {
-        var uploadsDir = Path.Combine(_env.WebRootPath, "uploads");
+        string subFolder = mediaType == "Video" ? "videos" : "banners";
+        var uploadsDir = Path.Combine(_env.WebRootPath, "uploads", subFolder);
         if (!Directory.Exists(uploadsDir))
         {
             Directory.CreateDirectory(uploadsDir);
@@ -198,6 +202,6 @@ public class HomepageBannerController : Controller
             await file.CopyToAsync(stream);
         }
 
-        return "/uploads/" + uniqueName;
+        return $"/uploads/{subFolder}/" + uniqueName;
     }
 }

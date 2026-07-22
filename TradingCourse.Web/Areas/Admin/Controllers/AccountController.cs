@@ -1,6 +1,9 @@
+using System.Security.Claims;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
 using TradingCourse.Application.Models;
 
 namespace TradingCourse.Web.Areas.Admin.Controllers;
@@ -8,13 +11,11 @@ namespace TradingCourse.Web.Areas.Admin.Controllers;
 [Area("Admin")]
 public class AccountController : Controller
 {
-    private readonly SignInManager<AdminUser> _signInManager;
-    private readonly UserManager<AdminUser> _userManager;
+    private readonly IConfiguration _configuration;
 
-    public AccountController(SignInManager<AdminUser> signInManager, UserManager<AdminUser> userManager)
+    public AccountController(IConfiguration configuration)
     {
-        _signInManager = signInManager;
-        _userManager = userManager;
+        _configuration = configuration;
     }
 
     [HttpGet]
@@ -35,18 +36,28 @@ public class AccountController : Controller
             return View();
         }
 
-        // Search for user
-        var user = await _userManager.FindByEmailAsync(email);
-        if (user == null)
-        {
-            ModelState.AddModelError(string.Empty, "Invalid login attempt.");
-            return View();
-        }
+        var configuredEmail = _configuration["AdminSettings:Email"];
+        var configuredPassword = _configuration["AdminSettings:Password"];
 
-        // Verify password
-        var result = await _signInManager.PasswordSignInAsync(user.UserName!, password, rememberMe, lockoutOnFailure: false);
-        if (result.Succeeded)
+        if (!string.IsNullOrWhiteSpace(configuredEmail) &&
+            !string.IsNullOrWhiteSpace(configuredPassword) &&
+            string.Equals(email.Trim(), configuredEmail, StringComparison.OrdinalIgnoreCase) &&
+            password == configuredPassword)
         {
+            var claims = new[]
+            {
+                new Claim(ClaimTypes.Name, configuredEmail),
+                new Claim(ClaimTypes.Email, configuredEmail),
+                new Claim(ClaimTypes.Role, "Admin")
+            };
+            var identity = new ClaimsIdentity(claims, IdentityConstants.ApplicationScheme);
+            var principal = new ClaimsPrincipal(identity);
+
+            await HttpContext.SignInAsync(
+                IdentityConstants.ApplicationScheme,
+                principal,
+                new AuthenticationProperties { IsPersistent = rememberMe });
+
             if (!string.IsNullOrEmpty(returnUrl) && Url.IsLocalUrl(returnUrl))
             {
                 return Redirect(returnUrl);
@@ -62,7 +73,7 @@ public class AccountController : Controller
     [ValidateAntiForgeryToken]
     public async Task<IActionResult> Logout()
     {
-        await _signInManager.SignOutAsync();
+        await HttpContext.SignOutAsync(IdentityConstants.ApplicationScheme);
         return RedirectToAction("Index", "Home", new { area = "" });
     }
 }

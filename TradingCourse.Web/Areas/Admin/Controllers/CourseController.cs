@@ -34,7 +34,22 @@ public class CourseController : Controller
     [HttpGet]
     public IActionResult Create()
     {
-        return View(new Course());
+        var defaultCourse = new Course
+        {
+            Title = "Price Action Masterclass",
+            Slug = "price-action-masterclass",
+            Instructor = "Amit Sharma",
+            Schedule = "Sat & Sun, 7:00 PM IST",
+            PurchaseDurationDays = 365,
+            Price = 9999.00m,
+            SalePrice = 4999.00m,
+            IsLive = true,
+            ShortDescription = "Master the art of Price Action trading, advanced chart analysis, and mathematical risk blueprints with real-time live trading cohorts.",
+            FullDescription = "<h3>Course Syllabus</h3>\n<p><strong>Module 1: Market Structure</strong><br/>Understanding supply and demand zones.</p>\n<p><strong>Module 2: Advanced Price Action</strong><br/>Trading without indicators using pure price.</p>\n<p><strong>Module 3: Risk Management</strong><br/>Protecting capital and position sizing.</p>",
+            EmailTemplateSubject = "Welcome to {CourseTitle}! - Enrollment Confirmed",
+            EmailTemplateBody = "<p>Hi {CustomerName},</p>\n<p>Welcome to <strong>{CourseTitle}</strong>!</p>\n<p>Your class schedule: {Schedule}</p>\n<p>Join live classes here: <a href=\"{LiveClassLink}\">{LiveClassLink}</a></p>\n<br/><p>Regards,<br/>The GrowLog Team</p>"
+        };
+        return View(defaultCourse);
     }
 
     [HttpPost]
@@ -57,7 +72,7 @@ public class CourseController : Controller
         {
             if (courseMediaFile != null && courseMediaFile.Length > 0)
             {
-                course.MediaUrl = await SaveUploadedFileAsync(courseMediaFile);
+                course.MediaUrl = await SaveUploadedFileAsync(courseMediaFile, course.MediaType);
             }
             else if (course.MediaType != "YouTube")
             {
@@ -104,7 +119,7 @@ public class CourseController : Controller
             {
                 if (courseMediaFile != null && courseMediaFile.Length > 0)
                 {
-                    course.MediaUrl = await SaveUploadedFileAsync(courseMediaFile);
+                    course.MediaUrl = await SaveUploadedFileAsync(courseMediaFile, course.MediaType);
                 }
                 else
                 {
@@ -173,9 +188,10 @@ public class CourseController : Controller
         }
     }
 
-    private async Task<string> SaveUploadedFileAsync(IFormFile file)
+    private async Task<string> SaveUploadedFileAsync(IFormFile file, string mediaType)
     {
-        var uploadsDir = Path.Combine(_env.WebRootPath, "uploads");
+        string subFolder = mediaType == "Video" ? "videos" : "courses";
+        var uploadsDir = Path.Combine(_env.WebRootPath, "uploads", subFolder);
         if (!Directory.Exists(uploadsDir))
         {
             Directory.CreateDirectory(uploadsDir);
@@ -189,7 +205,7 @@ public class CourseController : Controller
             await file.CopyToAsync(stream);
         }
 
-        return "/uploads/" + uniqueName;
+        return $"/uploads/{subFolder}/" + uniqueName;
     }
 
     [HttpPost]
